@@ -46,6 +46,15 @@
             <!--<version>0.1.0-SNAPSHOT</version>-->
             <!--<type>apklib</type>-->
         <!--</dependency>-->
+        <dependency>
+            <groupId>com.github.destinyd</groupId>
+            <artifactId>authenticator</artifactId>
+            <version>${authenticator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.activeandroid</groupId>
+            <artifactId>activeandroid</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

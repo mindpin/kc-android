@@ -23,6 +23,8 @@
 			</intent-filter>
 		</activity>
         <activity android:name="SimpleActivity"/>
+        <activity android:name="SignInActivity"/>
+        <meta-data android:name="AA_DB_VERSION" android:value="@integer/AA_DB_VERSION" />
 
 	</application>
 
