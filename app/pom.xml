@@ -12,9 +12,9 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>kc-android-samples</artifactId>
+    <artifactId>app</artifactId>
     <packaging>apk</packaging>
-    <name>kc-android-samples - Samples</name>
+    <name>app</name>
 
     <dependencies>
 
@@ -39,6 +39,12 @@
             <!--<groupId>android.support</groupId>-->
             <!--<artifactId>compatibility-v4</artifactId>-->
             <!--<version>${compatibility-v4.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>com.mindpin.android.shakehandler</groupId>-->
+            <!--<artifactId>shakehandler</artifactId>-->
+            <!--<version>0.1.0-SNAPSHOT</version>-->
+            <!--<type>apklib</type>-->
         <!--</dependency>-->
     </dependencies>
 

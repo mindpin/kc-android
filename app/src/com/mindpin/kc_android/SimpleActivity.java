@@ -1,4 +1,4 @@
-package com.mindpin.samples;
+package com.mindpin.kc_android;
 
 import android.app.Activity;
 import android.os.Bundle;
