@@ -50,6 +50,7 @@
             <groupId>com.github.destinyd</groupId>
             <artifactId>authenticator</artifactId>
             <version>${authenticator.version}</version>
+            <type>apklib</type>
         </dependency>
         <dependency>
             <groupId>com.activeandroid</groupId>
