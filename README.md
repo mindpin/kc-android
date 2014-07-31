@@ -18,6 +18,8 @@ cd KCAuthenticator
 mvn clean install
 ```
 
+## 迁出工程进行开发
+
 ### clone 工程
 ```
 git clone git@github.com:mindpin/kc-android.git
@@ -45,3 +47,15 @@ keystore.alias=
 ```
 
 ### 用支持 MAVEN 的 IDE打开工程项目
+
+
+## SQLite 数据库迁移说明
+
+model 用的 KCAuthenticator 框架，数据库升级比较方便，增加一个 new_version.sql 文件，并写好要运行的SQL语句就可以了
+
+工程写了一个脚本方便生成sql 文件，运行脚本:
+```
+cd kc-android
+python migrate.py
+```
+就可以创建SQL文件
