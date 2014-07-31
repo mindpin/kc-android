@@ -17,3 +17,19 @@ git clone https://github.com/mindpin/KCAuthenticator
 cd KCAuthenticator
 mvn clean install
 ```
+
+### clone 工程
+```
+git clone git@github.com:mindpin/kc-android.git
+cd kc-android
+git checkout develop
+```
+
+### 增加 http_site.xml
+创建 app/res/values/http_site.xml 文件，内容如下
+```
+<resources>
+    <!-- http_site 设置自己的开发服务器地址 -->
+    <string name="http_site">http://192.168.1.38:3000</string>
+</resources>
+```
