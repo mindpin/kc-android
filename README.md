@@ -33,3 +33,15 @@ git checkout develop
     <string name="http_site">http://192.168.1.38:3000</string>
 </resources>
 ```
+
+### 创建 env-release.properties 和 env-debug.properties 
+创建 app/env-release.properties 文件 和 env-debug.properties 文件，两个文件内容如下
+```
+# 四个属性的值，如何设置（联系 fushang318 获取）
+keystore.filename=
+keystore.storepass=
+keystore.keypass=
+keystore.alias=
+```
+
+### 用支持 MAVEN 的 IDE打开工程项目
