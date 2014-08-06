@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.mindpin.android.authenticator.AuthSuccessCallback;
+import com.mindpin.android.authenticator.AuthCallback;
 import com.mindpin.android.authenticator.IUser;
 import com.mindpin.kc_android.controllers.AuthenticatorsController;
 import com.mindpin.kc_android.models.User;
@@ -38,15 +38,22 @@ public class SignInActivity extends Activity {
                 myAuthenticator.sign_in(
                         et_login.getText().toString(),
                         et_password.getText().toString(),
-                        new AuthSuccessCallback() {
+                        new AuthCallback() {
                             @Override
-                            public void callback(IUser user) {
-                                if (user == null) {
-                                    Toast.makeText(SignInActivity.this, "登录失败!", Toast.LENGTH_LONG).show();
-                                    btn_signin.setEnabled(true);
-                                } else {
-                                    startActivity(new Intent(SignInActivity.this, DashboardActivity.class));
-                                }
+                            public void success(IUser user) {
+                                startActivity(new Intent(SignInActivity.this, DashboardActivity.class));
+                            }
+
+                            @Override
+                            public void failure() {
+                                Toast.makeText(SignInActivity.this, "用户和密码不正确", Toast.LENGTH_LONG).show();
+                                btn_signin.setEnabled(true);
+                            }
+
+                            @Override
+                            public void error() {
+                                Toast.makeText(SignInActivity.this, "连接服务器出错", Toast.LENGTH_LONG).show();
+                                btn_signin.setEnabled(true);
                             }
                         });
             }
