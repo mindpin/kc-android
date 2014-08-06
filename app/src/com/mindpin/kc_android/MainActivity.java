@@ -1,53 +1,65 @@
 package com.mindpin.kc_android;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.github.kevinsawicki.http.HttpRequest;
+import com.mindpin.android.authenticator.RequestCallback;
+import com.mindpin.android.authenticator.RequestResult;
+import com.mindpin.kc_android.controllers.AuthenticatorsController;
+import com.mindpin.kc_android.models.User;
+import com.mindpin.kc_android.network.DataProvider;
+import com.mindpin.kc_android.utils.NetworkUtils;
 
-public class MainActivity extends ListActivity {
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setListAdapter(
-                new SimpleAdapter(
-                        this, getData(), android.R.layout.simple_list_item_1, new String[]{"title"},
-                        new int[]{android.R.id.text1}
-                )
-        );
-        getListView().setScrollbarFadingEnabled(false);
+        setContentView(R.layout.main);
+        AuthenticatorsController auth = new AuthenticatorsController(this);
+        User user = (User)auth.current_user();
+        if(user != null){
+            HttpRequest request = HttpRequest.get(auth.get_user_info_url());
+            auth.request(request, new RequestCallback() {
+                @Override
+                public void is_200(RequestResult request) {
+                    go_to_dashboard();
+                }
+
+                @Override
+                public void not_200(RequestResult request) {
+                    go_to_sign();
+                }
+
+                @Override
+                public void error() {
+                    request_error();
+                }
+            });
+        }else{
+            go_to_sign();
+        }
     }
 
-    @SuppressWarnings("unchecked")
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        Map<String, Object> map = (Map<String, Object>) l.getItemAtPosition(position);
-        Intent intent = new Intent(this, (Class<? extends Activity>) map.get("activity"));
-        startActivity(intent);
+    private void request_error() {
+        NetworkUtils.check_network_state(this);
     }
 
-    private List<? extends Map<String, ?>> getData() {
-        List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
-        addItem(data, "登录", SignInActivity.class);
-//        addItem(data, "other", OtherActivity.class);
-
-        return data;
+    private void go_to_dashboard(){
+        this.finish();
+        startActivity(new Intent(this,DashboardActivity.class));
     }
 
-    private void addItem(List<Map<String, Object>> data, String title,
-                         Class<? extends Activity> activityClass) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("title", data.size() + ". " + title);
-        map.put("activity", activityClass);
-        data.add(map);
+    private void go_to_sign(){
+        this.finish();
+        startActivity(new Intent(this,SignInActivity.class));
     }
+
+
+
+
+
+
 }

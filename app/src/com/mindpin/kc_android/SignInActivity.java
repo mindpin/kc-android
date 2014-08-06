@@ -41,6 +41,7 @@ public class SignInActivity extends Activity {
                         new AuthCallback() {
                             @Override
                             public void success(IUser user) {
+                                SignInActivity.this.finish();
                                 startActivity(new Intent(SignInActivity.this, DashboardActivity.class));
                             }
 
