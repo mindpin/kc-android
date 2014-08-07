@@ -3,6 +3,8 @@ package com.mindpin.kc_android;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.mindpin.kc_android.adapter.KnowledgeNetListAdapter;
@@ -21,11 +23,19 @@ public class KnowledgeNetListActivity extends Activity {
 
         List<IKnowledgeNet> net_list = DataProvider.get_knowledge_net_list();
 
-        ListView listView = (ListView) this.findViewById(R.id.knowledge_net_list);
+        ListView listview = (ListView) this.findViewById(R.id.knowledge_net_list);
 
         KnowledgeNetListAdapter adapter =
                 new KnowledgeNetListAdapter(this, R.id.knowledge_net_list, net_list);
-        listView.setAdapter(adapter);
+        listview.setAdapter(adapter);
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                Log.i("listview 事件 ", "true");
+            }
+        });
     }
 
 
