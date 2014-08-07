@@ -1,9 +1,10 @@
 package com.mindpin.kc_android.network;
 
-import com.mindpin.kc_android.KnowledgeNet;
+
 import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
+import com.mindpin.kc_android.models.ui_mock.UIMockKnowledgeNet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class DataProvider {
 
         int x = 0;
         while( x < 20 ) {
-            KnowledgeNet net = new KnowledgeNet(x);
+            UIMockKnowledgeNet net = new UIMockKnowledgeNet(x);
             net_list.add(net);
 
             x++;

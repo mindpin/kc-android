@@ -14,30 +14,37 @@ public class UIMockKnowledgeNet implements IKnowledgeNet{
     private String desc;
     private int point_count;
 
+    private int count = 0;
+
+    public UIMockKnowledgeNet(int count) {
+        this.count = count;
+    }
+
     @Override
     public String get_name() {
-        return this.name;
+        return "hello name " + Integer.toString(count);
     }
 
     @Override
     public String get_desc() {
-        return this.desc;
+        return "hello desc " + Integer.toString(count);
     }
 
     @Override
     public int get_point_count() {
-        return this.point_count;
+        return count;
     }
 
     @Override
     public List<ITutorial> get_tutorial_list() {
-        // TODO 硬编码创建假数据
         return null;
     }
 
     @Override
     public List<IKnowledgePoint> get_knowledge_point_list() {
-        // TODO 硬编码创建假数据
         return null;
+
     }
+
+
 }
