@@ -1,10 +1,11 @@
 package com.mindpin.kc_android.network;
 
+import com.mindpin.kc_android.KnowledgeNet;
 import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
-import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +20,17 @@ public class DataProvider {
      */
     public static List<IKnowledgeNet> get_knowledge_net_list(){
         // TODO 硬编码创建假数据
-        return null;
+        List<IKnowledgeNet> net_list = new ArrayList<IKnowledgeNet>();
+
+        int x = 0;
+        while( x < 20 ) {
+            KnowledgeNet net = new KnowledgeNet(x);
+            net_list.add(net);
+
+            x++;
+        }
+
+        return net_list;
     }
 
     /**
