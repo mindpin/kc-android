@@ -1,4 +1,4 @@
-package com.mindpin.kc_android;
+package com.mindpin.kc_android.adapter;
 
 
 import android.content.Context;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
 
 import java.util.List;
