@@ -8,11 +8,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.mindpin.kc_android.adapter.UIMockTutorialAdapter;
+import com.mindpin.kc_android.adapter.KnowledgeNetTutorialListAdapter;
 import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
-import com.mindpin.kc_android.models.ui_mock.UIMockKnowledgeNet;
 import com.mindpin.kc_android.network.DataProvider;
 
 import java.util.List;
@@ -47,7 +46,7 @@ public class KnowledgePointActivity extends Activity {
 
 
         List<ITutorial> list = point.get_tutorial_list();
-        UIMockTutorialAdapter adapter = new UIMockTutorialAdapter(this);
+        KnowledgeNetTutorialListAdapter adapter = new KnowledgeNetTutorialListAdapter(this);
         adapter.add_items(list);
         listview.setAdapter(adapter);
 
