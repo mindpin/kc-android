@@ -11,4 +11,8 @@
     <string name="knowledge_net">知识点</string>
     <item type="id" name="adapter_item_tag" />
 
+
+    <string name="knowledge_net_section">属于知识网络</string>
+    <string name="tutorial_section">相关教程</string>
+
 </resources>

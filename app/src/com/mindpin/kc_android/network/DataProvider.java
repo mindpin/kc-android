@@ -5,6 +5,7 @@ import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
 import com.mindpin.kc_android.models.ui_mock.UIMockKnowledgeNet;
+import com.mindpin.kc_android.models.ui_mock.UIMockKnowledgePoint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,8 +67,8 @@ public class DataProvider {
      * @return
      */
     public static IKnowledgePoint get_knowledge_point(String knowledge_point_id){
-        // TODO 硬编码创建假数据
-        return null;
+        UIMockKnowledgePoint point = new UIMockKnowledgePoint();
+        return point;
     }
 
 }
