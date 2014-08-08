@@ -41,4 +41,11 @@
         android:text="@string/tutorial_section"
         android:id="@+id/tutorial_section"/>
 
+
+    <ListView
+        android:id="@+id/knowledge_point_tutorial_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+
 </LinearLayout>

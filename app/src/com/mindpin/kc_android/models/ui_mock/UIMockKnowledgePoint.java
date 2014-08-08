@@ -42,7 +42,7 @@ public class UIMockKnowledgePoint implements IKnowledgePoint{
 
     @Override
     public IKnowledgeNet get_knowledge_net() {
-        UIMockKnowledgeNet net = new UIMockKnowledgeNet(1);
+        UIMockKnowledgeNet net = new UIMockKnowledgeNet("hinet");
         return net;
     }
 
