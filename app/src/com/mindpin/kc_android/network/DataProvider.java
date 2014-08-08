@@ -42,7 +42,8 @@ public class DataProvider {
      */
     public static IKnowledgeNet get_knowledge_net(String knowledge_net_id){
         // TODO 硬编码创建假数据
-        return null;
+        UIMockKnowledgeNet uiMockKnowledgeNet = new UIMockKnowledgeNet(knowledge_net_id);
+        return uiMockKnowledgeNet;
     }
 
     /**

@@ -14,6 +14,12 @@ public class UIMockKnowledgePoint implements IKnowledgePoint{
     private String desc;
     private String id;
 
+    public UIMockKnowledgePoint(String id) {
+        this.id = id;
+        this.name = id + id;
+        this.desc = id + id + id;
+    }
+
     @Override
     public String get_id() {
         return this.id;

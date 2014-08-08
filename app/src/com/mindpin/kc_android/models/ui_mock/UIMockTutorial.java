@@ -17,6 +17,14 @@ public class UIMockTutorial implements ITutorial{
     private boolean is_learned;
     private String id;
 
+    public UIMockTutorial(String id) {
+        this.id = id;
+        this.title = "标题" + id;
+        this.desc = "描述" + id;
+        this.icon_url = "http://placekitten.com/g/48/48";
+        this.is_learned = false;
+    }
+
     @Override
     public String get_id() {
         return this.id;

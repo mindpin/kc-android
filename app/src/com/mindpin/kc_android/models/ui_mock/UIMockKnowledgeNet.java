@@ -4,12 +4,16 @@ import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by fushang318 on 2014/8/6.
  */
-public class UIMockKnowledgeNet implements IKnowledgeNet{
+
+public class UIMockKnowledgeNet implements IKnowledgeNet , Serializable {
+    private static final long serialVersionUID = 2102123532191457L;
     private String name;
     private String desc;
     private int point_count;
@@ -19,6 +23,14 @@ public class UIMockKnowledgeNet implements IKnowledgeNet{
 
     public UIMockKnowledgeNet(int count) {
         this.count = count;
+    }
+
+    public UIMockKnowledgeNet(String id) {
+        this.id = id;
+        this.name = "Net标题" + id;
+        this.desc = "Net描述" + id;
+        this.count = 5;
+        this.point_count = 5;
     }
 
     @Override
@@ -43,13 +55,20 @@ public class UIMockKnowledgeNet implements IKnowledgeNet{
 
     @Override
     public List<ITutorial> get_tutorial_list() {
-        return null;
+        List<ITutorial> list = new ArrayList<ITutorial>();
+        for(int i =0; i<20; i++){
+            list.add(new UIMockTutorial(String.valueOf(i)));
+        }
+        return list;
     }
 
     @Override
     public List<IKnowledgePoint> get_knowledge_point_list() {
-        return null;
-
+        List<IKnowledgePoint> list = new ArrayList<IKnowledgePoint>();
+        for(int i =0; i<5; i++){
+            list.add(new UIMockKnowledgePoint(String.valueOf(i)));
+        }
+        return list;
     }
 
 
