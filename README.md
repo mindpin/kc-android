@@ -24,17 +24,12 @@ mvn clean install
 
 安装步骤:
 
-1 用 sdk manager 安装 android.support 19.0.1
+1 下载 http://esharedev.oss-cn-hangzhou.aliyuncs.com/android-support-v4.jar 文件
 
-2 找到 本地 android-support-v4.jar 的完整路径
-比如
-```
-E:\ide\android-sdk\sdk\extras\android\support\v4\android-support-v4.jar
-```
 
-3 安装到 本地 maven 库
+2 安装到 本地 maven 库
 ```
-mvn -q install:install-file -DgroupId=com.android.support -DartifactId=support-v4 -Dversion=19.0.1 -Dpackaging=jar -Dfile="E:\ide\android-sdk\sdk\extras\android\support\v4\android-support-v4.jar"
+mvn -q install:install-file -DgroupId=com.android.support -DartifactId=support-v4 -Dversion=19.0.1 -Dpackaging=jar -Dfile="<下载的android-support-v4.jar的完整文件路径>"
 ```
 
 ## 迁出工程进行开发
