@@ -19,6 +19,24 @@ git checkout v0.0.3 -b v0.0.3
 mvn clean install
 ```
 
+### 安装 android.support 19.0.1 到本地 maven 库
+测试库依赖这个版本的 android.support 所以需要安装
+
+安装步骤:
+
+1 用 sdk manager 安装 android.support 19.0.1
+
+2 找到 本地 android-support-v4.jar 的完整路径
+比如
+```
+E:\ide\android-sdk\sdk\extras\android\support\v4\android-support-v4.jar
+```
+
+3 安装到 本地 maven 库
+```
+mvn -q install:install-file -DgroupId=com.android.support -DartifactId=support-v4 -Dversion=19.0.1 -Dpackaging=jar -Dfile="E:\ide\android-sdk\sdk\extras\android\support\v4\android-support-v4.jar"
+```
+
 ## 迁出工程进行开发
 
 ### clone 工程

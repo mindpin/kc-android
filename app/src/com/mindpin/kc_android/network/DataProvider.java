@@ -26,7 +26,7 @@ public class DataProvider {
 
         int x = 0;
         while( x < 20 ) {
-            UIMockKnowledgeNet net = new UIMockKnowledgeNet(x);
+            UIMockKnowledgeNet net = new UIMockKnowledgeNet(Integer.toString(x));
             net_list.add(net);
 
             x++;

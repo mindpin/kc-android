@@ -7,12 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TabHost;
 import android.widget.TextView;
-import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
 import com.mindpin.kc_android.models.ui_mock.UIMockKnowledgeNet;
-import com.mindpin.kc_android.models.ui_mock.UIMockKnowledgePoint;
-import com.mindpin.kc_android.models.ui_mock.UIMockTutorial;
 import com.mindpin.kc_android.network.DataProvider;
 
 import java.io.Serializable;
@@ -38,12 +35,6 @@ public class KnowledgeNetActivity extends TabActivity {
         // 这个方法内部通过硬编码制造夹具数据（硬编码制造夹具数据也是任务的一部分）
         // net_id 没有实际作用，任意写一个字符串就可以
         net = (UIMockKnowledgeNet) DataProvider.get_knowledge_net("1");
-//        // 这个方法内部通过硬编码制造夹具数据（硬编码制造夹具数据也是任务的一部分）
-//        // 教程列表
-//        tutorial_list = net.get_tutorial_list();
-//        // 这个方法内部通过硬编码制造夹具数据（硬编码制造夹具数据也是任务的一部分）
-//        // 知识点列表
-//        point_list = net.get_knowledge_point_list();
 
         tabHost = getTabHost();
         setTabs();

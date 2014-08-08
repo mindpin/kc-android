@@ -18,18 +18,13 @@ public class UIMockKnowledgeNet implements IKnowledgeNet , Serializable {
     private String desc;
     private int point_count;
 
-    private int count = 0;
     private String id;
 
-    public UIMockKnowledgeNet(int count) {
-        this.count = count;
-    }
 
     public UIMockKnowledgeNet(String id) {
         this.id = id;
         this.name = "Net标题" + id;
         this.desc = "Net描述" + id;
-        this.count = 5;
         this.point_count = 5;
     }
 
@@ -40,17 +35,17 @@ public class UIMockKnowledgeNet implements IKnowledgeNet , Serializable {
 
     @Override
     public String get_name() {
-        return "hello name " + Integer.toString(count);
+        return this.name;
     }
 
     @Override
     public String get_desc() {
-        return "hello desc " + Integer.toString(count);
+        return this.desc;
     }
 
     @Override
     public int get_point_count() {
-        return count;
+        return point_count;
     }
 
     @Override
@@ -65,7 +60,7 @@ public class UIMockKnowledgeNet implements IKnowledgeNet , Serializable {
     @Override
     public List<IKnowledgePoint> get_knowledge_point_list() {
         List<IKnowledgePoint> list = new ArrayList<IKnowledgePoint>();
-        for(int i =0; i<5; i++){
+        for(int i =0; i<20; i++){
             list.add(new UIMockKnowledgePoint(String.valueOf(i)));
         }
         return list;

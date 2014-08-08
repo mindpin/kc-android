@@ -1,27 +1,22 @@
 package com.mindpin.kc_android.adapter;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.adapter.base.KnowledgeBaseAdapter;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
-
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * Created by fushang318 on 14-1-13.
  */
-public class UIMockTutorialAdapter extends KnowledgeBaseAdapter<ITutorial> {
-    public UIMockTutorialAdapter(Activity activity) {
+public class KnowledgeNetTutorialListAdapter extends KnowledgeBaseAdapter<ITutorial> {
+    final Activity activity;
+    public KnowledgeNetTutorialListAdapter(Activity activity) {
         super(activity);
+        this.activity = activity;
     }
 
     @Override
@@ -45,15 +40,8 @@ public class UIMockTutorialAdapter extends KnowledgeBaseAdapter<ITutorial> {
 //        view_holder.iv_cover.setImageURI(Uri.parse(item.get_icon_url()));
         view_holder.tv_title.setText(item.get_title());
         view_holder.tv_description.setText(item.get_desc());
-        view_holder.tv_is_learned.setText("否");
-        URL newurl = null;
-        try {
-            newurl = new URL(item.get_icon_url());
-            Bitmap mIcon_val = BitmapFactory.decodeStream(newurl.openConnection().getInputStream());
-            view_holder.iv_cover.setImageBitmap(mIcon_val);
-        } catch (java.io.IOException e) {
-            e.printStackTrace();
-        }
+        view_holder.tv_is_learned.setText(item.current_user_is_Learned() ? "是" : "否");
+        ImageLoader.getInstance().displayImage(item.get_icon_url(), view_holder.iv_cover);
     }
 
     private class ViewHolder implements BaseViewHolder {
