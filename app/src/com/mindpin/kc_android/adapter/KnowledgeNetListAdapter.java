@@ -31,7 +31,7 @@ public class KnowledgeNetListAdapter extends ArrayAdapter<IKnowledgeNet>{
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.knowledge_net_list, parent, false);
+        View rowView = inflater.inflate(R.layout.knowledge_net_list_item, parent, false);
         TextView name_view = (TextView) rowView.findViewById(R.id.knowledge_net_list_name);
         TextView point_count_view =
                 (TextView) rowView.findViewById(R.id.knowledge_net_list_point_count);
