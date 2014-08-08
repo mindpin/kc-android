@@ -8,4 +8,8 @@
     <string name="label_password">密码</string>
     <string name="sign_in">登录</string>
 
+
+    <string name="knowledge_net_section">属于知识网络</string>
+    <string name="tutorial_section">相关教程</string>
+
 </resources>

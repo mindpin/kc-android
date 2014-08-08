@@ -37,6 +37,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".KnowledgeNetListActivity" />
+        <activity android:name=".KnowledgePointActivity" />
 
         <meta-data android:name="AA_DB_VERSION" android:value="@integer/AA_DB_VERSION" />
 

@@ -14,6 +14,12 @@ public class UIMockKnowledgePoint implements IKnowledgePoint{
     private String desc;
     private String id;
 
+    public UIMockKnowledgePoint() {
+        this.id = "point id test";
+        this.name = "point name test";
+        this.desc = "point desc test";
+    }
+
     @Override
     public String get_id() {
         return this.id;
@@ -31,7 +37,6 @@ public class UIMockKnowledgePoint implements IKnowledgePoint{
 
     @Override
     public IKnowledgeNet get_knowledge_net() {
-        // TODO 硬编码创建假数据
         return null;
     }
 
