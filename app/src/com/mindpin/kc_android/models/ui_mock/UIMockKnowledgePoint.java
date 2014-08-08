@@ -4,6 +4,7 @@ import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,7 +49,10 @@ public class UIMockKnowledgePoint implements IKnowledgePoint{
 
     @Override
     public List<ITutorial> get_tutorial_list() {
-        // TODO 硬编码创建假数据
-        return null;
+        List<ITutorial> list = new ArrayList<ITutorial>();
+        for(int i =0; i<20; i++){
+            list.add(new UIMockTutorial(String.valueOf(i)));
+        }
+        return list;
     }
 }
