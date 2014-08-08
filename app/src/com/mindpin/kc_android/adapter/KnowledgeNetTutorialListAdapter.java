@@ -11,9 +11,9 @@ import com.mindpin.kc_android.models.interfaces.ITutorial;
 /**
  * Created by fushang318 on 14-1-13.
  */
-public class UIMockTutorialAdapter extends KnowledgeBaseAdapter<ITutorial> {
+public class KnowledgeNetTutorialListAdapter extends KnowledgeBaseAdapter<ITutorial> {
     final Activity activity;
-    public UIMockTutorialAdapter(Activity activity) {
+    public KnowledgeNetTutorialListAdapter(Activity activity) {
         super(activity);
         this.activity = activity;
     }
@@ -39,7 +39,7 @@ public class UIMockTutorialAdapter extends KnowledgeBaseAdapter<ITutorial> {
 //        view_holder.iv_cover.setImageURI(Uri.parse(item.get_icon_url()));
         view_holder.tv_title.setText(item.get_title());
         view_holder.tv_description.setText(item.get_desc());
-        view_holder.tv_is_learned.setText("否");
+        view_holder.tv_is_learned.setText(item.current_user_is_Learned() ? "是" : "否");
     }
 
     private class ViewHolder implements BaseViewHolder {

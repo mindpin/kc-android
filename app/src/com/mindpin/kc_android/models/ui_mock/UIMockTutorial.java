@@ -5,11 +5,12 @@ import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by fushang318 on 2014/8/7.
  */
-public class UIMockTutorial implements ITutorial{
+public class UIMockTutorial implements ITutorial {
     private String title;
     private String desc;
     private String icon_url;
@@ -19,10 +20,10 @@ public class UIMockTutorial implements ITutorial{
 
     public UIMockTutorial(String id) {
         this.id = id;
-        this.title = "标题" + id;
-        this.desc = "描述" + id;
+        this.title = "教程 标题" + id;
+        this.desc = "教程 描述" + id;
         this.icon_url = "http://placekitten.com/g/48/48";
-        this.is_learned = false;
+        this.is_learned = new Random().nextBoolean();
     }
 
     @Override
