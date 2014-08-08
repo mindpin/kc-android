@@ -32,6 +32,11 @@ mvn clean install
 mvn -q install:install-file -DgroupId=com.android.support -DartifactId=support-v4 -Dversion=19.0.1 -Dpackaging=jar -Dfile="<下载的android-support-v4.jar的完整文件路径>"
 ```
 
+3 运行测试，如果测试能够运行说明没有问题
+```
+mvn test
+```
+
 ## 迁出工程进行开发
 
 ### clone 工程
