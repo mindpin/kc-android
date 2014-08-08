@@ -60,7 +60,7 @@ public class UIMockKnowledgeNet implements IKnowledgeNet , Serializable {
     @Override
     public List<IKnowledgePoint> get_knowledge_point_list() {
         List<IKnowledgePoint> list = new ArrayList<IKnowledgePoint>();
-        for(int i =0; i<5; i++){
+        for(int i =0; i<20; i++){
             list.add(new UIMockKnowledgePoint(String.valueOf(i)));
         }
         return list;

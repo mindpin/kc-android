@@ -16,8 +16,8 @@ public class UIMockKnowledgePoint implements IKnowledgePoint{
 
     public UIMockKnowledgePoint(String id) {
         this.id = id;
-        this.name = id + id;
-        this.desc = id + id + id;
+        this.name = "知识点标题" + id;
+        this.desc = "知识点描述" + id;
     }
     public UIMockKnowledgePoint() {
         this.id = "point id test";
