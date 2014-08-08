@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.adapter.base.KnowledgeBaseAdapter;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * Created by fushang318 on 14-1-13.
@@ -40,6 +41,7 @@ public class KnowledgeNetTutorialListAdapter extends KnowledgeBaseAdapter<ITutor
         view_holder.tv_title.setText(item.get_title());
         view_holder.tv_description.setText(item.get_desc());
         view_holder.tv_is_learned.setText(item.current_user_is_Learned() ? "是" : "否");
+        ImageLoader.getInstance().displayImage(item.get_icon_url(), view_holder.iv_cover);
     }
 
     private class ViewHolder implements BaseViewHolder {
