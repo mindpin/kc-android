@@ -12,6 +12,12 @@ import java.util.List;
 public class UIMockKnowledgePoint implements IKnowledgePoint{
     private String name;
     private String desc;
+    private String id;
+
+    @Override
+    public String get_id() {
+        return this.id;
+    }
 
     @Override
     public String get_name() {

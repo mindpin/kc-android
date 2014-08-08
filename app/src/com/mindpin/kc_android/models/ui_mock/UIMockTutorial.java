@@ -15,6 +15,12 @@ public class UIMockTutorial implements ITutorial{
     private String icon_url;
     private String knowledge_net_id;
     private boolean is_learned;
+    private String id;
+
+    @Override
+    public String get_id() {
+        return this.id;
+    }
 
     @Override
     public String get_title() {

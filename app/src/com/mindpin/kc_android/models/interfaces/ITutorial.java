@@ -6,6 +6,7 @@ import java.util.List;
  * Created by fushang318 on 2014/8/5.
  */
 public interface ITutorial {
+    public String get_id();
     public String get_title();
     public String get_desc();
     public String get_icon_url();

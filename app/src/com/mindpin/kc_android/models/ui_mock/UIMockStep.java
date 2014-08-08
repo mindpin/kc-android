@@ -8,6 +8,12 @@ import com.mindpin.kc_android.models.interfaces.IStep;
 public class UIMockStep implements IStep{
     private String title;
     private String desc;
+    private String id;
+
+    @Override
+    public String get_id() {
+        return this.id;
+    }
 
     @Override
     public String get_title() {

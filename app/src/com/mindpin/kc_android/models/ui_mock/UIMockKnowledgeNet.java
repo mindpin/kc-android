@@ -15,9 +15,15 @@ public class UIMockKnowledgeNet implements IKnowledgeNet{
     private int point_count;
 
     private int count = 0;
+    private String id;
 
     public UIMockKnowledgeNet(int count) {
         this.count = count;
+    }
+
+    @Override
+    public String get_id() {
+        return this.id;
     }
 
     @Override
