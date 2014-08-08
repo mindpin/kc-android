@@ -29,7 +29,7 @@ public class KnowledgePointActivity extends Activity {
 
 
         IKnowledgeNet net = point.get_knowledge_net();
-        // knowledge_net_name.setText(net.get_name());
+        knowledge_net_name.setText(net.get_name());
 
     }
 

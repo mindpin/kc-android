@@ -37,7 +37,8 @@ public class UIMockKnowledgePoint implements IKnowledgePoint{
 
     @Override
     public IKnowledgeNet get_knowledge_net() {
-        return null;
+        UIMockKnowledgeNet net = new UIMockKnowledgeNet(1);
+        return net;
     }
 
     @Override
