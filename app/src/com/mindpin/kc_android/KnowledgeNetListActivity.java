@@ -1,6 +1,7 @@
 package com.mindpin.kc_android;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,8 +42,11 @@ public class KnowledgeNetListActivity extends Activity {
                         (UIMockKnowledgeNet) parent.getItemAtPosition(position);
 
                 String knowledge_net_id = knowledge_net.get_id();
-
                 Log.i("knowledge_net_id ID ", knowledge_net_id);
+
+                Intent intent = new Intent(KnowledgeNetListActivity.this, KnowledgeNetActivity.class);
+                intent.putExtra("knowledge_net_id", knowledge_net_id);
+                startActivity(intent);
             }
         });
     }

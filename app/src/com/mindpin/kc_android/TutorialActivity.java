@@ -1,6 +1,7 @@
 package com.mindpin.kc_android;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -77,7 +78,11 @@ public class TutorialActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //这次设置点击跳转
                 UIMockKnowledgePoint uiMockKnowledgePoint = (UIMockKnowledgePoint) parent.getItemAtPosition(position);
-                String strID = uiMockKnowledgePoint.get_id();
+                String knowledge_point_id = uiMockKnowledgePoint.get_id();
+
+                Intent intent = new Intent(TutorialActivity.this, KnowledgePointActivity.class);
+                intent.putExtra("knowledge_point_id", knowledge_point_id);
+                startActivity(intent);
             }
         });
     }

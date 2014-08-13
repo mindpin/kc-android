@@ -1,6 +1,7 @@
 package com.mindpin.kc_android;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -39,7 +40,11 @@ public class KnowledgeNetTutorialsActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //这次设置点击跳转
                 UIMockTutorial uiMockTutorial = (UIMockTutorial) parent.getItemAtPosition(position);
-                String strID = uiMockTutorial.get_id();
+                String tutorial_id = uiMockTutorial.get_id();
+
+                Intent intent = new Intent(KnowledgeNetTutorialsActivity.this, TutorialActivity.class);
+                intent.putExtra("tutorial_id", tutorial_id);
+                startActivity(intent);
             }
         });
     }

@@ -1,6 +1,7 @@
 package com.mindpin.kc_android;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -63,6 +64,10 @@ public class KnowledgePointActivity extends Activity {
                 String tutorial_id = tutorial.get_id();
 
                 Log.i("教程ID ", tutorial_id);
+
+                Intent intent = new Intent(KnowledgePointActivity.this, TutorialActivity.class);
+                intent.putExtra("tutorial_id", tutorial_id);
+                startActivity(intent);
 
             }
         });
