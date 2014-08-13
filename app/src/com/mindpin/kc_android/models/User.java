@@ -1,8 +1,8 @@
 package com.mindpin.kc_android.models;
 
-import android.util.Log;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 import com.google.gson.annotations.SerializedName;
 import com.mindpin.android.authenticator.IUser;
@@ -64,5 +64,9 @@ public class User extends IUser {
         } catch (Exception ex) {
             return super.equals(o);
         }
+    }
+
+    public static void delete_all(){
+        new Delete().from(User.class).execute();
     }
 }
