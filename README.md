@@ -19,6 +19,13 @@ git checkout v0.0.4 -b v0.0.4
 mvn clean install
 ```
 
+### 安装KCFlip v0.0.1-SNAPSHOT
+```
+git clone https://github.com/mindpin/kcflip
+cd kcflip
+mvn clean install
+```
+
 ### 安装 android.support 19.0.1 到本地 maven 库
 测试库依赖这个版本的 android.support 所以需要安装
 
