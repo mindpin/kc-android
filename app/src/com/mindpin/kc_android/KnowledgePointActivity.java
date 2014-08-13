@@ -12,6 +12,7 @@ import com.mindpin.kc_android.adapter.KnowledgeNetTutorialListAdapter;
 import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
+import com.mindpin.kc_android.models.ui_mock.UIMockTutorial;
 import com.mindpin.kc_android.network.DataProvider;
 
 import java.util.List;
@@ -55,6 +56,14 @@ public class KnowledgePointActivity extends Activity {
                                     int position, long id) {
 
                 Log.i("listview 事件 ", "true");
+
+                UIMockTutorial tutorial =
+                        (UIMockTutorial) parent.getItemAtPosition(position);
+
+                String tutorial_id = tutorial.get_id();
+
+                Log.i("教程ID ", tutorial_id);
+
             }
         });
 
