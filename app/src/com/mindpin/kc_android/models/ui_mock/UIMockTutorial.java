@@ -4,6 +4,7 @@ import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -59,7 +60,11 @@ public class UIMockTutorial implements ITutorial {
     @Override
     public List<IKnowledgePoint> get_related_knowledge_point_list() {
         // TODO 硬编码创建假数据
-        return null;
+        List<IKnowledgePoint> list = new ArrayList<IKnowledgePoint>();
+        for(int i =0; i<20; i++){
+            list.add(new UIMockKnowledgePoint(String.valueOf(i)));
+        }
+        return list;
     }
 
     @Override
@@ -71,6 +76,10 @@ public class UIMockTutorial implements ITutorial {
     @Override
     public List<IStep> get_step_list() {
         // TODO 硬编码创建假数据
-        return null;
+        List<IStep> list = new ArrayList<IStep>();
+        for(int i =0; i<20; i++){
+            list.add(new UIMockStep(String.valueOf(i)));
+        }
+        return list;
     }
 }

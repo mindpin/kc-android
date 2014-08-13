@@ -41,6 +41,8 @@
         <activity android:name=".KnowledgeNetTutorialsActivity"/>
         <activity android:name=".KnowledgeNetPointsActivity"/>
         <activity android:name=".KnowledgePointActivity" />
+        <activity android:name=".TutorialActivity"/>
+        <activity android:name=".TutorialActivity"/>
 
         <meta-data android:name="AA_DB_VERSION" android:value="@integer/AA_DB_VERSION" />
 

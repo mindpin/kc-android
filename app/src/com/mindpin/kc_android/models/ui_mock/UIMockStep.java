@@ -10,6 +10,15 @@ public class UIMockStep implements IStep{
     private String desc;
     private String id;
 
+    public UIMockStep() {
+    }
+
+    public UIMockStep(String id) {
+        this.id = id;
+        this.title = "title "+id;
+        this.desc = "desc "+id;
+    }
+
     @Override
     public String get_id() {
         return this.id;

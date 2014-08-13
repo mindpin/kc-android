@@ -6,6 +6,7 @@ import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
 import com.mindpin.kc_android.models.ui_mock.UIMockKnowledgeNet;
 import com.mindpin.kc_android.models.ui_mock.UIMockKnowledgePoint;
+import com.mindpin.kc_android.models.ui_mock.UIMockTutorial;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +58,7 @@ public class DataProvider {
      */
     public static ITutorial get_tutorial(String tutorial_id){
         // TODO 硬编码创建假数据
-        return null;
+        return new UIMockTutorial(tutorial_id);
     }
 
 
