@@ -9,6 +9,8 @@ import android.widget.ListView;
 
 import com.mindpin.kc_android.adapter.KnowledgeNetListAdapter;
 import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
+import com.mindpin.kc_android.models.ui_mock.UIMockKnowledgeNet;
+import com.mindpin.kc_android.models.ui_mock.UIMockTutorial;
 import com.mindpin.kc_android.network.DataProvider;
 
 import java.util.List;
@@ -34,6 +36,13 @@ public class KnowledgeNetListActivity extends Activity {
                                     int position, long id) {
 
                 Log.i("listview 事件 ", "true");
+
+                UIMockKnowledgeNet knowledge_net =
+                        (UIMockKnowledgeNet) parent.getItemAtPosition(position);
+
+                String knowledge_net_id = knowledge_net.get_id();
+
+                Log.i("knowledge_net_id ID ", knowledge_net_id);
             }
         });
     }
