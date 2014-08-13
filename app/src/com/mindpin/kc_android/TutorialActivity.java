@@ -14,6 +14,7 @@ import com.mindpin.kc_android.adapter.KnowledgeNetPointListAdapter;
 import com.mindpin.kc_android.adapter.TutorialStepListAdapter;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.IStep;
+import com.mindpin.kc_android.models.ui_mock.UIMockKnowledgePoint;
 import com.mindpin.kc_android.models.ui_mock.UIMockTutorial;
 import com.mindpin.kc_android.network.DataProvider;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -75,7 +76,8 @@ public class TutorialActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //这次设置点击跳转
-                Log.d(TAG, "Click");
+                UIMockKnowledgePoint uiMockKnowledgePoint = (UIMockKnowledgePoint) parent.getItemAtPosition(position);
+                String strID = uiMockKnowledgePoint.get_id();
             }
         });
     }

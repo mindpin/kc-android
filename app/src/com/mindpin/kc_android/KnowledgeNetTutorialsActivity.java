@@ -2,10 +2,14 @@ package com.mindpin.kc_android;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import com.mindpin.kc_android.adapter.KnowledgeNetTutorialListAdapter;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
 import com.mindpin.kc_android.models.ui_mock.UIMockKnowledgeNet;
+import com.mindpin.kc_android.models.ui_mock.UIMockKnowledgePoint;
+import com.mindpin.kc_android.models.ui_mock.UIMockTutorial;
 
 import java.util.List;
 
@@ -30,5 +34,13 @@ public class KnowledgeNetTutorialsActivity extends Activity {
         adapter = new KnowledgeNetTutorialListAdapter(this);
         adapter.add_items(list);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //这次设置点击跳转
+                UIMockTutorial uiMockTutorial = (UIMockTutorial) parent.getItemAtPosition(position);
+                String strID = uiMockTutorial.get_id();
+            }
+        });
     }
 }
