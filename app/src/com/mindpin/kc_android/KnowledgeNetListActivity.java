@@ -60,7 +60,8 @@ public class KnowledgeNetListActivity extends RoboActivity {
         ListView listview = (ListView) this.findViewById(R.id.knowledge_net_list);
 
         KnowledgeNetListAdapter adapter =
-                new KnowledgeNetListAdapter(this, R.id.knowledge_net_list, net_list);
+                new KnowledgeNetListAdapter(this);
+        adapter.add_items(net_list);
         listview.setAdapter(adapter);
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
