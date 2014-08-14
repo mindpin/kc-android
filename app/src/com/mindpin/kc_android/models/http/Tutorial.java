@@ -1,8 +1,11 @@
 package com.mindpin.kc_android.models.http;
 
+import android.util.Log;
+
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
+import com.mindpin.kc_android.network.HttpApi;
 
 import java.util.List;
 
@@ -14,6 +17,8 @@ public class Tutorial implements ITutorial{
     private String title;
     private String desc;
     private boolean is_learned;
+    private List<IStep> step_list;
+    private List<IKnowledgePoint> related_knowledge_point_list;
 
 
     @Override
@@ -48,7 +53,16 @@ public class Tutorial implements ITutorial{
 
     @Override
     public List<IKnowledgePoint> get_related_knowledge_point_list() {
-        return null;
+        if(this.related_knowledge_point_list != null){
+            return this.related_knowledge_point_list;
+        }
+        try {
+            this.related_knowledge_point_list = HttpApi.get_tutorial_knowledge_point_list(get_id());
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("debug", "获取教程的相关知识点失败");
+        }
+        return this.related_knowledge_point_list;
     }
 
     @Override
@@ -58,6 +72,15 @@ public class Tutorial implements ITutorial{
 
     @Override
     public List<IStep> get_step_list() {
-        return null;
+        if(this.step_list != null){
+            return this.step_list;
+        }
+        try {
+            this.step_list = HttpApi.get_step_list(get_id());
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("debug", "获取教程的步骤列表失败");
+        }
+        return this.step_list;
     }
 }

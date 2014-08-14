@@ -42,7 +42,7 @@ public class SignInActivity extends Activity {
                             @Override
                             public void success(IUser user) {
                                 SignInActivity.this.finish();
-                                startActivity(new Intent(SignInActivity.this, DashboardActivity.class));
+                                startActivity(new Intent(SignInActivity.this, KnowledgeNetListActivity.class));
                             }
 
                             @Override

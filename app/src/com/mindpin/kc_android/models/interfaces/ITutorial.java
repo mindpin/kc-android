@@ -1,11 +1,12 @@
 package com.mindpin.kc_android.models.interfaces;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by fushang318 on 2014/8/5.
  */
-public interface ITutorial {
+public interface ITutorial extends Serializable {
     public String get_id();
     public String get_title();
     public String get_desc();

@@ -7,10 +7,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import com.mindpin.kc_android.adapter.KnowledgeNetTutorialListAdapter;
+import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
-import com.mindpin.kc_android.models.ui_mock.UIMockKnowledgeNet;
-import com.mindpin.kc_android.models.ui_mock.UIMockKnowledgePoint;
-import com.mindpin.kc_android.models.ui_mock.UIMockTutorial;
 
 import java.util.List;
 
@@ -19,7 +17,7 @@ import java.util.List;
  */
 public class KnowledgeNetTutorialsActivity extends Activity {
     ListView listView;
-    UIMockKnowledgeNet net;
+    IKnowledgeNet net;
     List<ITutorial> list;
     KnowledgeNetTutorialListAdapter adapter;
 
@@ -28,7 +26,7 @@ public class KnowledgeNetTutorialsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.knowledge_net_tutorials);
         listView = (ListView) findViewById(R.id.lv_list);
-        net = (UIMockKnowledgeNet) getIntent().getExtras().get("net");
+        net = (IKnowledgeNet) getIntent().getExtras().get("net");
         // 这个方法内部通过硬编码制造夹具数据（硬编码制造夹具数据也是任务的一部分）
         // 教程列表
         list = net.get_tutorial_list();
@@ -39,8 +37,8 @@ public class KnowledgeNetTutorialsActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //这次设置点击跳转
-                UIMockTutorial uiMockTutorial = (UIMockTutorial) parent.getItemAtPosition(position);
-                String tutorial_id = uiMockTutorial.get_id();
+                ITutorial tutorial = (ITutorial) parent.getItemAtPosition(position);
+                String tutorial_id = tutorial.get_id();
 
                 Intent intent = new Intent(KnowledgeNetTutorialsActivity.this, TutorialActivity.class);
                 intent.putExtra("tutorial_id", tutorial_id);

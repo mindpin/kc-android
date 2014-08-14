@@ -1,9 +1,7 @@
 package com.mindpin.kc_android;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,21 +9,24 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.github.destinyd.FlipBriefLayout;
+import com.mindpin.android.loadingview.LoadingView;
 import com.mindpin.kc_android.adapter.KnowledgeNetPointListAdapter;
 import com.mindpin.kc_android.adapter.TutorialStepListAdapter;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.IStep;
-import com.mindpin.kc_android.models.ui_mock.UIMockKnowledgePoint;
-import com.mindpin.kc_android.models.ui_mock.UIMockTutorial;
+import com.mindpin.kc_android.models.interfaces.ITutorial;
 import com.mindpin.kc_android.network.DataProvider;
+import com.mindpin.kc_android.utils.KCAsyncTask;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
 
+import roboguice.activity.RoboActivity;
+
 /**
  * Created by dd on 14-8-11.
  */
-public class TutorialActivity extends Activity {
+public class TutorialActivity extends RoboActivity {
 
     private static final String TAG = "TutorialActivity";
     // brief
@@ -46,25 +47,27 @@ public class TutorialActivity extends Activity {
 
     View brief;
     View detail;
-    UIMockTutorial tutorial;
+    ITutorial tutorial;
     FlipBriefLayout kcFlip;
     KnowledgeNetPointListAdapter adapter_brief;
     TutorialStepListAdapter adapter_detail;
     List<IKnowledgePoint> point_list;
     List<IStep> step_list;
+    LoadingView loading_view;
+    String tutorial_id;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tutorial);
+        tutorial_id = getIntent().getStringExtra("tutorial_id");
         kcFlip = (FlipBriefLayout) findViewById(R.id.kcflip);
+        loading_view = (LoadingView) findViewById(R.id.loading_view);
+
 
         get_and_add_layouts_to_flip();
         find_views();
         get_datas();
-
-        datas_to_brief();
-        datas_to_detail();
     }
 
     private void datas_to_brief() {
@@ -77,8 +80,8 @@ public class TutorialActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //这次设置点击跳转
-                UIMockKnowledgePoint uiMockKnowledgePoint = (UIMockKnowledgePoint) parent.getItemAtPosition(position);
-                String knowledge_point_id = uiMockKnowledgePoint.get_id();
+                IKnowledgePoint knowledgePoint = (IKnowledgePoint) parent.getItemAtPosition(position);
+                String knowledge_point_id = knowledgePoint.get_id();
 
                 Intent intent = new Intent(TutorialActivity.this, KnowledgePointActivity.class);
                 intent.putExtra("knowledge_point_id", knowledge_point_id);
@@ -97,16 +100,29 @@ public class TutorialActivity extends Activity {
 
 
     private void get_datas() {
-        // 页面显示这个方法返回的数据
-        // 这个方法内部通过硬编码制造夹具数据（硬编码制造夹具数据也是任务的一部分）
-        // tutorial_id 随便传递一个字符串即可，不影响制造夹具数据
-        tutorial = (UIMockTutorial) DataProvider.get_tutorial("test");
+        new KCAsyncTask<Void>(this){
 
-        // 这个方法内部通过硬编码制造夹具数据（硬编码制造夹具数据也是任务的一部分）
-        point_list = tutorial.get_related_knowledge_point_list();
+            @Override
+            protected void onPreExecute() throws Exception {
+                loading_view.show();
+            }
 
-        // 这个方法内部通过硬编码制造夹具数据（硬编码制造夹具数据也是任务的一部分）
-        step_list = tutorial.get_step_list();
+            @Override
+            public Void call() throws Exception {
+                tutorial = DataProvider.get_tutorial(tutorial_id);
+                point_list = tutorial.get_related_knowledge_point_list();
+                step_list = tutorial.get_step_list();
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Void aVoid) throws Exception {
+                System.out.println(tutorial.get_title());
+                datas_to_brief();
+                datas_to_detail();
+                loading_view.hide();
+            }
+        }.execute();
     }
 
     private void get_and_add_layouts_to_flip() {

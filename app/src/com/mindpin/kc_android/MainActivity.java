@@ -18,6 +18,11 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         AuthenticatorsController auth = new AuthenticatorsController(this);
         User user = (User)auth.current_user();
         if(user != null){
@@ -49,7 +54,7 @@ public class MainActivity extends Activity {
 
     private void go_to_dashboard(){
         this.finish();
-        startActivity(new Intent(this,DashboardActivity.class));
+        startActivity(new Intent(this,KnowledgeNetListActivity.class));
     }
 
     private void go_to_sign(){

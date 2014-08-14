@@ -1,29 +1,30 @@
 package com.mindpin.kc_android;
 
-import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TabHost;
 import android.widget.TextView;
-import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
-import com.mindpin.kc_android.models.interfaces.ITutorial;
-import com.mindpin.kc_android.models.ui_mock.UIMockKnowledgeNet;
+
+import com.mindpin.android.loadingview.LoadingView;
+import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
 import com.mindpin.kc_android.network.DataProvider;
+import com.mindpin.kc_android.utils.KCAsyncTask;
 
 import java.io.Serializable;
-import java.util.List;
+
+import roboguice.activity.RoboTabActivity;
 
 /**
  * Created by dd on 14-8-7.
  */
-public class KnowledgeNetActivity extends TabActivity {
-    private UIMockKnowledgeNet net;
-    private List<ITutorial> tutorial_list;
-    private List<IKnowledgePoint> point_list;
+public class KnowledgeNetActivity extends RoboTabActivity {
+    private IKnowledgeNet net;
     TabHost tabHost;
     TextView tv_description, tv_title;
+    private String knowledge_net_id;
+    private LoadingView loading_view;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,15 +32,11 @@ public class KnowledgeNetActivity extends TabActivity {
         setContentView(R.layout.knowledge_net);
         tv_title = (TextView) findViewById(R.id.tv_title);
         tv_description = (TextView) findViewById(R.id.tv_description);
-        // 页面显示这个方法返回的数据
-        // 这个方法内部通过硬编码制造夹具数据（硬编码制造夹具数据也是任务的一部分）
-        // net_id 没有实际作用，任意写一个字符串就可以
-        net = (UIMockKnowledgeNet) DataProvider.get_knowledge_net("1");
+        loading_view = (LoadingView) findViewById(R.id.loading_view);
 
-        tabHost = getTabHost();
-        setTabs();
-        tv_title.setText(net.get_name());
-        tv_description.setText(net.get_desc());
+        this.knowledge_net_id = getIntent().getStringExtra("knowledge_net_id");
+        get_datas();
+
     }
 
     private void setTabs() {
@@ -67,4 +64,34 @@ public class KnowledgeNetActivity extends TabActivity {
         addTab(labelId, c, "net", net);
     }
 
+    private void get_datas() {
+        new KCAsyncTask<Void>(this){
+
+            @Override
+            protected void onPreExecute() throws Exception {
+                loading_view.show();
+            }
+
+            @Override
+            public Void call() throws Exception {
+                net = DataProvider.get_knowledge_net(knowledge_net_id);
+                net.get_tutorial_list();
+                net.get_knowledge_point_list();
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Void aVoid) throws Exception {
+                build_view();
+                loading_view.hide();
+            }
+        }.execute();
+    }
+
+    private void build_view() {
+        tabHost = getTabHost();
+        setTabs();
+        tv_title.setText(net.get_name());
+        tv_description.setText(net.get_desc());
+    }
 }

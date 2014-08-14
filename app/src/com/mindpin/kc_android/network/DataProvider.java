@@ -4,11 +4,7 @@ package com.mindpin.kc_android.network;
 import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
-import com.mindpin.kc_android.models.ui_mock.UIMockKnowledgeNet;
-import com.mindpin.kc_android.models.ui_mock.UIMockKnowledgePoint;
-import com.mindpin.kc_android.models.ui_mock.UIMockTutorial;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,19 +17,8 @@ public class DataProvider {
      * 获取所有知识网络
      * @return 知识网络列表
      */
-    public static List<IKnowledgeNet> get_knowledge_net_list(){
-        // TODO 硬编码创建假数据
-        List<IKnowledgeNet> net_list = new ArrayList<IKnowledgeNet>();
-
-        int x = 0;
-        while( x < 20 ) {
-            UIMockKnowledgeNet net = new UIMockKnowledgeNet(Integer.toString(x));
-            net_list.add(net);
-
-            x++;
-        }
-
-        return net_list;
+    public static List<IKnowledgeNet> get_knowledge_net_list() throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.get_knowledge_net_list();
     }
 
     /**
@@ -42,10 +27,8 @@ public class DataProvider {
      * @param knowledge_net_id 服务器端的知识网络id
      * @return 知识网络
      */
-    public static IKnowledgeNet get_knowledge_net(String knowledge_net_id){
-        // TODO 硬编码创建假数据
-        UIMockKnowledgeNet uiMockKnowledgeNet = new UIMockKnowledgeNet(knowledge_net_id);
-        return uiMockKnowledgeNet;
+    public static IKnowledgeNet get_knowledge_net(String knowledge_net_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.get_knowledge_net(knowledge_net_id);
     }
 
     /**
@@ -56,9 +39,8 @@ public class DataProvider {
      * @param tutorial_id 服务器端的教程id
      * @return 教程
      */
-    public static ITutorial get_tutorial(String tutorial_id){
-        // TODO 硬编码创建假数据
-        return new UIMockTutorial(tutorial_id);
+    public static ITutorial get_tutorial(String tutorial_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.get_tutorial(tutorial_id);
     }
 
 
@@ -67,9 +49,8 @@ public class DataProvider {
      * @param knowledge_point_id 服务器端的知识节点id
      * @return
      */
-    public static IKnowledgePoint get_knowledge_point(String knowledge_point_id){
-        UIMockKnowledgePoint point = new UIMockKnowledgePoint();
-        return point;
+    public static IKnowledgePoint get_knowledge_point(String knowledge_point_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.get_knowledge_point(knowledge_point_id);
     }
 
 }
