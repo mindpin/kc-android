@@ -1,4 +1,4 @@
-package com.mindpin.kc_android;
+package com.mindpin.kc_android.application;
 
 import android.app.Application;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.mindpin.kc_android;
+package com.mindpin.kc_android.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.github.destinyd.FlipBriefLayout;
 import com.mindpin.android.loadingview.LoadingView;
+import com.mindpin.kc_android.R;
+import com.mindpin.kc_android.activity.base.KnowledgeBaseActivity;
 import com.mindpin.kc_android.adapter.KnowledgeNetPointListAdapter;
 import com.mindpin.kc_android.adapter.TutorialStepListAdapter;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
@@ -22,12 +24,11 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
 
-import roboguice.activity.RoboActivity;
 
 /**
  * Created by dd on 14-8-11.
  */
-public class TutorialActivity extends RoboActivity {
+public class TutorialActivity extends KnowledgeBaseActivity {
 
     private static final String TAG = "TutorialActivity";
     // brief

@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.mindpin.android.authenticator.RequestResult;
-import com.mindpin.kc_android.KCApplication;
+import com.mindpin.kc_android.application.KCApplication;
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.controllers.AuthenticatorsController;
 import com.mindpin.kc_android.models.http.KnowledgeNet;

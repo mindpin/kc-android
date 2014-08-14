@@ -1,17 +1,18 @@
-package com.mindpin.kc_android;
+package com.mindpin.kc_android.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.github.kevinsawicki.http.HttpRequest;
 import com.mindpin.android.authenticator.RequestCallback;
 import com.mindpin.android.authenticator.RequestResult;
+import com.mindpin.kc_android.R;
+import com.mindpin.kc_android.activity.base.KnowledgeBaseActivity;
 import com.mindpin.kc_android.controllers.AuthenticatorsController;
 import com.mindpin.kc_android.models.User;
 import com.mindpin.kc_android.utils.NetworkUtils;
 
-public class MainActivity extends Activity {
+public class MainActivity extends KnowledgeBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,6 +1,5 @@
-package com.mindpin.kc_android;
+package com.mindpin.kc_android.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,13 +9,15 @@ import android.widget.Toast;
 
 import com.mindpin.android.authenticator.AuthCallback;
 import com.mindpin.android.authenticator.IUser;
+import com.mindpin.kc_android.R;
+import com.mindpin.kc_android.activity.base.KnowledgeBaseActivity;
 import com.mindpin.kc_android.controllers.AuthenticatorsController;
 import com.mindpin.kc_android.models.User;
 
 /**
  * Created by dd on 14-6-12.
  */
-public class SignInActivity extends Activity {
+public class SignInActivity extends KnowledgeBaseActivity {
     AuthenticatorsController myAuthenticator;
     User current_user;
     EditText et_login, et_password;

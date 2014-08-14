@@ -1,4 +1,4 @@
-package com.mindpin.kc_android;
+package com.mindpin.kc_android.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mindpin.android.loadingview.LoadingView;
+import com.mindpin.kc_android.R;
+import com.mindpin.kc_android.activity.base.KnowledgeBaseActivity;
 import com.mindpin.kc_android.adapter.KnowledgeNetTutorialListAdapter;
 import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
@@ -18,10 +20,8 @@ import com.mindpin.kc_android.utils.KCAsyncTask;
 
 import java.util.List;
 
-import roboguice.activity.RoboActivity;
 
-
-public class KnowledgePointActivity extends RoboActivity {
+public class KnowledgePointActivity extends KnowledgeBaseActivity {
     TextView knowledge_point_name;
     TextView knowledge_point_desc;
     TextView knowledge_net_name;

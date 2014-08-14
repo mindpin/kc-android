@@ -16,30 +16,21 @@
 		android:allowBackup="true"
 		android:icon="@drawable/ic_launcher"
 		android:label="@string/app_name"
-		android:theme="@style/AppTheme" android:name=".KCApplication">
+		android:theme="@style/AppTheme" android:name=".application.KCApplication">
 
 		<activity
-			android:name="MainActivity"
+			android:name=".activity.MainActivity"
 			android:label="@string/app_name">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-        <activity android:name="SimpleActivity"/>
-        <activity android:name="SignInActivity"/>
-        <!--<activity-->
-            <!--android:name=".DashboardActivity"-->
-            <!--android:label="@string/app_name">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        <!--</activity>-->
-        <activity android:name=".KnowledgeNetListActivity"/>
-        <activity android:name=".KnowledgeNetActivity"/>
-        <activity android:name=".KnowledgePointActivity" />
-        <activity android:name=".TutorialActivity"/>
+        <activity android:name=".activity.SignInActivity"/>
+        <activity android:name=".activity.KnowledgeNetListActivity"/>
+        <activity android:name=".activity.KnowledgeNetActivity"/>
+        <activity android:name=".activity.KnowledgePointActivity" />
+        <activity android:name=".activity.TutorialActivity"/>
 
         <meta-data android:name="AA_DB_VERSION" android:value="@integer/AA_DB_VERSION" />
 

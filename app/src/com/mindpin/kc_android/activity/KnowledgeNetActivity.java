@@ -1,4 +1,4 @@
-package com.mindpin.kc_android;
+package com.mindpin.kc_android.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+
 import com.mindpin.android.loadingview.LoadingView;
+import com.mindpin.kc_android.R;
+import com.mindpin.kc_android.activity.base.KnowledgeBaseActivity;
 import com.mindpin.kc_android.adapter.KnowledgeNetPointListAdapter;
 import com.mindpin.kc_android.adapter.KnowledgeNetTutorialListAdapter;
 import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
@@ -15,14 +18,13 @@ import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
 import com.mindpin.kc_android.network.DataProvider;
 import com.mindpin.kc_android.utils.KCAsyncTask;
-import roboguice.activity.RoboActivity;
 
 import java.util.List;
 
 /**
  * Created by dd on 14-8-7.
  */
-public class KnowledgeNetActivity extends RoboActivity implements View.OnClickListener {
+public class KnowledgeNetActivity extends KnowledgeBaseActivity implements View.OnClickListener {
     private IKnowledgeNet net;
     private List<ITutorial> tutorials;
     private List<IKnowledgePoint> points;
