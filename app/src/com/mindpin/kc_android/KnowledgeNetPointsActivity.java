@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
 import com.mindpin.kc_android.adapter.KnowledgeNetPointListAdapter;
 import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;

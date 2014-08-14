@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.mindpin.android.authenticator.AuthCallback;
 import com.mindpin.android.authenticator.IUser;
 import com.mindpin.kc_android.controllers.AuthenticatorsController;

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.adapter.base.KnowledgeBaseAdapter;
 import com.mindpin.kc_android.models.interfaces.ITutorial;

@@ -3,6 +3,7 @@ package com.mindpin.kc_android.adapter;
 import android.app.Activity;
 import android.view.View;
 import android.widget.TextView;
+
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.adapter.base.KnowledgeBaseAdapter;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;

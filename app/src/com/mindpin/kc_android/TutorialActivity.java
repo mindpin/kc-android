@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.github.destinyd.FlipBriefLayout;
 import com.mindpin.android.loadingview.LoadingView;
 import com.mindpin.kc_android.adapter.KnowledgeNetPointListAdapter;

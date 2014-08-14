@@ -9,7 +9,6 @@ import com.mindpin.android.authenticator.RequestCallback;
 import com.mindpin.android.authenticator.RequestResult;
 import com.mindpin.kc_android.controllers.AuthenticatorsController;
 import com.mindpin.kc_android.models.User;
-import com.mindpin.kc_android.network.DataProvider;
 import com.mindpin.kc_android.utils.NetworkUtils;
 
 public class MainActivity extends Activity {

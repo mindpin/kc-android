@@ -1,7 +1,6 @@
 package com.mindpin.kc_android.utils;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.mindpin.kc_android.network.HttpApi;

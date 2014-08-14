@@ -1,26 +1,11 @@
 package com.mindpin.kc_android.test;
 
-import com.mindpin.android.authenticator.AuthCallback;
-import com.mindpin.android.authenticator.IUser;
-import com.mindpin.kc_android.KCApplication;
-import com.mindpin.kc_android.MainActivity;
-import com.mindpin.kc_android.controllers.AuthenticatorsController;
-import com.mindpin.kc_android.models.User;
-import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
-import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
-import com.mindpin.kc_android.models.interfaces.IStep;
-import com.mindpin.kc_android.models.interfaces.ITutorial;
-import com.mindpin.kc_android.network.DataProvider;
 import com.mindpin.kc_android.network.HttpApi;
 
-import org.apache.tools.ant.taskdefs.condition.Http;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
-
-import java.util.List;
 
 /**
  * Created by fushang318 on 2014/8/8.

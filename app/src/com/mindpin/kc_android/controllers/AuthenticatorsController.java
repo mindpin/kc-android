@@ -1,6 +1,7 @@
 package com.mindpin.kc_android.controllers;
 
 import android.content.Context;
+
 import com.google.gson.Gson;
 import com.mindpin.android.authenticator.Authenticator;
 import com.mindpin.android.authenticator.IUser;
