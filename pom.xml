@@ -22,7 +22,7 @@
         <android.plugin.version>3.8.1</android.plugin.version>
         <platform.version>4.4.2_r3</platform.version>
         <compatibility-v4.version>19.1.0</compatibility-v4.version>
-        <authenticator.version>0.0.4</authenticator.version>
+        <authenticator.version>0.0.5</authenticator.version>
         <activeandroid.version>3.1-SNAPSHOT</activeandroid.version>
     </properties>
 

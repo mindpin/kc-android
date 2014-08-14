@@ -11,11 +11,11 @@ cd ActiveAndroid
 mvn clean install -Dmaven.test.skip=true
 ```
 
-### 安装KCAuthenticator v0.0.4
+### 安装KCAuthenticator v0.0.5
 ```
 git clone https://github.com/mindpin/KCAuthenticator
 cd KCAuthenticator
-git checkout v0.0.4 -b v0.0.4
+git checkout v0.0.5 -b v0.0.5
 mvn clean install
 ```
 
@@ -23,6 +23,14 @@ mvn clean install
 ```
 git clone https://github.com/mindpin/kcflip
 cd kcflip
+mvn clean install
+```
+
+### 安装 LoadingView v0.1.1
+```
+git clone https://github.com/mindpin/LoadingView.git
+cd LoadingView
+git checkout v0.1.1 -b v0.1.1
 mvn clean install
 ```
 
