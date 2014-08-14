@@ -38,8 +38,6 @@
         <!--</activity>-->
         <activity android:name=".KnowledgeNetListActivity"/>
         <activity android:name=".KnowledgeNetActivity"/>
-        <activity android:name=".KnowledgeNetTutorialsActivity"/>
-        <activity android:name=".KnowledgeNetPointsActivity"/>
         <activity android:name=".KnowledgePointActivity" />
         <activity android:name=".TutorialActivity"/>
 
