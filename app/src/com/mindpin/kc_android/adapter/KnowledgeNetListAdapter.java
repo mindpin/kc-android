@@ -1,6 +1,7 @@
 package com.mindpin.kc_android.adapter;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,37 +10,48 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.mindpin.kc_android.R;
+import com.mindpin.kc_android.adapter.base.KnowledgeBaseAdapter;
 import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
+import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 
 import java.util.List;
 
 
 
-public class KnowledgeNetListAdapter extends ArrayAdapter<IKnowledgeNet>{
-    private final Context context;
-    private final List<IKnowledgeNet> values;
+public class KnowledgeNetListAdapter extends KnowledgeBaseAdapter<IKnowledgeNet> {
 
-    public KnowledgeNetListAdapter(Context context,
-                                   int resource_id,
-                                   List<IKnowledgeNet> values) {
-        super(context, resource_id, values);
-        this.context = context;
-        this.values = values;
+
+    final Activity activity;
+    public KnowledgeNetListAdapter(Activity activity) {
+        super(activity);
+        this.activity = activity;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.knowledge_net_list_item, parent, false);
-        TextView name_view = (TextView) rowView.findViewById(R.id.knowledge_net_list_name);
-        TextView point_count_view =
-                (TextView) rowView.findViewById(R.id.knowledge_net_list_point_count);
+    public View inflate_view() {
+        return inflate(R.layout.knowledge_net_list_item, null);
+    }
 
-        name_view.setText(values.get(position).get_name());
-        point_count_view.setText(Integer.toString(values.get(position).get_point_count()));
+    @Override
+    public BaseViewHolder build_view_holder(View view) {
+        ViewHolder view_holder = new ViewHolder();
+        view_holder.name_view = (TextView) view.findViewById(R.id.knowledge_net_list_name);
+        view_holder.point_count_view =
+                (TextView) view.findViewById(R.id.knowledge_net_list_point_count);
+        return view_holder;
+    }
 
 
-        return rowView;
+    @Override
+    public void fill_with_data(BaseViewHolder holder, IKnowledgeNet item, int position) {
+        ViewHolder view_holder = (ViewHolder) holder;
+        view_holder.name_view.setText(item.get_name());
+        view_holder.point_count_view.setText(Integer.toString(item.get_point_count()));
+    }
+
+
+    private class ViewHolder implements BaseViewHolder {
+        TextView name_view;
+        TextView point_count_view;
     }
 }
