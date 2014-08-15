@@ -16,5 +16,9 @@ public interface ITutorial extends Serializable {
 
     public List<IKnowledgePoint> get_related_knowledge_point_list();
     public List<ITutorial> get_children();
+    
+    @Deprecated
     public List<IStep> get_step_list();
+
+    public IStep get_first_step();
 }

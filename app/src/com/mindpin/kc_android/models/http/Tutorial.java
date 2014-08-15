@@ -19,7 +19,7 @@ public class Tutorial implements ITutorial{
     private boolean is_learned;
     private List<IStep> step_list;
     private List<IKnowledgePoint> related_knowledge_point_list;
-
+    private IStep first_step;
 
     @Override
     public String get_id() {
@@ -71,6 +71,7 @@ public class Tutorial implements ITutorial{
     }
 
     @Override
+    @Deprecated
     public List<IStep> get_step_list() {
         if(this.step_list != null){
             return this.step_list;
@@ -82,5 +83,20 @@ public class Tutorial implements ITutorial{
             Log.d("debug", "获取教程的步骤列表失败");
         }
         return this.step_list;
+    }
+
+    @Override
+    public IStep get_first_step() {
+        if(this.first_step != null){
+            return this.first_step;
+        }
+        try{
+            get_step_list();
+            this.first_step = this.step_list.get(0);
+        } catch (Exception e){
+            e.printStackTrace();
+            Log.d("debug", "获取教程的第一个步骤失败");
+        }
+        return this.first_step;
     }
 }
