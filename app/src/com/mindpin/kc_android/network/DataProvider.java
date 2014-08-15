@@ -3,6 +3,7 @@ package com.mindpin.kc_android.network;
 
 import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
+import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
 
 import java.util.List;
@@ -32,9 +33,16 @@ public class DataProvider {
     }
 
     /**
-     * 3 TutorialActivity 使用数据
-     * 4 TutorialStepActivity 使用数据
-     * 5 TutorialEndActivity 使用数据
+     * 3 KnowledgePointActivity 使用数据
+     * @param knowledge_point_id 服务器端的知识节点id
+     * @return
+     */
+    public static IKnowledgePoint get_knowledge_point(String knowledge_point_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.get_knowledge_point(knowledge_point_id);
+    }
+
+    /**
+     * 4 TutorialActivity 使用数据
      * 获取某个教程的详细内容
      * @param tutorial_id 服务器端的教程id
      * @return 教程
@@ -43,14 +51,17 @@ public class DataProvider {
         return HttpApi.get_tutorial(tutorial_id);
     }
 
-
     /**
-     * 6 KnowledgePointActivity 使用数据
-     * @param knowledge_point_id 服务器端的知识节点id
-     * @return
+     * 4 TutorialActivity 使用数据
+     * 获取某个教程步骤的详细内容
+     * @param step_id
+     * @return 教程步骤
+     * @throws HttpApi.RequestDataErrorException
+     * @throws HttpApi.AuthErrorException
+     * @throws HttpApi.NetworkErrorException
      */
-    public static IKnowledgePoint get_knowledge_point(String knowledge_point_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
-        return HttpApi.get_knowledge_point(knowledge_point_id);
+    public static IStep get_step(String step_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.get_step(step_id);
     }
 
 }

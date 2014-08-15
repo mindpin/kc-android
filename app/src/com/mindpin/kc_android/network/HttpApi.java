@@ -62,6 +62,9 @@ public class HttpApi {
     public static String 获取教程的步骤列表(String tutorial_id){
         return SITE + String.format("/api/steps.json?tutorial_id=%s", tutorial_id);
     }
+    public static String 获取教程步骤(String step_id){
+        return SITE + String.format("/api/steps/%s.json", step_id);
+    }
     /**
      * http api url end
      */
@@ -217,6 +220,22 @@ public class HttpApi {
             @Override
             public HttpRequest build_request() {
                 return HttpRequest.get(HttpApi.获取教程的步骤列表(tutorial_id));
+            }
+        }.request();
+    }
+
+    public static IStep get_step(final String step_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<IStep>(){
+
+            @Override
+            public IStep call(RequestResult rr) {
+                Gson gson = new GsonBuilder().create();
+                return gson.fromJson(rr.body, Step.class);
+            }
+
+            @Override
+            public HttpRequest build_request() {
+                return HttpRequest.get(HttpApi.获取教程步骤(step_id));
             }
         }.request();
     }

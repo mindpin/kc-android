@@ -1,11 +1,22 @@
 package com.mindpin.kc_android.test;
 
+import com.mindpin.android.authenticator.AuthCallback;
+import com.mindpin.android.authenticator.IUser;
+import com.mindpin.kc_android.application.KCApplication;
+import com.mindpin.kc_android.controllers.AuthenticatorsController;
+import com.mindpin.kc_android.models.User;
+import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
+import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
+import com.mindpin.kc_android.models.interfaces.IStep;
+import com.mindpin.kc_android.models.interfaces.ITutorial;
 import com.mindpin.kc_android.network.HttpApi;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
+
+import java.util.List;
 
 /**
  * Created by fushang318 on 2014/8/8.
@@ -117,6 +128,10 @@ public class FirstTest  {
 //        System.out.println(step_list.size());
 //        System.out.println(step_list.get(0).get_title());
 //        System.out.println(step_list.get(0).get_desc());
+//
+//        IStep step = HttpApi.get_step(step_list.get(0).get_id());
+//        System.out.println(step.get_title());
+//        System.out.println(step.get_desc());
     }
 
 }
