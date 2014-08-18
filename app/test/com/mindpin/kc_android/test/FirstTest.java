@@ -110,7 +110,7 @@ public class FirstTest  {
 //        System.out.println(stutorial_list.get(0).get_desc());
 //
 //
-//        String tutorial_id = "53e9df656c696e2aee2a0000";
+//        String tutorial_id = "53eddf016c696e03845f0000";
 //        ITutorial tutorial = HttpApi.get_tutorial(tutorial_id);
 //
 //        System.out.println(tutorial.get_title());
@@ -132,6 +132,33 @@ public class FirstTest  {
 //        IStep step = HttpApi.get_step(step_list.get(0).get_id());
 //        System.out.println(step.get_title());
 //        System.out.println(step.get_desc());
+//        System.out.println(step.get_id());
+//
+//        System.out.println("~~~~~~~~~~~~~~~~~~~~~");
+//
+//        for(IStep s : step_list){
+//            System.out.println(">>>>");
+//            System.out.println(s.get_continue_type());
+//            if(s.get_continue_type() == IStep.ContinueType.ID){
+//                System.out.println("ID TYPE");
+//                System.out.println(s.get_next_id());
+//            }
+//            if(s.get_continue_type() == IStep.ContinueType.END){
+//                System.out.println("END TYPE");
+//                System.out.println(s.is_end());
+//            }
+//            if(s.get_continue_type() == IStep.ContinueType.SELECT){
+//                System.out.println("SELECT TYPE");
+//                IStep.ISelect select = s.get_select();
+//                System.out.println(select.get_question());
+//                List<IStep.ISelectOption> so_list = select.get_select_options();
+//                for(IStep.ISelectOption so : so_list){
+//                    System.out.println(so.get_next_step_id());
+//                    System.out.println(so.get_title());
+//                }
+//            }
+//        }
+
     }
 
 }
