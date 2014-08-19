@@ -2,13 +2,10 @@ package com.mindpin.kc_android.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-
+import android.widget.*;
 import com.github.destinyd.FlipBriefLayout;
 import com.mindpin.android.loadingview.LoadingView;
 import com.mindpin.kc_android.R;
@@ -22,6 +19,7 @@ import com.mindpin.kc_android.network.DataProvider;
 import com.mindpin.kc_android.utils.KCAsyncTask;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,20 +30,15 @@ public class TutorialActivity extends KnowledgeBaseActivity {
 
     private static final String TAG = "TutorialActivity";
     // brief
-//    @InjectView(R.id.lv_list_brief)
     protected ListView lv_list_brief;
-//    @InjectView(R.id.tv_description_brief)
     protected TextView tv_description_brief;
-//    @InjectView(R.id.iv_cover)
     protected ImageView iv_cover;
 
     //detail
-//    @InjectView(R.id.lv_list_detail)
-    protected ListView lv_list_detail;
-//    @InjectView(R.id.tv_title_detail)
     protected TextView tv_title_detail;
-//    @InjectView(R.id.tv_description_detail)
     protected TextView tv_description_detail;
+    protected Button btn_next_step;
+    protected LinearLayout ll_steps;
 
     View brief;
     View detail;
@@ -54,9 +47,11 @@ public class TutorialActivity extends KnowledgeBaseActivity {
     KnowledgeNetPointListAdapter adapter_brief;
     TutorialStepListAdapter adapter_detail;
     List<IKnowledgePoint> point_list;
-    List<IStep> step_list;
     LoadingView loading_view;
     String tutorial_id;
+    IStep step_now;
+    String id_next_step;
+    List<Button> list_buttons = new ArrayList<Button>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,7 +64,17 @@ public class TutorialActivity extends KnowledgeBaseActivity {
 
         get_and_add_layouts_to_flip();
         find_views();
+        bind_listener();
         get_datas();
+    }
+
+    private void bind_listener() {
+        btn_next_step.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                get_next_step(step_now.get_next_id());
+            }
+        });
     }
 
     private void datas_to_brief() {
@@ -95,14 +100,88 @@ public class TutorialActivity extends KnowledgeBaseActivity {
     private void datas_to_detail() {
         tv_title_detail.setText(tutorial.get_title());
         tv_description_detail.setText(tutorial.get_desc());
-        adapter_detail = new TutorialStepListAdapter(this);
-        adapter_detail.add_items(step_list);
-        lv_list_detail.setAdapter(adapter_detail);
+        add_step(step_now);
+    }
+
+    private void add_step(IStep step) {
+        LinearLayout ll_step = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.step_list_item, null);
+        if (step != null) {
+            ((TextView) ll_step.findViewById(R.id.tv_title)).setText(step.get_title());
+            ((TextView) ll_step.findViewById(R.id.tv_description)).setText(step.get_desc());
+            if (step.get_continue_type() == IStep.ContinueType.SELECT) {
+                Log.d(TAG, "selects");
+                IStep.ISelect select = step.get_select();
+
+                TextView tv_question = new TextView(this);
+                tv_question.setText(select.get_question());
+                ll_step.addView(new TextView(this));
+
+                List<IStep.ISelectOption> select_options = select.get_select_options();
+                for (IStep.ISelectOption option : select_options) {
+                    Button button = new Button(this);
+                    button.setText(option.get_title());
+                    button.setTag(option.get_next_step_id());
+                    button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Log.d(TAG, "next step id:" + v.getTag());
+                            get_next_step((String) v.getTag());
+                        }
+                    });
+                    list_buttons.add(button);
+                    ll_step.addView(button);
+                }
+            }
+            ll_steps.addView(ll_step);
+            if (step.get_continue_type() == IStep.ContinueType.END || step.get_continue_type() == IStep.ContinueType.SELECT)
+                btn_next_step.setVisibility(View.GONE);
+            else
+                btn_next_step.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void get_next_step(String id) {
+        id_next_step = id;
+        new KCAsyncTask<IStep>(this) {
+
+            @Override
+            protected void onPreExecute() throws Exception {
+                loading_view.show();
+            }
+
+            @Override
+            public IStep call() throws Exception {
+                Log.d(TAG, "call");
+                Log.d(TAG, "get id:" + id_next_step);
+                IStep step = DataProvider.get_step(id_next_step);
+                Log.d(TAG, "get step:" + step.get_title());
+                return step;
+            }
+
+            @Override
+            protected void onSuccess(IStep step) throws Exception {
+                Log.d(TAG, "onSuccess");
+//                System.out.println(step.get_title());
+                add_step(step);
+                step_now = step;
+                loading_view.hide();
+                for (Button button : list_buttons) {
+                    button.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            protected void onException(Exception e) throws RuntimeException {
+                Log.d(TAG, "onException");
+                super.onException(e);
+                loading_view.hide();
+            }
+        }.execute();
     }
 
 
     private void get_datas() {
-        new KCAsyncTask<Void>(this){
+        new KCAsyncTask<Void>(this) {
 
             @Override
             protected void onPreExecute() throws Exception {
@@ -113,7 +192,7 @@ public class TutorialActivity extends KnowledgeBaseActivity {
             public Void call() throws Exception {
                 tutorial = DataProvider.get_tutorial(tutorial_id);
                 point_list = tutorial.get_related_knowledge_point_list();
-                step_list = tutorial.get_step_list();
+                step_now = tutorial.get_first_step();
                 return null;
             }
 
@@ -140,15 +219,16 @@ public class TutorialActivity extends KnowledgeBaseActivity {
     }
 
     private void find_detail_views() {
-        lv_list_detail = (ListView)detail.findViewById(R.id.lv_list_detail);
-        tv_title_detail = (TextView)detail.findViewById(R.id.tv_title_detail);
-        tv_description_detail = (TextView)detail.findViewById(R.id.tv_description_detail);
+        tv_title_detail = (TextView) detail.findViewById(R.id.tv_title_detail);
+        tv_description_detail = (TextView) detail.findViewById(R.id.tv_description_detail);
+        btn_next_step = (Button) detail.findViewById(R.id.btn_next_step);
+        ll_steps = (LinearLayout) detail.findViewById(R.id.ll_steps);
     }
 
     private void find_brief_views() {
-        lv_list_brief = (ListView)brief.findViewById(R.id.lv_list_brief);
-        tv_description_brief = (TextView)brief.findViewById(R.id.tv_description_brief);
-        iv_cover = (ImageView)brief.findViewById(R.id.iv_cover);
+        lv_list_brief = (ListView) brief.findViewById(R.id.lv_list_brief);
+        tv_description_brief = (TextView) brief.findViewById(R.id.tv_description_brief);
+        iv_cover = (ImageView) brief.findViewById(R.id.iv_cover);
     }
 
     @Override
