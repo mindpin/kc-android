@@ -54,7 +54,7 @@ public class MainActivity extends KnowledgeBaseActivity {
 
     private void go_to_dashboard(){
         this.finish();
-        startActivity(new Intent(this,KnowledgeNetListActivity.class));
+        startActivity(new Intent(this,DashboardActivity.class));
     }
 
     private void go_to_sign(){
