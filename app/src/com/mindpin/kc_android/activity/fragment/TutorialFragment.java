@@ -1,15 +1,18 @@
-package com.mindpin.kc_android.activity;
+package com.mindpin.kc_android.activity.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.*;
 import com.github.destinyd.FlipBriefLayout;
 import com.mindpin.android.loadingview.LoadingView;
 import com.mindpin.kc_android.R;
-import com.mindpin.kc_android.activity.base.KnowledgeBaseActivity;
+import com.mindpin.kc_android.activity.KnowledgePointActivity;
+import com.mindpin.kc_android.activity.fragment.base.KnowledgeBaseFragment;
 import com.mindpin.kc_android.adapter.KnowledgeNetPointListAdapter;
 import com.mindpin.kc_android.adapter.TutorialStepListAdapter;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
@@ -26,7 +29,7 @@ import java.util.List;
 /**
  * Created by dd on 14-8-11.
  */
-public class TutorialActivity extends KnowledgeBaseActivity {
+public class TutorialFragment extends KnowledgeBaseFragment {
 
     private static final String TAG = "TutorialActivity";
     // brief
@@ -53,15 +56,41 @@ public class TutorialActivity extends KnowledgeBaseActivity {
     String id_next_step;
     List<Button> list_buttons = new ArrayList<Button>();
 
+    private View current_view;
+    private Activity activity;
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.tutorial);
-        tutorial_id = getIntent().getStringExtra("tutorial_id");
-        kcFlip = (FlipBriefLayout) findViewById(R.id.kcflip);
-        loading_view = (LoadingView) findViewById(R.id.loading_view);
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        this.activity = activity;
+    }
 
+    //    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.tutorial);
+//        tutorial_id = getIntent().getStringExtra("tutorial_id");
+//        kcFlip = (FlipBriefLayout) findViewById(R.id.kcflip);
+//        loading_view = (LoadingView) findViewById(R.id.loading_view);
+//
+//
+//        get_and_add_layouts_to_flip();
+//        find_views();
+//        bind_listener();
+//        get_datas();
+//    }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        current_view = inflater.inflate(R.layout.tutorial, null);
+        tutorial_id = activity.getIntent().getStringExtra("tutorial_id");
+        kcFlip = (FlipBriefLayout) current_view.findViewById(R.id.kcflip);
+        loading_view = (LoadingView) current_view.findViewById(R.id.loading_view);
+        return current_view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         get_and_add_layouts_to_flip();
         find_views();
         bind_listener();
@@ -80,7 +109,7 @@ public class TutorialActivity extends KnowledgeBaseActivity {
     private void datas_to_brief() {
         tv_description_brief.setText(tutorial.get_desc());
         ImageLoader.getInstance().displayImage(tutorial.get_icon_url(), iv_cover);
-        adapter_brief = new KnowledgeNetPointListAdapter(this);
+        adapter_brief = new KnowledgeNetPointListAdapter(activity);
         adapter_brief.add_items(point_list);
         lv_list_brief.setAdapter(adapter_brief);
         lv_list_brief.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -90,9 +119,11 @@ public class TutorialActivity extends KnowledgeBaseActivity {
                 IKnowledgePoint knowledgePoint = (IKnowledgePoint) parent.getItemAtPosition(position);
                 String knowledge_point_id = knowledgePoint.get_id();
 
-                Intent intent = new Intent(TutorialActivity.this, KnowledgePointActivity.class);
-                intent.putExtra("knowledge_point_id", knowledge_point_id);
-                startActivity(intent);
+                //TODO switch fragment
+//                Intent intent = new Intent(activity, KnowledgePointActivity.class);
+//                intent.putExtra("knowledge_point_id", knowledge_point_id);
+//                switch_fragment();
+//                startActivity(intent);
             }
         });
     }
@@ -104,7 +135,7 @@ public class TutorialActivity extends KnowledgeBaseActivity {
     }
 
     private void add_step(IStep step) {
-        LinearLayout ll_step = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.step_list_item, null);
+        LinearLayout ll_step = (LinearLayout) LayoutInflater.from(activity).inflate(R.layout.step_list_item, null);
         if (step != null) {
             ((TextView) ll_step.findViewById(R.id.tv_title)).setText(step.get_title());
             ((TextView) ll_step.findViewById(R.id.tv_description)).setText(step.get_desc());
@@ -112,13 +143,13 @@ public class TutorialActivity extends KnowledgeBaseActivity {
                 Log.d(TAG, "selects");
                 IStep.ISelect select = step.get_select();
 
-                TextView tv_question = new TextView(this);
+                TextView tv_question = new TextView(activity);
                 tv_question.setText(select.get_question());
-                ll_step.addView(new TextView(this));
+                ll_step.addView(new TextView(activity));
 
                 List<IStep.ISelectOption> select_options = select.get_select_options();
                 for (IStep.ISelectOption option : select_options) {
-                    Button button = new Button(this);
+                    Button button = new Button(activity);
                     button.setText(option.get_title());
                     button.setTag(option.get_next_step_id());
                     button.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +173,7 @@ public class TutorialActivity extends KnowledgeBaseActivity {
 
     private void get_next_step(String id) {
         id_next_step = id;
-        new KCAsyncTask<IStep>(this) {
+        new KCAsyncTask<IStep>(activity) {
 
             @Override
             protected void onPreExecute() throws Exception {
@@ -181,7 +212,7 @@ public class TutorialActivity extends KnowledgeBaseActivity {
 
 
     private void get_datas() {
-        new KCAsyncTask<Void>(this) {
+        new KCAsyncTask<Void>(activity) {
 
             @Override
             protected void onPreExecute() throws Exception {
@@ -207,8 +238,8 @@ public class TutorialActivity extends KnowledgeBaseActivity {
     }
 
     private void get_and_add_layouts_to_flip() {
-        brief = LayoutInflater.from(this).inflate(R.layout.tutorial_brief, null);
-        detail = LayoutInflater.from(this).inflate(R.layout.tutorial_detail, null);
+        brief = LayoutInflater.from(activity).inflate(R.layout.tutorial_brief, null);
+        detail = LayoutInflater.from(activity).inflate(R.layout.tutorial_detail, null);
         kcFlip.set_brief_view(brief);
         kcFlip.set_detail_view(detail);
     }
@@ -231,15 +262,15 @@ public class TutorialActivity extends KnowledgeBaseActivity {
         iv_cover = (ImageView) brief.findViewById(R.id.iv_cover);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        kcFlip.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        kcFlip.onPause();
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        kcFlip.onResume();
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        kcFlip.onPause();
+//    }
 }
