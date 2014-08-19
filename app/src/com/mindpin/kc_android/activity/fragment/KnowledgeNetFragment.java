@@ -2,6 +2,7 @@ package com.mindpin.kc_android.activity.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -119,10 +120,12 @@ public class KnowledgeNetFragment extends KnowledgeBaseFragment implements View.
                 ITutorial tutorial = (ITutorial) parent.getItemAtPosition(position);
                 String tutorial_id = tutorial.get_id();
 
-                // TODO change to fragment
-//                Intent intent = new Intent(KnowledgeNetActivity.this, TutorialActivity.class);
-//                intent.putExtra("tutorial_id", tutorial_id);
-//                startActivity(intent);
+                Log.i("tutorial_id ID ", tutorial_id);
+
+                Bundle args = new Bundle();
+                args.putString("tutorial_id", tutorial_id);
+                TutorialFragment knowledge_net_fragment = new TutorialFragment();
+                switch_fragment(knowledge_net_fragment, args);
             }
         });
     }
@@ -138,10 +141,10 @@ public class KnowledgeNetFragment extends KnowledgeBaseFragment implements View.
                 IKnowledgePoint knowledgePoint = (IKnowledgePoint) parent.getItemAtPosition(position);
                 String knowledge_point_id = knowledgePoint.get_id();
 
-                // TODO change to fragment
-//                Intent intent = new Intent(KnowledgeNetActivity.this, KnowledgePointActivity.class);
-//                intent.putExtra("knowledge_point_id", knowledge_point_id);
-//                startActivity(intent);
+                Bundle args = new Bundle();
+                args.putString("knowledge_point_id", knowledge_point_id);
+                KnowledgePointFragment knowledge_net_fragment = new KnowledgePointFragment();
+                switch_fragment(knowledge_net_fragment, args);
             }
         });
     }

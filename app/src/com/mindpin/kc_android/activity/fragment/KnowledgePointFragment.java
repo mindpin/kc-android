@@ -102,10 +102,13 @@ public class KnowledgePointFragment  extends KnowledgeBaseFragment {
         knowledge_net_name.setText(net.get_name());
         knowledge_net_name.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-//                TODO change to fragment
-//                Intent intent = new Intent(KnowledgePointActivity.this, KnowledgeNetActivity.class);
-//                intent.putExtra("knowledge_net_id", net.get_id());
-//                startActivity(intent);
+                String knowledge_net_id = net.get_id();
+                Log.i("knowledge_net_id ID ", knowledge_net_id);
+
+                Bundle args = new Bundle();
+                args.putString("knowledge_net_id", knowledge_net_id);
+                KnowledgeNetFragment knowledge_net_fragment = new KnowledgeNetFragment();
+                switch_fragment(knowledge_net_fragment, args);
             }
         });
 
@@ -118,18 +121,15 @@ public class KnowledgePointFragment  extends KnowledgeBaseFragment {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-
-                Log.i("listview 事件 ", "true");
-
-                ITutorial tutorial = (ITutorial)parent.getItemAtPosition(position);
-
+                ITutorial tutorial = (ITutorial) parent.getItemAtPosition(position);
                 String tutorial_id = tutorial.get_id();
 
-                Log.i("教程ID ", tutorial_id);
+                Log.i("tutorial_id ID ", tutorial_id);
 
-//                Intent intent = new Intent(KnowledgePointFragment.this, TutorialActivity.class);
-//                intent.putExtra("tutorial_id", tutorial_id);
-//                startActivity(intent);
+                Bundle args = new Bundle();
+                args.putString("tutorial_id", tutorial_id);
+                TutorialFragment knowledge_net_fragment = new TutorialFragment();
+                switch_fragment(knowledge_net_fragment, args);
 
             }
         });

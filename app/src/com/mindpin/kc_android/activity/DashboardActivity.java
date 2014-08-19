@@ -3,7 +3,6 @@ package com.mindpin.kc_android.activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.base.KnowledgeBaseActivity;
 import com.mindpin.kc_android.activity.fragment.KnowledgeNetListFragment;

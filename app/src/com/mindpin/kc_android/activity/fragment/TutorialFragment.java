@@ -11,7 +11,6 @@ import android.widget.*;
 import com.github.destinyd.FlipBriefLayout;
 import com.mindpin.android.loadingview.LoadingView;
 import com.mindpin.kc_android.R;
-import com.mindpin.kc_android.activity.KnowledgePointActivity;
 import com.mindpin.kc_android.activity.fragment.base.KnowledgeBaseFragment;
 import com.mindpin.kc_android.adapter.KnowledgeNetPointListAdapter;
 import com.mindpin.kc_android.adapter.TutorialStepListAdapter;
@@ -65,21 +64,6 @@ public class TutorialFragment extends KnowledgeBaseFragment {
         this.activity = activity;
     }
 
-    //    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.tutorial);
-//        tutorial_id = getIntent().getStringExtra("tutorial_id");
-//        kcFlip = (FlipBriefLayout) findViewById(R.id.kcflip);
-//        loading_view = (LoadingView) findViewById(R.id.loading_view);
-//
-//
-//        get_and_add_layouts_to_flip();
-//        find_views();
-//        bind_listener();
-//        get_datas();
-//    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         current_view = inflater.inflate(R.layout.tutorial, null);
@@ -87,6 +71,13 @@ public class TutorialFragment extends KnowledgeBaseFragment {
         kcFlip = (FlipBriefLayout) current_view.findViewById(R.id.kcflip);
         loading_view = (LoadingView) current_view.findViewById(R.id.loading_view);
         return current_view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Bundle args = getArguments();
+        tutorial_id = args.getString("tutorial_id");
     }
 
     @Override
@@ -119,11 +110,10 @@ public class TutorialFragment extends KnowledgeBaseFragment {
                 IKnowledgePoint knowledgePoint = (IKnowledgePoint) parent.getItemAtPosition(position);
                 String knowledge_point_id = knowledgePoint.get_id();
 
-                //TODO switch fragment
-//                Intent intent = new Intent(activity, KnowledgePointActivity.class);
-//                intent.putExtra("knowledge_point_id", knowledge_point_id);
-//                switch_fragment();
-//                startActivity(intent);
+                Bundle args = new Bundle();
+                args.putString("knowledge_point_id", knowledge_point_id);
+                KnowledgePointFragment knowledge_net_fragment = new KnowledgePointFragment();
+                switch_fragment(knowledge_net_fragment, args);
             }
         });
     }
