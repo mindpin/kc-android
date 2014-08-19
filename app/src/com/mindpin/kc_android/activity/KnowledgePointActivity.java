@@ -82,9 +82,10 @@ public class KnowledgePointActivity extends KnowledgeBaseActivity {
         knowledge_net_name.setText(net.get_name());
         knowledge_net_name.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(KnowledgePointActivity.this, KnowledgeNetActivity.class);
-                intent.putExtra("knowledge_net_id", net.get_id());
-                startActivity(intent);
+//                TODO change to fragment
+//                Intent intent = new Intent(KnowledgePointActivity.this, KnowledgeNetActivity.class);
+//                intent.putExtra("knowledge_net_id", net.get_id());
+//                startActivity(intent);
             }
         });
 

@@ -34,6 +34,13 @@ git checkout v0.1.1 -b v0.1.1
 mvn clean install
 ```
 
+### 安装 android-menudrawer
+```
+git clone https://github.com/mindpin/android-menudrawer.git
+cd android-menudrawer
+mvn clean install
+```
+
 ### 安装 android.support 19.0.1 到本地 maven 库
 测试库依赖这个版本的 android.support 所以需要安装
 

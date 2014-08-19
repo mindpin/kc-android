@@ -16,7 +16,7 @@
 		android:allowBackup="true"
 		android:icon="@drawable/ic_launcher"
 		android:label="@string/app_name"
-		android:theme="@style/AppTheme" android:name=".application.KCApplication">
+		android:theme="@style/KcTheme" android:name=".application.KCApplication">
 
 		<activity
 			android:name=".activity.MainActivity"
@@ -27,8 +27,7 @@
 			</intent-filter>
 		</activity>
         <activity android:name=".activity.SignInActivity"/>
-        <activity android:name=".activity.KnowledgeNetListActivity"/>
-        <activity android:name=".activity.KnowledgeNetActivity"/>
+        <activity android:name=".activity.DashboardActivity"/>
         <activity android:name=".activity.KnowledgePointActivity" />
         <activity android:name=".activity.TutorialActivity"/>
 

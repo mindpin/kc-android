@@ -44,7 +44,7 @@ public class SignInActivity extends KnowledgeBaseActivity {
                             @Override
                             public void success(IUser user) {
                                 SignInActivity.this.finish();
-                                startActivity(new Intent(SignInActivity.this, KnowledgeNetListActivity.class));
+                                startActivity(new Intent(SignInActivity.this, DashboardActivity.class));
                             }
 
                             @Override
