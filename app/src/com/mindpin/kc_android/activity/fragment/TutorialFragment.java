@@ -57,6 +57,7 @@ public class TutorialFragment extends KnowledgeBaseFragment {
 
     private View current_view;
     private Activity activity;
+    private LoadingView loading_view_detail;
 
     @Override
     public void onAttach(Activity activity) {
@@ -130,7 +131,6 @@ public class TutorialFragment extends KnowledgeBaseFragment {
             ((TextView) ll_step.findViewById(R.id.tv_title)).setText(step.get_title());
             ((TextView) ll_step.findViewById(R.id.tv_description)).setText(step.get_desc());
             if (step.get_continue_type() == IStep.ContinueType.SELECT) {
-                Log.d(TAG, "selects");
                 IStep.ISelect select = step.get_select();
 
                 TextView tv_question = new TextView(activity);
@@ -145,8 +145,8 @@ public class TutorialFragment extends KnowledgeBaseFragment {
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Log.d(TAG, "next step id:" + v.getTag());
                             get_next_step((String) v.getTag());
+                            set_buttons_enable(false);
                         }
                     });
                     list_buttons.add(button);
@@ -161,41 +161,44 @@ public class TutorialFragment extends KnowledgeBaseFragment {
         }
     }
 
+    private void set_buttons_enable(boolean b) {
+        for(Button button : list_buttons){
+            button.setEnabled(b);
+        }
+    }
+
     private void get_next_step(String id) {
         id_next_step = id;
         new KCAsyncTask<IStep>(activity) {
 
             @Override
             protected void onPreExecute() throws Exception {
-                loading_view.show();
+                loading_view_detail.show();
             }
 
             @Override
             public IStep call() throws Exception {
-                Log.d(TAG, "call");
-                Log.d(TAG, "get id:" + id_next_step);
                 IStep step = DataProvider.get_step(id_next_step);
-                Log.d(TAG, "get step:" + step.get_title());
                 return step;
             }
 
             @Override
             protected void onSuccess(IStep step) throws Exception {
-                Log.d(TAG, "onSuccess");
-//                System.out.println(step.get_title());
+                System.out.println(step.get_title());
                 add_step(step);
                 step_now = step;
-                loading_view.hide();
+                loading_view_detail.hide();
                 for (Button button : list_buttons) {
                     button.setVisibility(View.GONE);
                 }
+                list_buttons.clear();
             }
 
             @Override
             protected void onException(Exception e) throws RuntimeException {
-                Log.d(TAG, "onException");
                 super.onException(e);
-                loading_view.hide();
+                loading_view_detail.hide();
+                set_buttons_enable(true);
             }
         }.execute();
     }
@@ -244,6 +247,7 @@ public class TutorialFragment extends KnowledgeBaseFragment {
         tv_description_detail = (TextView) detail.findViewById(R.id.tv_description_detail);
         btn_next_step = (Button) detail.findViewById(R.id.btn_next_step);
         ll_steps = (LinearLayout) detail.findViewById(R.id.ll_steps);
+        loading_view_detail = (LoadingView) detail.findViewById(R.id.loading_view_detail);
     }
 
     private void find_brief_views() {
