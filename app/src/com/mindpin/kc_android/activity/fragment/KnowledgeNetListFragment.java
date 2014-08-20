@@ -1,12 +1,14 @@
 package com.mindpin.kc_android.activity.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.mindpin.android.loadingview.LoadingView;
@@ -47,6 +49,16 @@ public class KnowledgeNetListFragment extends KnowledgeBaseFragment {
         super.onStart();
         loading_view = (LoadingView) current_view.findViewById(R.id.loading_view);
         get_datas();
+
+        // 打开测试 topic fragment 页面
+        Button btn_menu_topic = (Button) current_view.findViewById(R.id.btn_menu_topic);
+        btn_menu_topic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("kc", "btn_menu_topic click");
+                switch_fragment(new TopicListFragment());
+            }
+        });
     }
 
     private void get_datas() {

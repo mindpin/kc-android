@@ -1,12 +1,14 @@
 package com.mindpin.kc_android.network;
 
 
+import com.mindpin.kc_android.models.ITopicData;
 import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.models.interfaces.ITopic;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -68,6 +70,13 @@ public class DataProvider {
 
     public static List<ITopic> get_topic_list(){
         // TODO 增加夹具数据实现 topic list 页面
-        return null;
+
+        List<ITopic> topic_list = new ArrayList<ITopic>();
+
+        for (int i = 0; i < 20; i++) {
+            ITopicData data = new ITopicData();
+            topic_list.add(data);
+        }
+        return topic_list;
     }
 }
