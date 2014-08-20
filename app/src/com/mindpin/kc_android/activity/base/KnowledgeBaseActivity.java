@@ -1,6 +1,9 @@
 package com.mindpin.kc_android.activity.base;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +12,7 @@ import android.widget.LinearLayout;
 import com.github.destinyd.menudrawer.KCVerticalDrawerHandler;
 import com.github.destinyd.menudrawer.common.DisplayModule;
 import com.mindpin.kc_android.R;
+import com.mindpin.kc_android.activity.fragment.KnowledgeNetListFragment;
 
 import roboguice.activity.RoboFragmentActivity;
 
@@ -61,5 +65,18 @@ public class KnowledgeBaseActivity extends RoboFragmentActivity{
                 }
             }
         });
+    }
+
+
+    protected  void change_fragment(Fragment fragment){
+        Bundle args = new Bundle();
+        change_fragment(fragment,args);
+    }
+
+    protected void change_fragment(Fragment fragment, Bundle args){
+        FragmentManager fragment_manager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragment_manager.beginTransaction();
+        fragment.setArguments(args);
+        transaction.add(R.id.frame_layout_content, fragment).commit();
     }
 }
