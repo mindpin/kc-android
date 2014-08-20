@@ -66,7 +66,7 @@ public class DataProvider {
     }
 
 
-    public static ITopic get_topic_list(){
+    public static List<ITopic> get_topic_list(){
         // TODO 增加夹具数据实现 topic list 页面
         return null;
     }
