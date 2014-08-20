@@ -4,6 +4,7 @@ package com.mindpin.kc_android.network;
 import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.IStep;
+import com.mindpin.kc_android.models.interfaces.ITopic;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
 
 import java.util.List;
@@ -64,4 +65,9 @@ public class DataProvider {
         return HttpApi.get_step(step_id);
     }
 
+
+    public static ITopic get_topic_list(){
+        // TODO 增加夹具数据实现 topic list 页面
+        return null;
+    }
 }
