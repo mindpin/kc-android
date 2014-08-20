@@ -13,6 +13,7 @@ import com.github.destinyd.menudrawer.KCVerticalDrawerHandler;
 import com.github.destinyd.menudrawer.common.DisplayModule;
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.fragment.KnowledgeNetListFragment;
+import com.mindpin.kc_android.activity.fragment.TopicListFragment;
 
 import roboguice.activity.RoboFragmentActivity;
 
@@ -65,6 +66,20 @@ public class KnowledgeBaseActivity extends RoboFragmentActivity{
                 }
             }
         });
+
+
+        // 打开测试 topic fragment 页面
+        Button btn_menu_topic = (Button) findViewById(R.id.btn_menu_topic);
+        btn_menu_topic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("kc", "btn_menu_topic click");
+                change_fragment(new TopicListFragment());
+
+                kcVerticalDrawerHandler.close();
+                view.setTag("close");
+            }
+        });
     }
 
 
@@ -77,6 +92,7 @@ public class KnowledgeBaseActivity extends RoboFragmentActivity{
         FragmentManager fragment_manager = getSupportFragmentManager();
         FragmentTransaction transaction = fragment_manager.beginTransaction();
         fragment.setArguments(args);
-        transaction.add(R.id.frame_layout_content, fragment).commit();
+        transaction.replace(R.id.frame_layout_content, fragment, "topic");
+        transaction.addToBackStack("topic").commit();
     }
 }
