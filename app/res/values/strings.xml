@@ -16,5 +16,17 @@
     <string name="tutorial_section">相关教程</string>
     <string name="tutorial_related_knowledge_net">相关知识点：</string>
     <string name="read_next_step">查看下一步</string>
+    <string name="all_classes">所有课程</string>
+    <string name="my_classes">我的课程</string>
+    <string name="my_difficulties">我的难点</string>
+    <string name="my_questions">我的问题</string>
+    <string name="my_notes">我的笔记</string>
+    <string name="ic_home">&#xf015;</string>
+    <string name="ic_book">&#xf02d;</string>
+    <string name="ic_info">&#xf05a;</string>
+    <string name="ic_question">&#xf059;</string>
+    <string name="ic_note">&#xf044;</string>
+    <string name="ic_menu">&#xf0c9;</string>
+    <string name="ic_search">&#xf002;</string>
 
 </resources>

@@ -1,5 +1,6 @@
 package com.mindpin.kc_android.activity.base;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,12 +10,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import android.widget.RelativeLayout;
 import com.github.destinyd.menudrawer.KCVerticalDrawerHandler;
 import com.github.destinyd.menudrawer.common.DisplayModule;
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.fragment.KnowledgeNetListFragment;
 import com.mindpin.kc_android.activity.fragment.TopicListFragment;
 
+import com.mindpin.kc_android.utils.SelectableLinearLayout;
+import com.mindpin.kc_android.utils.UiFont;
 import roboguice.activity.RoboFragmentActivity;
 
 /**
@@ -42,7 +46,7 @@ public class KnowledgeBaseActivity extends RoboFragmentActivity{
         kcVerticalDrawerHandler.set_foreground_opening_offset(DisplayModule.px_to_dp(this, 50));
 
 
-        LinearLayout title_bar = (LinearLayout)findViewById(R.id.title_bar);
+        RelativeLayout title_bar = (RelativeLayout)findViewById(R.id.title_bar);
 
         Button btn_menu = (Button) findViewById(R.id.btn_menu);
         Log.v("kc", "menu init click");
@@ -80,6 +84,9 @@ public class KnowledgeBaseActivity extends RoboFragmentActivity{
                 view.setTag("close");
             }
         });
+
+        View view_menu = kcVerticalDrawerHandler.get_background_view();
+        ((SelectableLinearLayout)view_menu.findViewById(R.id.sll_all_classes)).select();
     }
 
 

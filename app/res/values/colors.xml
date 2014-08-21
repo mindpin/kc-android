@@ -3,4 +3,12 @@
     <color name="white">#ffffffff</color>
     <color name="gray">#ff777777</color>
     <color name="black">#FF000000</color>
+    <color name="menu_background">#FFF9F9F9</color>
+    <color name="translate">#00000000</color>
+    <color name="titlebar_icon_unfocus">@color/translate</color>
+    <color name="titlebar_icon_focus">#FFE4E4E4</color>
+    <color name="titlebar_background_color">#FFF1F1F1</color>
+    <color name="menu_background_pressed">#FFEDEDED</color>
+    <color name="menu_border_selected">#44B2F5</color>
+    <color name="menu_border_bottom">#FFDDDDDD</color>
 </resources>

@@ -1,39 +1,122 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0px" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/menu_background"
+        >
+    <com.mindpin.kc_android.utils.SelectableLinearLayout android:layout_width="match_parent"
+                  android:layout_height="80px"
+                  android:gravity="center_vertical"
+                  android:background="@drawable/menu_line_background"
+                  android:clickable="true"
+                  android:longClickable="true"
+            >
+        <ImageView android:layout_width="40px" android:layout_height="40px"
+                   android:layout_margin="20px"/>
+        <TextView android:textSize="20px" android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="40px"
+                  android:text="我的名字"/>
+    </com.mindpin.kc_android.utils.SelectableLinearLayout>
+    <com.mindpin.kc_android.utils.SelectableLinearLayout android:layout_width="match_parent"
+                  android:layout_height="80px"
+                  android:id="@+id/sll_all_classes"
+                  android:gravity="center_vertical"
+                  android:background="@drawable/menu_line_background"
+                  android:clickable="true"
+                  android:focusable="true"
+                  android:longClickable="true"
+            >
+        <com.mindpin.kc_android.utils.FontAwesomeTextView
+                android:layout_height="40px"
+                android:layout_width="40px"
+                android:textColor="#4d4d4d"
+                android:textSize="40px"
+                android:text="@string/ic_home"
+                android:layout_margin="20px"
+                />
+        <TextView android:textSize="20px" android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="40px"
+                  android:text="@string/all_classes"/>
+    </com.mindpin.kc_android.utils.SelectableLinearLayout>
+    <com.mindpin.kc_android.utils.SelectableLinearLayout android:layout_width="match_parent"
+                  android:layout_height="80px"
+                  android:id="@+id/sll_my_classes"
+                  android:gravity="center_vertical"
+                  android:background="@drawable/menu_line_background"
+                  android:clickable="true"
+            >
+        <com.mindpin.kc_android.utils.FontAwesomeTextView
+                android:layout_height="40px"
+                android:layout_width="40px"
+                android:textColor="#4d4d4d"
+                android:textSize="40px"
+                android:text="@string/ic_book"
+                android:layout_margin="20px"
+                />
+        <TextView android:textSize="20px" android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="40px"
+                  android:text="@string/my_classes"/>
+    </com.mindpin.kc_android.utils.SelectableLinearLayout>
+    <com.mindpin.kc_android.utils.SelectableLinearLayout android:layout_width="match_parent"
+                  android:layout_height="80px"
+                  android:id="@+id/sll_my_difficulties"
+                  android:gravity="center_vertical"
+                  android:background="@drawable/menu_line_background"
+                  android:clickable="true"
+                  android:longClickable="true"
+            >
+        <com.mindpin.kc_android.utils.FontAwesomeTextView
+                android:layout_height="40px"
+                android:layout_width="40px"
+                android:textColor="#4d4d4d"
+                android:textSize="40px"
+                android:text="@string/ic_info"
+                android:layout_margin="20px"
+                />
+        <TextView android:textSize="20px" android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="40px"
+                  android:text="@string/my_difficulties"/>
+    </com.mindpin.kc_android.utils.SelectableLinearLayout>
+    <com.mindpin.kc_android.utils.SelectableLinearLayout android:layout_width="match_parent"
+                  android:layout_height="80px"
+                  android:id="@+id/sll_my_questions"
+                  android:gravity="center_vertical"
+                  android:background="@drawable/menu_line_background"
+                  android:clickable="true"
+                  android:longClickable="true"
+            >
+        <com.mindpin.kc_android.utils.FontAwesomeTextView
+                android:layout_height="40px"
+                android:layout_width="40px"
+                android:textColor="#4d4d4d"
+                android:textSize="40px"
+                android:text="@string/ic_question"
+                android:layout_margin="20px"
+                />
+        <TextView android:textSize="20px" android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="40px"
+                  android:text="@string/my_questions"/>
+    </com.mindpin.kc_android.utils.SelectableLinearLayout>
+    <com.mindpin.kc_android.utils.SelectableLinearLayout android:layout_width="match_parent"
+                  android:layout_height="80px"
+                  android:id="@+id/sll_my_notes"
+                  android:gravity="center_vertical"
+                  android:background="@drawable/menu_line_background"
+                  android:clickable="true"
+            >
+        <com.mindpin.kc_android.utils.FontAwesomeTextView
+                android:layout_height="40px"
+                android:layout_width="40px"
+                android:textColor="#4d4d4d"
+                android:textSize="40px"
+                android:text="@string/ic_note"
+                android:layout_margin="20px"
+                />
+        <TextView android:textSize="20px" android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="40px"
+                  android:text="@string/my_notes"/>
+    </com.mindpin.kc_android.utils.SelectableLinearLayout>
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="menu button1"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="menu button2"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="menu button3"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="menu button4"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="menu button5"
-        />
-
-    <Button
-        android:id="@+id/btn_menu_topic"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="topic list button"
-        />
+            android:id="@+id/btn_menu_topic"
+            android:layout_width="match_parent"
+            android:layout_height="40px"
+            android:text="topic list button"
+            android:visibility="gone"
+            />
 </LinearLayout>
