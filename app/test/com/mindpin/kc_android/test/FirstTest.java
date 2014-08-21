@@ -8,9 +8,11 @@ import com.mindpin.kc_android.models.User;
 import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.IStep;
+import com.mindpin.kc_android.models.interfaces.ITopic;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
 import com.mindpin.kc_android.network.HttpApi;
 
+import org.apache.tools.ant.taskdefs.condition.Http;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -134,7 +136,7 @@ public class FirstTest  {
 //        System.out.println(step.get_desc());
 //        System.out.println(step.get_id());
 //
-//        System.out.println("~~~~~~~~~~~~~~~~~~~~~");
+//        System.out.println("~~~~~~~~~~~~~~~~~~~~~ steps begin");
 //
 //        for(IStep s : step_list){
 //            System.out.println(">>>>");
@@ -157,6 +159,42 @@ public class FirstTest  {
 //                    System.out.println(so.get_title());
 //                }
 //            }
+//        }
+//
+//        System.out.println("~~~~~~~~~~~~~~~~~~~~~ steps end");
+//
+//        List<ITopic> topic_list = HttpApi.get_topic_list();
+//
+//        System.out.println("topics count is " + topic_list.size());
+//
+//        for(ITopic topic : topic_list){
+//            System.out.println(topic.get_id());
+//            System.out.println(topic.get_title());
+//            System.out.println(topic.get_desc());
+//            System.out.println(topic.get_tutorial_count());
+//        }
+//
+//        System.out.println("~~~~~~~~~~~~~~~~~~~~~ get_net_topic_list start");
+//
+//        String meishu_net_id = "53f479756c696e10e4240000";
+//        List<ITopic> net_topic_list = HttpApi.get_net_topic_list(meishu_net_id);
+//        System.out.println("topics count is " + net_topic_list.size());
+//
+//        for(ITopic topic : net_topic_list){
+//            System.out.println(topic.get_id());
+//            System.out.println(topic.get_title());
+//            System.out.println(topic.get_desc());
+//            System.out.println(topic.get_tutorial_count());
+//        }
+//
+//        System.out.println("~~~~~~~~~~~~~~~~~~~~~ get_topic_tutorial_list start");
+//
+//        List<ITutorial> t_list = HttpApi.get_topic_tutorial_list(net_topic_list.get(net_topic_list.size() - 1).get_id());
+//
+//        for(ITutorial t : t_list){
+//            System.out.println(t.get_id());
+//            System.out.println(t.get_title());
+//            System.out.println(t.get_desc());
 //        }
 
     }

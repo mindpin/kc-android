@@ -11,10 +11,12 @@ import com.mindpin.kc_android.controllers.AuthenticatorsController;
 import com.mindpin.kc_android.models.http.KnowledgeNet;
 import com.mindpin.kc_android.models.http.KnowledgePoint;
 import com.mindpin.kc_android.models.http.Step;
+import com.mindpin.kc_android.models.http.Topic;
 import com.mindpin.kc_android.models.http.Tutorial;
 import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.IStep;
+import com.mindpin.kc_android.models.interfaces.ITopic;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
 
 import java.lang.reflect.Type;
@@ -65,6 +67,14 @@ public class HttpApi {
     public static String 获取教程步骤(String step_id){
         return SITE + String.format("/api/steps/%s.json", step_id);
     }
+    public static final String 获取主题列表 = SITE + "/api/topics.json";
+    public static String 获取知识网络的主题列表(String knowledge_net_id){
+        return SITE + String.format("/api/topics.json?net_id=%s", knowledge_net_id);
+    }
+    public static String 获取主题的教程列表(String topic_id){
+        return SITE + String.format("/api/tutorials.json?topic_id=%s", topic_id);
+    }
+
     /**
      * http api url end
      */
@@ -236,6 +246,57 @@ public class HttpApi {
             @Override
             public HttpRequest build_request() {
                 return HttpRequest.get(HttpApi.获取教程步骤(step_id));
+            }
+        }.request();
+    }
+
+    public static List<ITopic> get_topic_list() throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<List<ITopic>>(){
+
+            @Override
+            public List<ITopic> call(RequestResult rr) {
+                Type collectionType = new TypeToken<List<Topic>>(){}.getType();
+                Gson gson = new Gson();
+                return gson.fromJson(rr.body, collectionType);
+            }
+
+            @Override
+            public HttpRequest build_request() {
+                return HttpRequest.get(HttpApi.获取主题列表);
+            }
+        }.request();
+    }
+
+    public static List<ITopic> get_net_topic_list(final String knowledge_net_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<List<ITopic>>(){
+
+            @Override
+            public List<ITopic> call(RequestResult rr) {
+                Type collectionType = new TypeToken<List<Topic>>(){}.getType();
+                Gson gson = new Gson();
+                return gson.fromJson(rr.body, collectionType);
+            }
+
+            @Override
+            public HttpRequest build_request() {
+                return HttpRequest.get(HttpApi.获取知识网络的主题列表(knowledge_net_id));
+            }
+        }.request();
+    }
+
+    public static List<ITutorial> get_topic_tutorial_list(final String topic_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<List<ITutorial>>(){
+
+            @Override
+            public List<ITutorial> call(RequestResult rr) {
+                Type collectionType = new TypeToken<List<Tutorial>>(){}.getType();
+                Gson gson = new Gson();
+                return gson.fromJson(rr.body, collectionType);
+            }
+
+            @Override
+            public HttpRequest build_request() {
+                return HttpRequest.get(HttpApi.获取主题的教程列表(topic_id));
             }
         }.request();
     }
