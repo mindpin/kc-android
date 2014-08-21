@@ -17,4 +17,15 @@
         <item name="android:windowNoTitle">true</item>
 		<!-- All customizations that are NOT specific to a particular API-level can go here. -->
 	</style>
+
+    <style name="TopicText">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">14px</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
 </resources>

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -29,7 +30,7 @@ public class TopicListFragment extends KnowledgeBaseFragment {
     private String topic_id;
     private TextView topic_title;
     private TextView topic_tutorial_count;
-    ListView listview;
+    GridView listview;
     private LoadingView loading_view;
 
     private List<ITopic> topic_list;
@@ -59,7 +60,7 @@ public class TopicListFragment extends KnowledgeBaseFragment {
         topic_title = (TextView) current_view.findViewById(R.id.topic_title);
         topic_tutorial_count = (TextView) current_view.findViewById(R.id.topic_tutorial_count);
 
-        listview = (ListView) current_view.findViewById(R.id.topic_list);
+        listview = (GridView) current_view.findViewById(R.id.topic_list);
         loading_view = (LoadingView) current_view.findViewById(R.id.loading_view);
 
         get_datas();
@@ -90,7 +91,7 @@ public class TopicListFragment extends KnowledgeBaseFragment {
 
 
     private void build_view(){
-        ListView listview = (ListView) current_view.findViewById(R.id.topic_list);
+        listview = (GridView) current_view.findViewById(R.id.topic_list);
 
         TopicListAdapter adapter =
                 new TopicListAdapter(activity);
