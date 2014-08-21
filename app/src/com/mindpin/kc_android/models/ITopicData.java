@@ -20,11 +20,11 @@ public class ITopicData implements ITopic{
 
 
     public String get_tutorial_count() {
-        return "count-test";
+        return "2";
     }
 
 
     public String get_icon_url() {
-        return "";
+        return "http://mindpin.oss-cn-hangzhou.aliyuncs.com/image_service/images/ydrDGC29/ydrDGC29.png";
     }
 }

@@ -11,11 +11,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
-    <ListView
+
+    <GridView
         android:id="@+id/topic_list"
+        android:numColumns="2"
+        android:gravity="center"
+        android:horizontalSpacing="5px"
+        android:verticalSpacing="5px"
+        android:stretchMode="columnWidth"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
+        android:layout_height="match_parent" >
+    </GridView>
 
 
 </LinearLayout>
