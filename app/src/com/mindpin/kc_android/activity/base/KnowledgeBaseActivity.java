@@ -15,7 +15,7 @@ import com.github.destinyd.menudrawer.common.DisplayModule;
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.fragment.TopicListFragment;
 import com.mindpin.kc_android.models.User;
-import com.mindpin.kc_android.utils.SelectableLinearLayout;
+import com.mindpin.kc_android.widget.SelectableLinearLayout;
 import roboguice.activity.RoboFragmentActivity;
 
 /**

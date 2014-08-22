@@ -6,14 +6,14 @@
               android:layout_height="match_parent"
               android:background="@drawable/menu_background"
         >
-    <com.mindpin.kc_android.utils.SelectableLinearLayout android:layout_width="match_parent"
+    <com.mindpin.kc_android.widget.SelectableLinearLayout android:layout_width="match_parent"
                   android:layout_height="80px"
                   android:gravity="center_vertical"
                   android:background="@drawable/menu_line_background"
                   android:clickable="true"
                   android:longClickable="true"
             >
-        <com.mindpin.kc_android.utils.avatar.AvatarImageView
+        <com.mindpin.kc_android.widget.AvatarImageView
                 android:layout_width="40px"
                 android:layout_height="40px"
                 android:layout_margin="20px"/>
@@ -21,8 +21,8 @@
                   android:layout_width="wrap_content" android:layout_height="40px"
                   android:id="@+id/tv_user_name"
                 />
-    </com.mindpin.kc_android.utils.SelectableLinearLayout>
-    <com.mindpin.kc_android.utils.SelectableLinearLayout android:layout_width="match_parent"
+    </com.mindpin.kc_android.widget.SelectableLinearLayout>
+    <com.mindpin.kc_android.widget.SelectableLinearLayout android:layout_width="match_parent"
                   android:layout_height="80px"
                   android:id="@+id/sll_all_classes"
                   android:gravity="center_vertical"
@@ -31,7 +31,7 @@
                   android:focusable="true"
                   android:longClickable="true"
             >
-        <com.mindpin.kc_android.utils.FontAwesomeTextView
+        <com.mindpin.kc_android.widget.FontAwesomeTextView
                 android:layout_height="40px"
                 android:layout_width="40px"
                 android:textColor="#4d4d4d"
@@ -41,15 +41,15 @@
                 />
         <TextView android:textSize="20px" android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="40px"
                   android:text="@string/all_classes"/>
-    </com.mindpin.kc_android.utils.SelectableLinearLayout>
-    <com.mindpin.kc_android.utils.SelectableLinearLayout android:layout_width="match_parent"
+    </com.mindpin.kc_android.widget.SelectableLinearLayout>
+    <com.mindpin.kc_android.widget.SelectableLinearLayout android:layout_width="match_parent"
                   android:layout_height="80px"
                   android:id="@+id/sll_my_classes"
                   android:gravity="center_vertical"
                   android:background="@drawable/menu_line_background"
                   android:clickable="true"
             >
-        <com.mindpin.kc_android.utils.FontAwesomeTextView
+        <com.mindpin.kc_android.widget.FontAwesomeTextView
                 android:layout_height="40px"
                 android:layout_width="40px"
                 android:textColor="#4d4d4d"
@@ -59,8 +59,8 @@
                 />
         <TextView android:textSize="20px" android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="40px"
                   android:text="@string/my_classes"/>
-    </com.mindpin.kc_android.utils.SelectableLinearLayout>
-    <com.mindpin.kc_android.utils.SelectableLinearLayout android:layout_width="match_parent"
+    </com.mindpin.kc_android.widget.SelectableLinearLayout>
+    <com.mindpin.kc_android.widget.SelectableLinearLayout android:layout_width="match_parent"
                   android:layout_height="80px"
                   android:id="@+id/sll_my_difficulties"
                   android:gravity="center_vertical"
@@ -68,7 +68,7 @@
                   android:clickable="true"
                   android:longClickable="true"
             >
-        <com.mindpin.kc_android.utils.FontAwesomeTextView
+        <com.mindpin.kc_android.widget.FontAwesomeTextView
                 android:layout_height="40px"
                 android:layout_width="40px"
                 android:textColor="#4d4d4d"
@@ -78,8 +78,8 @@
                 />
         <TextView android:textSize="20px" android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="40px"
                   android:text="@string/my_difficulties"/>
-    </com.mindpin.kc_android.utils.SelectableLinearLayout>
-    <com.mindpin.kc_android.utils.SelectableLinearLayout android:layout_width="match_parent"
+    </com.mindpin.kc_android.widget.SelectableLinearLayout>
+    <com.mindpin.kc_android.widget.SelectableLinearLayout android:layout_width="match_parent"
                   android:layout_height="80px"
                   android:id="@+id/sll_my_questions"
                   android:gravity="center_vertical"
@@ -87,7 +87,7 @@
                   android:clickable="true"
                   android:longClickable="true"
             >
-        <com.mindpin.kc_android.utils.FontAwesomeTextView
+        <com.mindpin.kc_android.widget.FontAwesomeTextView
                 android:layout_height="40px"
                 android:layout_width="40px"
                 android:textColor="#4d4d4d"
@@ -97,15 +97,15 @@
                 />
         <TextView android:textSize="20px" android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="40px"
                   android:text="@string/my_questions"/>
-    </com.mindpin.kc_android.utils.SelectableLinearLayout>
-    <com.mindpin.kc_android.utils.SelectableLinearLayout android:layout_width="match_parent"
+    </com.mindpin.kc_android.widget.SelectableLinearLayout>
+    <com.mindpin.kc_android.widget.SelectableLinearLayout android:layout_width="match_parent"
                   android:layout_height="80px"
                   android:id="@+id/sll_my_notes"
                   android:gravity="center_vertical"
                   android:background="@drawable/menu_line_background"
                   android:clickable="true"
             >
-        <com.mindpin.kc_android.utils.FontAwesomeTextView
+        <com.mindpin.kc_android.widget.FontAwesomeTextView
                 android:layout_height="40px"
                 android:layout_width="40px"
                 android:textColor="#4d4d4d"
@@ -115,7 +115,7 @@
                 />
         <TextView android:textSize="20px" android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="40px"
                   android:text="@string/my_notes"/>
-    </com.mindpin.kc_android.utils.SelectableLinearLayout>
+    </com.mindpin.kc_android.widget.SelectableLinearLayout>
     <Button
             android:id="@+id/btn_menu_topic"
             android:layout_width="match_parent"

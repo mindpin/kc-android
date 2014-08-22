@@ -1,9 +1,10 @@
-package com.mindpin.kc_android.utils;
+package com.mindpin.kc_android.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.widget.TextView;
+import com.mindpin.kc_android.utils.UiFont;
 
 public class FontAwesomeTextView extends TextView {
 

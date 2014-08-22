@@ -1,4 +1,4 @@
-package com.mindpin.kc_android.utils.avatar;
+package com.mindpin.kc_android.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;

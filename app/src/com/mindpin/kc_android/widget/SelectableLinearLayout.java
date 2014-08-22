@@ -1,4 +1,4 @@
-package com.mindpin.kc_android.utils;
+package com.mindpin.kc_android.widget;
 
 import android.annotation.TargetApi;
 import android.content.Context;

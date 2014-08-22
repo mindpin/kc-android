@@ -1,4 +1,4 @@
-package com.mindpin.kc_android.utils.avatar;
+package com.mindpin.kc_android.widget;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.utils.ImageTools;
+import com.mindpin.kc_android.utils.CircleAvatarDrawable;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
