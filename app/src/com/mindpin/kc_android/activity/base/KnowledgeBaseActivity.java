@@ -8,17 +8,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-
 import android.widget.RelativeLayout;
 import com.github.destinyd.menudrawer.KCVerticalDrawerHandler;
 import com.github.destinyd.menudrawer.common.DisplayModule;
 import com.mindpin.kc_android.R;
-import com.mindpin.kc_android.activity.fragment.KnowledgeNetListFragment;
 import com.mindpin.kc_android.activity.fragment.TopicListFragment;
-
 import com.mindpin.kc_android.utils.SelectableLinearLayout;
-import com.mindpin.kc_android.utils.UiFont;
 import roboguice.activity.RoboFragmentActivity;
 
 /**
@@ -44,6 +39,9 @@ public class KnowledgeBaseActivity extends RoboFragmentActivity{
         kcVerticalDrawerHandler = new KCVerticalDrawerHandler(this);
         kcVerticalDrawerHandler.add_background_view(R.layout.drawer_menu);
         kcVerticalDrawerHandler.set_foreground_opening_offset(DisplayModule.px_to_dp(this, 50));
+        kcVerticalDrawerHandler.set_drop_shadow_size_px(10);
+        kcVerticalDrawerHandler.set_drop_shadow_color(Color.parseColor("#999999"));
+        kcVerticalDrawerHandler.set_drop_shadow_enable();
 
 
         RelativeLayout title_bar = (RelativeLayout)findViewById(R.id.title_bar);
