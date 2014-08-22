@@ -13,8 +13,10 @@
                   android:clickable="true"
                   android:longClickable="true"
             >
-        <ImageView android:layout_width="40px" android:layout_height="40px"
-                   android:layout_margin="20px"/>
+        <com.mindpin.kc_android.utils.avatar.AvatarImageView
+                android:layout_width="40px"
+                android:layout_height="40px"
+                android:layout_margin="20px"/>
         <TextView android:textSize="20px" android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="40px"
                   android:text="我的名字"/>
     </com.mindpin.kc_android.utils.SelectableLinearLayout>
