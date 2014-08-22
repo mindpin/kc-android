@@ -41,7 +41,7 @@ public class Topic implements ITopic{
 
     @Override
     public String get_icon_url() {
-        return "";
+        return "http://mindpin.oss-cn-hangzhou.aliyuncs.com/image_service/images/BNlHQ10D/BNlHQ10D.png";
     }
 
     @Override
