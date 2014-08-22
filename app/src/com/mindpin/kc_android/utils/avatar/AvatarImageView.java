@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.mindpin.kc_android.models.User;
+import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.utils.ImageTools;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
@@ -33,8 +33,16 @@ public class AvatarImageView extends ImageView {
         if (isInEditMode()) return;
         loaded = true;
 
-//        String url = User.current().avatar_url;
-        String url = "http://www.funcage.com/photos/funcage-eqhsd.jpg";
+//        String url;
+//        User user = User.current();
+//        if(user != null) {
+//            url = user.avatar_url;
+//        }
+//        else {
+//        url = "http://www.funcage.com/photos/funcage-eqhsd.jpg";
+//          url = "drawable://" + R.drawable.avatar_default;
+//        }
+        String url = "drawable://" + R.drawable.avatar_default;
 
         ImageLoader.getInstance().loadImage(url, new SimpleImageLoadingListener() {
             @Override

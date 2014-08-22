@@ -9,10 +9,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import com.github.destinyd.menudrawer.KCVerticalDrawerHandler;
 import com.github.destinyd.menudrawer.common.DisplayModule;
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.fragment.TopicListFragment;
+import com.mindpin.kc_android.models.User;
 import com.mindpin.kc_android.utils.SelectableLinearLayout;
 import roboguice.activity.RoboFragmentActivity;
 
@@ -85,6 +87,9 @@ public class KnowledgeBaseActivity extends RoboFragmentActivity{
 
         View view_menu = kcVerticalDrawerHandler.get_background_view();
         ((SelectableLinearLayout)view_menu.findViewById(R.id.sll_all_classes)).select();
+        User user = User.current();
+        if(user != null)
+            ((TextView)view_menu.findViewById(R.id.tv_user_name)).setText(user.name);
     }
 
 

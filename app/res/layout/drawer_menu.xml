@@ -17,8 +17,10 @@
                 android:layout_width="40px"
                 android:layout_height="40px"
                 android:layout_margin="20px"/>
-        <TextView android:textSize="20px" android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="40px"
-                  android:text="我的名字"/>
+        <TextView android:textSize="20px" android:gravity="center_vertical"
+                  android:layout_width="wrap_content" android:layout_height="40px"
+                  android:id="@+id/tv_user_name"
+                />
     </com.mindpin.kc_android.utils.SelectableLinearLayout>
     <com.mindpin.kc_android.utils.SelectableLinearLayout android:layout_width="match_parent"
                   android:layout_height="80px"
