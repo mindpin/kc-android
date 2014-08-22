@@ -34,10 +34,11 @@ git checkout v0.1.1 -b v0.1.1
 mvn clean install
 ```
 
-### 安装 android-menudrawer
+### 安装 android-menudrawer v0.1.2
 ```
 git clone https://github.com/mindpin/android-menudrawer.git
 cd android-menudrawer
+git checkout v0.1.2 -b v0.1.2
 mvn clean install
 ```
 

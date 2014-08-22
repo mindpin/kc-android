@@ -1,44 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+
+<com.mindpin.kc_android.adapter.SquareLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="2">
 
     <ImageView
         android:id="@+id/topic_icon"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginRight="10px" >
+        android:background="@drawable/testtopic">
     </ImageView>
 
-
-    <TextView
-        android:id="@+id/topic_tutorial_count"
-        android:layout_above="@+id/topic_icon"
-        android:textColor="#ffffff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2" />
-
-    <TextView
-        android:id="@+id/topic_title"
-        android:layout_below="@+id/topic_tutorial_count"
-        android:layout_marginTop="60dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/TopicText"
-        android:text="topic_title" />
-
-    <TextView
-        android:id="@+id/topic_desc"
-        android:layout_below="@+id/topic_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/TopicText"
-        android:text="topic_desc" />
+    <LinearLayout
+        android:id="@+id/count_section"
+        style="@style/TopicCountSection"
+        >
 
 
+        <ImageView
+            android:id="@+id/tutorial_count_icon"
+            style="@style/TopicTutorialCountIcon">
+        </ImageView>
 
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/topic_tutorial_count"
+            style="@style/TopicTutorialCount"
+            android:text="2" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/desc_section"
+        style="@style/DescSection"
+        >
+
+        <TextView
+            android:id="@+id/topic_title"
+            style="@style/TopicTitle"
+            android:text="topic_title" />
+
+        <TextView
+            android:id="@+id/topic_desc"
+            style="@style/TopicDesc"
+            android:text="topic_desc" />
+
+    </RelativeLayout>
+
+
+</com.mindpin.kc_android.adapter.SquareLayout>
