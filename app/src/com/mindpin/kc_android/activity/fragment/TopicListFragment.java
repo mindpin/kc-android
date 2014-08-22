@@ -9,11 +9,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mindpin.android.loadingview.LoadingView;
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.fragment.base.KnowledgeBaseFragment;
+import com.mindpin.kc_android.adapter.SquareLayout;
 import com.mindpin.kc_android.adapter.TopicListAdapter;
 import com.mindpin.kc_android.models.interfaces.ITopic;
 import com.mindpin.kc_android.network.DataProvider;
@@ -103,6 +105,10 @@ public class TopicListFragment extends KnowledgeBaseFragment {
                                     int position, long id) {
 
                 Log.i("listview 事件 ", "true");
+
+                // 按下时，透明度为 0.8 (255 * 0.8 = 204)
+                RelativeLayout r = (RelativeLayout) view.findViewById(R.id.desc_section);
+                r.getBackground().setAlpha(204);
 
                 ITopic topic =
                         (ITopic) parent.getItemAtPosition(position);

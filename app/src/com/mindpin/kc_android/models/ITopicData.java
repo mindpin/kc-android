@@ -15,7 +15,7 @@ public class ITopicData implements ITopic{
 
 
     public String get_desc() {
-        return "desc-test";
+        return "blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla";
     }
 
 
@@ -25,6 +25,6 @@ public class ITopicData implements ITopic{
 
 
     public String get_icon_url() {
-        return "http://mindpin.oss-cn-hangzhou.aliyuncs.com/image_service/images/ydrDGC29/ydrDGC29.png";
+        return "http://mindpin.oss-cn-hangzhou.aliyuncs.com/image_service/images/pQRqVPaU/pQRqVPaU.png";
     }
 }
