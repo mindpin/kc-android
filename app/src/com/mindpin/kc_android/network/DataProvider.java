@@ -79,4 +79,8 @@ public class DataProvider {
         }
         return topic_list;
     }
+
+    public static List<ITutorial> get_topic_tutorial_list(String topic_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.get_topic_tutorial_list(topic_id);
+    }
 }

@@ -1,6 +1,7 @@
 package com.mindpin.kc_android.activity.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.mindpin.android.loadingview.LoadingView;
 import com.mindpin.kc_android.R;
+import com.mindpin.kc_android.activity.TopicTutorialListActivity;
 import com.mindpin.kc_android.activity.fragment.base.KnowledgeBaseFragment;
 import com.mindpin.kc_android.adapter.TopicListAdapter;
 import com.mindpin.kc_android.models.interfaces.ITopic;
@@ -110,8 +112,9 @@ public class TopicListFragment extends KnowledgeBaseFragment {
                 topic_id = topic.get_id();
                 Log.i("topic_id ID ", topic_id);
 
-                Bundle args = new Bundle();
-                args.putString("topic_id", topic_id);
+                Intent intent = new Intent(activity, TopicTutorialListActivity.class);
+                intent.putExtra("topic", topic);
+                activity.startActivity(intent);
             }
         });
     }
