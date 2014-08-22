@@ -11,7 +11,7 @@ import com.mindpin.kc_android.R;
 /**
  * Created by dd on 14-8-21.
  */
-public class SelectableLinearLayout extends LinearLayout implements Checkable {
+public class SelectableLinearLayout extends LinearLayout {
     private static final String TAG = "SelectableLinearLayout";
     boolean selected = false;
     int res_selected = R.drawable.menu_line_background_selected;
@@ -23,13 +23,11 @@ public class SelectableLinearLayout extends LinearLayout implements Checkable {
 
     public SelectableLinearLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-//        setOnClickListener(null);
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public SelectableLinearLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-//        setOnClickListener(null);
     }
 
     public void select(){
@@ -61,20 +59,5 @@ public class SelectableLinearLayout extends LinearLayout implements Checkable {
     void refresh_background() {
         setBackgroundDrawable(getContext().getResources().getDrawable(selected ? res_selected : res_unselected));
         refreshDrawableState();
-    }
-
-    @Override
-    public void setChecked(boolean checked) {
-
-    }
-
-    @Override
-    public boolean isChecked() {
-        return false;
-    }
-
-    @Override
-    public void toggle() {
-
     }
 }
