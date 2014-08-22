@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.adapter.base.KnowledgeBaseAdapter;
 import com.mindpin.kc_android.models.interfaces.ITopic;
+import com.mindpin.kc_android.utils.UiFont;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 
@@ -58,6 +59,7 @@ public class TopicListAdapter extends KnowledgeBaseAdapter<ITopic> {
         view_holder.topic_title_view.setText(item.get_title());
         view_holder.topic_desc_view.setText(item.get_desc());
         view_holder.topic_tutorial_count_view.setText(item.get_tutorial_count());
+        view_holder.topic_tutorial_count_view.setTypeface(UiFont.FONTAWESOME_FONT);
 
 
         ImageLoader.getInstance().displayImage(item.get_icon_url(), view_holder.topic_icon_view);
