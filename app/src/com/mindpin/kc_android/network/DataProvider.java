@@ -68,16 +68,8 @@ public class DataProvider {
     }
 
 
-    public static List<ITopic> get_topic_list(){
-        // TODO 增加夹具数据实现 topic list 页面
-
-        List<ITopic> topic_list = new ArrayList<ITopic>();
-
-        for (int i = 0; i < 20; i++) {
-            ITopicData data = new ITopicData();
-            topic_list.add(data);
-        }
-        return topic_list;
+    public static List<ITopic> get_topic_list() throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.get_topic_list();
     }
 
     public static List<ITutorial> get_topic_tutorial_list(String topic_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {

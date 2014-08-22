@@ -29,5 +29,5 @@
     <string name="ic_menu">&#xf0c9;</string>
     <string name="ic_search">&#xf002;</string>
 
-    <string name="fontawesome_back">\\f053</string>
+    <string name="fontawesome_back">&#xf053;</string>
 </resources>

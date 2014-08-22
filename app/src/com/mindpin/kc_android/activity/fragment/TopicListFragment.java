@@ -32,8 +32,6 @@ public class TopicListFragment extends KnowledgeBaseFragment {
     private View current_view;
 
     private String topic_id;
-    private TextView topic_title;
-    private TextView topic_tutorial_count;
     GridView listview;
     private LoadingView loading_view;
 
@@ -59,10 +57,6 @@ public class TopicListFragment extends KnowledgeBaseFragment {
     public void onStart() {
         super.onStart();
         Bundle args = getArguments();
-        this.topic_id = args.getString("topic_id");
-
-        topic_title = (TextView) current_view.findViewById(R.id.topic_title);
-        topic_tutorial_count = (TextView) current_view.findViewById(R.id.topic_tutorial_count);
 
         listview = (GridView) current_view.findViewById(R.id.topic_list);
         loading_view = (LoadingView) current_view.findViewById(R.id.loading_view);

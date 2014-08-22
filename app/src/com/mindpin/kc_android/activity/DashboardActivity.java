@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.base.KnowledgeBaseActivity;
 import com.mindpin.kc_android.activity.fragment.KnowledgeNetListFragment;
+import com.mindpin.kc_android.activity.fragment.TopicListFragment;
 import com.mindpin.kc_android.controllers.AuthenticatorsController;
 import com.mindpin.kc_android.models.User;
 
@@ -22,15 +23,15 @@ public class DashboardActivity extends KnowledgeBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_content);
 
-        show_knowledge_net_list_fragment();
+        show_topic_list_fragment();
     }
 
-    private void show_knowledge_net_list_fragment(){
+    private void show_topic_list_fragment(){
         fragment_manager = getSupportFragmentManager();
 
         FragmentTransaction transaction = fragment_manager.beginTransaction();
-        KnowledgeNetListFragment knowledge_net_list_fragment = new KnowledgeNetListFragment();
-        transaction.add(R.id.frame_layout_content, knowledge_net_list_fragment).commit();
+        TopicListFragment topic_list_fragment = new TopicListFragment();
+        transaction.add(R.id.frame_layout_content, topic_list_fragment).commit();
     }
 
     @Override

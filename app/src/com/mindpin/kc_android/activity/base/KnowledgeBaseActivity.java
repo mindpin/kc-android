@@ -73,7 +73,7 @@ public class KnowledgeBaseActivity extends RoboFragmentActivity{
 
 
         // 打开测试 topic fragment 页面
-        Button btn_menu_topic = (Button) findViewById(R.id.btn_menu_topic);
+        SelectableLinearLayout btn_menu_topic = (SelectableLinearLayout) findViewById(R.id.sll_all_classes);
         btn_menu_topic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
