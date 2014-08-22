@@ -7,12 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mindpin.android.loadingview.LoadingView;
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.fragment.base.KnowledgeBaseFragment;
+import com.mindpin.kc_android.adapter.SquareLayout;
 import com.mindpin.kc_android.adapter.TopicListAdapter;
 import com.mindpin.kc_android.models.interfaces.ITopic;
 import com.mindpin.kc_android.network.DataProvider;
@@ -29,7 +32,7 @@ public class TopicListFragment extends KnowledgeBaseFragment {
     private String topic_id;
     private TextView topic_title;
     private TextView topic_tutorial_count;
-    ListView listview;
+    GridView listview;
     private LoadingView loading_view;
 
     private List<ITopic> topic_list;
@@ -59,7 +62,7 @@ public class TopicListFragment extends KnowledgeBaseFragment {
         topic_title = (TextView) current_view.findViewById(R.id.topic_title);
         topic_tutorial_count = (TextView) current_view.findViewById(R.id.topic_tutorial_count);
 
-        listview = (ListView) current_view.findViewById(R.id.topic_list);
+        listview = (GridView) current_view.findViewById(R.id.topic_list);
         loading_view = (LoadingView) current_view.findViewById(R.id.loading_view);
 
         get_datas();
@@ -90,7 +93,7 @@ public class TopicListFragment extends KnowledgeBaseFragment {
 
 
     private void build_view(){
-        ListView listview = (ListView) current_view.findViewById(R.id.topic_list);
+        listview = (GridView) current_view.findViewById(R.id.topic_list);
 
         TopicListAdapter adapter =
                 new TopicListAdapter(activity);
@@ -102,6 +105,10 @@ public class TopicListFragment extends KnowledgeBaseFragment {
                                     int position, long id) {
 
                 Log.i("listview 事件 ", "true");
+
+                // 按下时，透明度为 0.8 (255 * 0.8 = 204)
+                RelativeLayout r = (RelativeLayout) view.findViewById(R.id.desc_section);
+                r.getBackground().setAlpha(204);
 
                 ITopic topic =
                         (ITopic) parent.getItemAtPosition(position);
