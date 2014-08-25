@@ -27,6 +27,13 @@ public class KnowledgeBaseActivity extends RoboFragmentActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        kcVerticalDrawerHandler = new KCVerticalDrawerHandler(this);
+        kcVerticalDrawerHandler.add_background_view(R.layout.drawer_menu);
+        kcVerticalDrawerHandler.set_foreground_opening_offset(DisplayModule.px_to_dp(this, 50));
+        kcVerticalDrawerHandler.set_drop_shadow_size_px(10);
+        kcVerticalDrawerHandler.set_drop_shadow_color(Color.parseColor("#999999"));
+        kcVerticalDrawerHandler.set_drop_shadow_enable();
     }
 
     @Override
@@ -38,14 +45,6 @@ public class KnowledgeBaseActivity extends RoboFragmentActivity{
     }
 
     private void _init_title_bar() {
-        kcVerticalDrawerHandler = new KCVerticalDrawerHandler(this);
-        kcVerticalDrawerHandler.add_background_view(R.layout.drawer_menu);
-        kcVerticalDrawerHandler.set_foreground_opening_offset(DisplayModule.px_to_dp(this, 50));
-        kcVerticalDrawerHandler.set_drop_shadow_size_px(10);
-        kcVerticalDrawerHandler.set_drop_shadow_color(Color.parseColor("#999999"));
-        kcVerticalDrawerHandler.set_drop_shadow_enable();
-
-
         RelativeLayout title_bar = (RelativeLayout)findViewById(R.id.title_bar);
 
         Button btn_menu = (Button) findViewById(R.id.btn_menu);
