@@ -32,7 +32,7 @@ public class SquareLayout extends RelativeLayout {
     @SuppressWarnings("unused")
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        setMeasuredDimension(getDefaultSize(0, widthMeasureSpec), getDefaultSize(0, heightMeasureSpec));
+        // setMeasuredDimension(getDefaultSize(0, widthMeasureSpec), getDefaultSize(0, heightMeasureSpec));
 
 //        int child_width = getMeasuredWidth();
 //        int child_height = getMeasuredHeight();
@@ -54,6 +54,8 @@ public class SquareLayout extends RelativeLayout {
 
         Log.i("widthMeasureSpec 大小 ", Integer.toString(widthMeasureSpec));
         Log.i("heightMeasureSpec 大小 ", Integer.toString(heightMeasureSpec));
+
+        setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
 
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
