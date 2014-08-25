@@ -64,8 +64,9 @@ public class TopicListAdapter extends KnowledgeBaseAdapter<ITopic> {
 
         ImageLoader.getInstance().displayImage(item.get_icon_url(), view_holder.topic_icon_view);
 
-        Log.i("整个显示高度 ", Integer.toString(SquareLayout.height));
-        view_holder.desc_section_view.setMinimumHeight(SquareLayout.height / 2);
+        int square_height = SquareLayout.height;
+        Log.i("整个显示高度 ", Integer.toString(square_height));
+        view_holder.desc_section_view.setMinimumHeight(square_height / 2);
     }
 
 

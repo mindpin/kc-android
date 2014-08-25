@@ -40,12 +40,12 @@
         <TextView
             android:id="@+id/topic_title"
             style="@style/TopicTitle"
-            android:text="topic_title" />
+            android:text="topic title" />
 
         <TextView
             android:id="@+id/topic_desc"
             style="@style/TopicDesc"
-            android:text="topic_desc" />
+            android:text="topic desc " />
 
     </RelativeLayout>
 
