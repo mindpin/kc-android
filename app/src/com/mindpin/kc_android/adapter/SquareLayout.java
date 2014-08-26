@@ -50,7 +50,7 @@ public class SquareLayout extends RelativeLayout {
         Log.i("child_height 大小 ", Integer.toString(child_height));
 
         heightMeasureSpec = widthMeasureSpec =
-                MeasureSpec.makeMeasureSpec(child_width, MeasureSpec.EXACTLY);
+                MeasureSpec.makeMeasureSpec(child_width, MeasureSpec.AT_MOST);
 
         Log.i("widthMeasureSpec 大小 ", Integer.toString(widthMeasureSpec));
         Log.i("heightMeasureSpec 大小 ", Integer.toString(heightMeasureSpec));

@@ -16,8 +16,8 @@
         android:id="@+id/topic_list"
         android:numColumns="2"
         android:gravity="center"
-        android:horizontalSpacing="5px"
-        android:verticalSpacing="5px"
+        android:horizontalSpacing="5dp"
+        android:verticalSpacing="5dp"
         android:stretchMode="columnWidth"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
