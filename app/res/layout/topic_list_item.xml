@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:background="#f1f1f1">
+        android:background="#ddd">
     </ImageView>
 
     <LinearLayout
@@ -25,19 +25,18 @@
 
 
         <com.mindpin.kc_android.widget.FontAwesomeTextView
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_width="wrap_content"
             android:textColor="#ddd"
             android:textSize="12dp"
-            android:layout_gravity="center"
+            android:gravity="center"
             android:text="@string/ic_book"
             />
 
 
         <TextView
             android:id="@+id/topic_tutorial_count"
-            style="@style/TopicTutorialCount"
-            android:text="2222"/>
+            style="@style/TopicTutorialCount"/>
 
     </LinearLayout>
 
@@ -48,13 +47,11 @@
 
         <TextView
             android:id="@+id/topic_title"
-            style="@style/TopicTitle"
-            android:text="topic title" />
+            style="@style/TopicTitle"/>
 
         <TextView
             android:id="@+id/topic_desc"
-            style="@style/TopicDesc"
-            android:text="topic desc " />
+            style="@style/TopicDesc"/>
 
     </RelativeLayout>
 
