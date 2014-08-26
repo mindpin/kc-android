@@ -1,9 +1,13 @@
 package com.mindpin.kc_android.activity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -14,6 +18,7 @@ import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.base.KnowledgeBaseActivity;
 import com.mindpin.kc_android.adapter.TopicTutorialListAdapter;
 import com.mindpin.kc_android.models.interfaces.ITopic;
+import com.mindpin.kc_android.models.interfaces.ITutorial;
 import com.mindpin.kc_android.utils.BaseUtils;
 import com.mindpin.kc_android.utils.KCAsyncTask;
 import com.mindpin.kc_android.utils.UiFont;
@@ -48,7 +53,12 @@ public class TopicTutorialListActivity extends KnowledgeBaseActivity{
         topic_icon_img = (ImageView)findViewById(R.id.topic_icon_img);
         Button back_btn = (Button)findViewById(R.id.back_btn);
         back_btn.setTypeface(UiFont.FONTAWESOME_FONT);
-
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TopicTutorialListActivity.this.finish();
+            }
+        });
 
         topic_title_tv = (TextView)findViewById(R.id.topic_title_tv);
         topic_desc_tv = (TextView)findViewById(R.id.topic_desc_tv);
@@ -87,6 +97,18 @@ public class TopicTutorialListActivity extends KnowledgeBaseActivity{
         TopicTutorialListAdapter adapter = new TopicTutorialListAdapter(this);
         adapter.add_items(topic.get_tutorial_list());
         topic_tutorial_list_view.setAdapter(adapter);
+
+        topic_tutorial_list_view.setOnItemClickListener(new it.sephiroth.android.library.widget.AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(it.sephiroth.android.library.widget.AdapterView<?> parent, View view, int position, long id) {
+
+                ITutorial tutorial = (ITutorial) parent.getItemAtPosition(position);
+
+                Intent intent = new Intent(TopicTutorialListActivity.this, TutorialActivity.class);
+                intent.putExtra("tutorial", tutorial);
+                startActivity(intent);
+            }
+        });
 
         _set_topic_tutorial_list_bg_tv_layout();
         _set_topic_tutorial_list_layout();

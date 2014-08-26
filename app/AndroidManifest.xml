@@ -29,6 +29,7 @@
         <activity android:name=".activity.SignInActivity"/>
         <activity android:name=".activity.DashboardActivity"/>
         <activity android:name=".activity.TopicTutorialListActivity"/>
+        <activity android:name=".activity.TutorialActivity"/>
 
         <meta-data android:name="AA_DB_VERSION" android:value="@integer/AA_DB_VERSION" />
 
