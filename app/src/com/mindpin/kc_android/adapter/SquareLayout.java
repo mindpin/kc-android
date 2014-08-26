@@ -1,6 +1,7 @@
 package com.mindpin.kc_android.adapter;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Point;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -32,22 +33,21 @@ public class SquareLayout extends RelativeLayout {
     @SuppressWarnings("unused")
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        // setMeasuredDimension(getDefaultSize(0, widthMeasureSpec), getDefaultSize(0, heightMeasureSpec));
+        setMeasuredDimension(getDefaultSize(0, widthMeasureSpec), getDefaultSize(0, heightMeasureSpec));
 
-//        int child_width = getMeasuredWidth();
+        int child_width = getMeasuredWidth();
 //        int child_height = getMeasuredHeight();
 
 
-        DisplayMetrics metrics = getResources().getDisplayMetrics();
-        int child_width = (metrics.widthPixels - 5 * 3) / 2;
-        int child_height = child_width;
+//        DisplayMetrics metrics = getResources().getDisplayMetrics();
+//        int child_width = (metrics.widthPixels - 5 * 3) / 2;
 
 
 
         height = child_width;
 
         Log.i("child_width 大小 ", Integer.toString(child_width));
-        Log.i("child_height 大小 ", Integer.toString(child_height));
+        // Log.i("child_height 大小 ", Integer.toString(child_height));
 
         heightMeasureSpec = widthMeasureSpec =
                 MeasureSpec.makeMeasureSpec(child_width, MeasureSpec.EXACTLY);
@@ -59,5 +59,6 @@ public class SquareLayout extends RelativeLayout {
 
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
+
 }
 

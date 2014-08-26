@@ -53,8 +53,6 @@
 
     <style name="TopicCountSection">
         <item name="android:background">#80000000</item>
-        <item name="android:layout_marginTop">5dp</item>
-        <item name="android:layout_marginRight">5dp</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">20dp</item>
         <item name="android:layout_alignParentRight">true</item>
@@ -83,8 +81,6 @@
         <item name="android:background">#80000000</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_margin">5dp</item>
-        <item name="android:layout_weight">1</item>
         <item name="android:layout_alignParentBottom">true</item>
     </style>
 </resources>
