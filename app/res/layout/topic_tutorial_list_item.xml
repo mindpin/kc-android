@@ -16,14 +16,16 @@
         android:layout_height="30dp"/>
 
     <TextView
+        android:id="@+id/tutorial_learned_tv"
         android:layout_marginLeft="5dp"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/tutorial_creator_avatar"
         android:background="@drawable/circle"
-        android:text="123"
+        android:text="@string/fontawesome_checkmark"
         android:textColor="#fff"
+        android:gravity="center"
         android:textSize="12dp"
         />
 
@@ -44,7 +46,17 @@
         android:ellipsize="end"
         android:singleLine="false"
         android:maxLines="3"
+        android:lineSpacingExtra="5dp"
+        android:textSize="12dp"
+        android:textColor="#808080"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/tutorial_icon_iv"
+        android:scaleType="centerCrop"
+        android:background="#ddd"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
 </RelativeLayout>

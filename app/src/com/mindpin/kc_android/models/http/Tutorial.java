@@ -38,7 +38,7 @@ public class Tutorial implements ITutorial{
 
     @Override
     public String get_icon_url() {
-        return "http://placekitten.com/g/48/48";
+        return "http://mindpin.oss-cn-hangzhou.aliyuncs.com/image_service/images/RRVMSwyI/adaptive_height_300_RRVMSwyI.png";
     }
 
     @Override

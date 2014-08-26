@@ -1,9 +1,12 @@
 package com.mindpin.kc_android.activity;
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mindpin.android.loadingview.LoadingView;
@@ -11,10 +14,12 @@ import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.base.KnowledgeBaseActivity;
 import com.mindpin.kc_android.adapter.TopicTutorialListAdapter;
 import com.mindpin.kc_android.models.interfaces.ITopic;
+import com.mindpin.kc_android.utils.BaseUtils;
 import com.mindpin.kc_android.utils.KCAsyncTask;
 import com.mindpin.kc_android.utils.UiFont;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import it.sephiroth.android.library.widget.AbsHListView;
 import it.sephiroth.android.library.widget.HListView;
 
 /**
@@ -29,6 +34,7 @@ public class TopicTutorialListActivity extends KnowledgeBaseActivity{
     private TextView topic_title_tv;
     private TextView topic_desc_tv;
     private Bitmap topic_background;
+    private TextView topic_tutorial_list_bg_tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,7 @@ public class TopicTutorialListActivity extends KnowledgeBaseActivity{
         topic = (ITopic)getIntent().getSerializableExtra("topic");
         loading_view = (LoadingView) findViewById(R.id.loading_view);
         topic_tutorial_list_view = (HListView) findViewById(R.id.topic_tutorial_list);
+        topic_tutorial_list_bg_tv = (TextView)findViewById(R.id.topic_tutorial_list_bg_tv);
         topic_icon_img = (ImageView)findViewById(R.id.topic_icon_img);
         Button back_btn = (Button)findViewById(R.id.back_btn);
         back_btn.setTypeface(UiFont.FONTAWESOME_FONT);
@@ -80,5 +87,30 @@ public class TopicTutorialListActivity extends KnowledgeBaseActivity{
         TopicTutorialListAdapter adapter = new TopicTutorialListAdapter(this);
         adapter.add_items(topic.get_tutorial_list());
         topic_tutorial_list_view.setAdapter(adapter);
+
+        _set_topic_tutorial_list_bg_tv_layout();
+        _set_topic_tutorial_list_layout();
+    }
+
+    private void _set_topic_tutorial_list_layout(){
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int width = dm.widthPixels * 45 / 100;
+        int height = width * 2 + BaseUtils.dp_to_px(10);
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT, height);
+        lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        topic_tutorial_list_view.setLayoutParams(lp);
+    }
+
+    private void _set_topic_tutorial_list_bg_tv_layout(){
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int width = dm.widthPixels * 45 / 100;
+        int bg_height = width * 2 + BaseUtils.dp_to_px(10);
+        RelativeLayout.LayoutParams bg_lp = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.MATCH_PARENT, bg_height);
+        bg_lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        topic_tutorial_list_bg_tv.setLayoutParams(bg_lp);
     }
 }

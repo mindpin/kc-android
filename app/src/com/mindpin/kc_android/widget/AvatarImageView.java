@@ -27,7 +27,9 @@ public class AvatarImageView extends ImageView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        if (!loaded) load();
+        // TODO 暂时去掉，如果不去掉 list item 中使用会有问题
+//        if (!loaded) load();
+        load();
     }
 
     private void load() {
