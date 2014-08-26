@@ -10,13 +10,14 @@ import android.view.MenuItem;
 
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.base.KnowledgeBaseActivity;
+import com.mindpin.kc_android.activity.base.KnowledgeBaseIncludeDrawerActivity;
 import com.mindpin.kc_android.activity.fragment.KnowledgeNetListFragment;
 import com.mindpin.kc_android.activity.fragment.TopicListFragment;
 import com.mindpin.kc_android.controllers.AuthenticatorsController;
 import com.mindpin.kc_android.models.User;
 
 
-public class DashboardActivity extends KnowledgeBaseActivity {
+public class DashboardActivity extends KnowledgeBaseIncludeDrawerActivity {
     private FragmentManager fragment_manager;
 
     public void onCreate(Bundle savedInstanceState) {
