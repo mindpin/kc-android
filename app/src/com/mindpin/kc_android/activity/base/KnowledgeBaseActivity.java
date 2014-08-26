@@ -30,7 +30,7 @@ public class KnowledgeBaseActivity extends RoboFragmentActivity{
 
         kcVerticalDrawerHandler = new KCVerticalDrawerHandler(this);
         kcVerticalDrawerHandler.add_background_view(R.layout.drawer_menu);
-        kcVerticalDrawerHandler.set_foreground_opening_offset(DisplayModule.px_to_dp(this, 50));
+        kcVerticalDrawerHandler.set_foreground_opening_offset(50);
         kcVerticalDrawerHandler.set_drop_shadow_size_px(10);
         kcVerticalDrawerHandler.set_drop_shadow_color(Color.parseColor("#999999"));
         kcVerticalDrawerHandler.set_drop_shadow_enable();
