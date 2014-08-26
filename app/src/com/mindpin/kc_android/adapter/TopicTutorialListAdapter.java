@@ -1,12 +1,14 @@
 package com.mindpin.kc_android.adapter;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.mindpin.android.kcroundprogressbar.KCRoundProgressBar;
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.adapter.base.KnowledgeBaseAdapter;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
@@ -37,6 +39,7 @@ public class TopicTutorialListAdapter extends KnowledgeBaseAdapter<ITutorial> {
         view_holder.tutorial_icon_iv = (ImageView) view.findViewById(R.id.tutorial_icon_iv);
         view_holder.tutorial_desc_tv = (TextView) view.findViewById(R.id.tutorial_desc_tv);
         view_holder.tutorial_learned_tv = (TextView)view.findViewById(R.id.tutorial_learned_tv);
+        view_holder.tutorial_learn_progress = (KCRoundProgressBar)view.findViewById(R.id.tutorial_learn_progress);
 
         DisplayMetrics dm = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -56,6 +59,15 @@ public class TopicTutorialListAdapter extends KnowledgeBaseAdapter<ITutorial> {
         view_holder.tutorial_icon_iv.setLayoutParams(icon_lp);
 
         view_holder.tutorial_learned_tv.setTypeface(UiFont.FONTAWESOME_FONT);
+
+
+        view_holder.tutorial_learn_progress.set_width_dp(30);
+        view_holder.tutorial_learn_progress.set_bg_color(Color.parseColor("#e4f7e7"));
+        view_holder.tutorial_learn_progress.set_fg_color(Color.parseColor("#4cc85e"));
+        view_holder.tutorial_learn_progress.set_border_display(false);
+        view_holder.tutorial_learn_progress.set_thickness(0.2f);
+        view_holder.tutorial_learn_progress.set_text_size_dp(9);
+
         return view_holder;
     }
 
@@ -65,6 +77,10 @@ public class TopicTutorialListAdapter extends KnowledgeBaseAdapter<ITutorial> {
         view_holder.tutorial_title_tv.setText(item.get_title());
         view_holder.tutorial_desc_tv.setText(item.get_desc());
         ImageLoader.getInstance().displayImage(item.get_icon_url(), view_holder.tutorial_icon_iv);
+
+        view_holder.tutorial_learn_progress.set_current(15);
+        view_holder.tutorial_learn_progress.set_text_display(true);
+        view_holder.tutorial_learned_tv.setVisibility(View.GONE);
     }
 
     private class ViewHolder implements BaseViewHolder {
@@ -72,5 +88,6 @@ public class TopicTutorialListAdapter extends KnowledgeBaseAdapter<ITutorial> {
         ImageView tutorial_icon_iv;
         TextView tutorial_desc_tv;
         TextView tutorial_learned_tv;
+        KCRoundProgressBar tutorial_learn_progress;
     }
 }
