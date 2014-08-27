@@ -196,7 +196,28 @@ public class FirstTest  {
 //            System.out.println(t.get_title());
 //            System.out.println(t.get_desc());
 //        }
-
+//
+//
+//        String pc_tutorial_id = "53e9d4d66c696e29ae2a0000";
+//
+//        System.out.println("~~~~~~~~~~~~~~~~~~~~~ get_parent_tutorial_list start");
+//
+//        List<ITutorial> p_t_list = HttpApi.get_parent_tutorial_list(pc_tutorial_id);
+//
+//        for(ITutorial t : p_t_list){
+//            System.out.println(t.get_id());
+//            System.out.println(t.get_title());
+//            System.out.println(t.get_desc());
+//        }
+//
+//        System.out.println("~~~~~~~~~~~~~~~~~~~~~ get_child_tutorial_list start");
+//        List<ITutorial> c_t_list = HttpApi.get_child_tutorial_list(pc_tutorial_id);
+//
+//        for(ITutorial t : c_t_list){
+//            System.out.println(t.get_id());
+//            System.out.println(t.get_title());
+//            System.out.println(t.get_desc());
+//        }
     }
 
 }

@@ -74,6 +74,12 @@ public class HttpApi {
     public static String 获取主题的教程列表(String topic_id){
         return SITE + String.format("/api/tutorials.json?topic_id=%s", topic_id);
     }
+    public static String 获取教程的前置教程列表(String tutorial_id){
+        return SITE + String.format("/api/tutorials.json?child_id=%s", tutorial_id);
+    }
+    public static String 获取教程的后续教程列表(String tutorial_id){
+        return SITE + String.format("/api/tutorials.json?parent_id=%s", tutorial_id);
+    }
 
     /**
      * http api url end
@@ -297,6 +303,40 @@ public class HttpApi {
             @Override
             public HttpRequest build_request() {
                 return HttpRequest.get(HttpApi.获取主题的教程列表(topic_id));
+            }
+        }.request();
+    }
+
+    public static List<ITutorial> get_parent_tutorial_list(final String tutorial_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<List<ITutorial>>(){
+
+            @Override
+            public List<ITutorial> call(RequestResult rr) {
+                Type collectionType = new TypeToken<List<Tutorial>>(){}.getType();
+                Gson gson = new Gson();
+                return gson.fromJson(rr.body, collectionType);
+            }
+
+            @Override
+            public HttpRequest build_request() {
+                return HttpRequest.get(HttpApi.获取教程的前置教程列表(tutorial_id));
+            }
+        }.request();
+    }
+
+    public static List<ITutorial> get_child_tutorial_list(final String tutorial_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<List<ITutorial>>(){
+
+            @Override
+            public List<ITutorial> call(RequestResult rr) {
+                Type collectionType = new TypeToken<List<Tutorial>>(){}.getType();
+                Gson gson = new Gson();
+                return gson.fromJson(rr.body, collectionType);
+            }
+
+            @Override
+            public HttpRequest build_request() {
+                return HttpRequest.get(HttpApi.获取教程的后续教程列表(tutorial_id));
             }
         }.request();
     }
