@@ -6,6 +6,7 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.activeandroid.ActiveAndroid;
+import com.mindpin.kc_android.utils.BaseUtils;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
@@ -35,15 +36,24 @@ public class KCApplication extends Application {
                 .build();
 
 
-        File cache_dir = create_dir(new File("/topic_images_cache"));
+        File cache_dir = BaseUtils.create_dir(new File("/kc/cache/image"));
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
+
+            // 设置缓存图片的宽度跟高度
             .memoryCacheExtraOptions(480, 800)
             .diskCacheExtraOptions(480, 800, null)
+
+            // 通过 LruMemoryCache 实现缓存机制
             .memoryCache(new LruMemoryCache(2 * 1024 * 1024))
             .memoryCacheSize(2 * 1024 * 1024)
+
+            // 限制缓存文件数量百分比
             .memoryCacheSizePercentage(13)
+            
             .diskCache(new UnlimitedDiscCache(cache_dir)) // default
             .diskCacheSize(50 * 1024 * 1024)
+
+            // 硬盘缓存文件数量
             .diskCacheFileCount(100)
             .diskCacheFileNameGenerator(new HashCodeFileNameGenerator())
             .defaultDisplayImageOptions(options)
@@ -68,28 +78,7 @@ public class KCApplication extends Application {
         return context;
     }
 
-    private File create_dir(File file_dir) {
-        file_dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
-                + file_dir.getPath());
-        if (file_dir.exists()) {
-            Log.i("目录已经存在 ", file_dir.getAbsolutePath());
-            return file_dir;
-        }
 
-        Log.i("目录不存在 开始创建目录 ", "true");
-
-        try{
-            boolean result = file_dir.mkdirs();
-            if (result) {
-                Log.i("目录创建成功 ", "true");
-                return file_dir;
-            }
-        } catch(SecurityException se){
-            Log.i("目录创建失败 ", se.toString());
-        }
-
-        return null;
-    }
 
 
 }
