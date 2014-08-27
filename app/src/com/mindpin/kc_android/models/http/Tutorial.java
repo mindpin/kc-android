@@ -20,6 +20,8 @@ public class Tutorial implements ITutorial{
     private List<IStep> step_list;
     private List<IKnowledgePoint> related_knowledge_point_list;
     private IStep first_step;
+    private List<ITutorial> parents;
+    private List<ITutorial> children;
 
     @Override
     public String get_id() {
@@ -67,7 +69,30 @@ public class Tutorial implements ITutorial{
 
     @Override
     public List<ITutorial> get_children() {
-        return null;
+        if(this.children != null){
+            return this.children;
+        }
+        try {
+            this.children = HttpApi.get_child_tutorial_list(this.get_id());
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("debug", "获取教程的后续教程列表失败");
+        }
+        return this.children;
+    }
+
+    @Override
+    public List<ITutorial> get_parents() {
+        if(this.parents != null){
+            return this.parents;
+        }
+        try {
+            this.parents = HttpApi.get_parent_tutorial_list(this.get_id());
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("debug", "获取教程的前置教程列表失败");
+        }
+        return this.parents;
     }
 
     @Override

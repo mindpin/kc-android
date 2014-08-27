@@ -42,6 +42,13 @@ git checkout v0.1.3 -b v0.1.3
 mvn clean install
 ```
 
+### 安装 KCRoundProgressBar
+```
+git clone https://github.com/mindpin/KCRoundProgressBar.git
+cd KCRoundProgressBar
+mvn clean install
+```
+
 ### 安装 android.support 19.0.1 到本地 maven 库
 测试库依赖这个版本的 android.support 所以需要安装
 
