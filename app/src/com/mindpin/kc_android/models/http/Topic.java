@@ -2,6 +2,7 @@ package com.mindpin.kc_android.models.http;
 
 import android.util.Log;
 
+import com.google.gson.annotations.SerializedName;
 import com.mindpin.kc_android.models.interfaces.ITopic;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
 import com.mindpin.kc_android.network.DataProvider;
@@ -18,6 +19,8 @@ public class Topic implements ITopic{
     private String desc;
     private String[] tutorial_ids;
     private List<ITutorial> tutorial_list;
+    @SerializedName("image")
+    private String icon_url;
 
     @Override
     public String get_id() {
@@ -41,7 +44,7 @@ public class Topic implements ITopic{
 
     @Override
     public String get_icon_url() {
-        return "http://mindpin.oss-cn-hangzhou.aliyuncs.com/image_service/images/BNlHQ10D/BNlHQ10D.png";
+        return HttpApi.SITE + icon_url;
     }
 
     @Override

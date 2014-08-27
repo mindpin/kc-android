@@ -2,6 +2,7 @@ package com.mindpin.kc_android.models.http;
 
 import android.util.Log;
 
+import com.google.gson.annotations.SerializedName;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
@@ -22,6 +23,8 @@ public class Tutorial implements ITutorial{
     private IStep first_step;
     private List<ITutorial> parents;
     private List<ITutorial> children;
+    @SerializedName("image")
+    private String icon_url;
 
     @Override
     public String get_id() {
@@ -40,7 +43,7 @@ public class Tutorial implements ITutorial{
 
     @Override
     public String get_icon_url() {
-        return "http://mindpin.oss-cn-hangzhou.aliyuncs.com/image_service/images/RRVMSwyI/adaptive_height_300_RRVMSwyI.png";
+        return HttpApi.SITE + icon_url;
     }
 
     @Override
