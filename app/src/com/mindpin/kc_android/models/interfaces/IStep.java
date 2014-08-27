@@ -27,6 +27,6 @@ public interface IStep extends Serializable {
 
     interface ISelectOption extends Serializable{
         public String get_next_step_id();
-        public String get_title();
+        public String get_text();
     }
 }
