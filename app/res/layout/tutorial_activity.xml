@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+        >
+    <ImageView
+            android:id="@+id/iv_tutorial_background"
+            android:layout_alignParentTop="true"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:id="@+id/rl_banner"
+            >
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="center_vertical"
+                        android:layout_alignParentTop="true"
+                        android:id="@+id/rl_titlebar"
+                        android:background="#80000000"
+                >
+            <com.mindpin.kc_android.widget.FontAwesomeTextView
+                    android:layout_height="50dp"
+                    android:layout_width="50dp"
+                    android:textColor="#fff"
+                    android:textSize="20dp"
+                    android:text="@string/fontawesome_back"
+                    android:padding="15dp"
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/fatv_back"/>
+            <!--android:layout_margin="15dp"-->
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="50dp"
+                      android:textColor="#fff"
+                      android:textSize="16dp"
+                      android:text="test"
+                      android:layout_alignParentRight="true"
+                      android:layout_alignParentBottom="true"
+                      android:layout_alignParentTop="true"
+                      android:layout_toRightOf="@id/fatv_back"
+                      android:gravity="center_vertical|left"
+                    />
+        </RelativeLayout>
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:gravity="center_vertical"
+                        android:layout_below="@id/rl_titlebar"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/top_to_bottom_gradient_transparent"
+                >
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="41dp" android:layout_below="@id/rl_banner"
+            android:id="@+id/rl_tabs"
+            android:background="@drawable/white_with_ddd_bottom_border"
+            >
+        <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:weightSum="3">
+            <com.mindpin.kc_android.widget.SelectableLinearLayout android:layout_width="wrap_content" android:layout_height="match_parent"
+                          android:layout_weight="1" android:orientation="horizontal"
+                          android:gravity="center"
+                          android:id="@+id/sll_summary"
+                    >
+                <com.mindpin.kc_android.widget.FontAwesomeTextView
+                        android:layout_height="14dp"
+                        android:layout_width="14dp"
+                        android:textColor="#ccc"
+                        android:textSize="14dp"
+                        android:text="@string/ic_book"
+                        />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="简介"
+                        android:textColor="#333"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="5dp"
+                        />
+            </com.mindpin.kc_android.widget.SelectableLinearLayout>
+            <com.mindpin.kc_android.widget.SelectableLinearLayout android:layout_width="wrap_content" android:layout_height="match_parent"
+                          android:layout_weight="1" android:orientation="horizontal"
+                          android:gravity="center"
+                          android:id="@+id/sll_points"
+                          android:background="@drawable/tutorial_tab_unselected"
+                    >
+                <com.mindpin.kc_android.widget.FontAwesomeTextView
+                        android:layout_height="14dp"
+                        android:layout_width="14dp"
+                        android:textColor="#ccc"
+                        android:textSize="14dp"
+                        android:text="@string/ic_round"
+                        />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="知识点"
+                          android:textColor="#333"
+                          android:textSize="14dp"
+                          android:layout_marginLeft="5dp"
+                        />
+            </com.mindpin.kc_android.widget.SelectableLinearLayout>
+            <com.mindpin.kc_android.widget.SelectableLinearLayout android:layout_width="wrap_content" android:layout_height="match_parent"
+                          android:layout_weight="1" android:orientation="horizontal"
+                          android:gravity="center"
+                          android:background="@drawable/tutorial_tab_unselected"
+                    >
+                <com.mindpin.kc_android.widget.FontAwesomeTextView
+                        android:layout_height="14dp"
+                        android:layout_width="14dp"
+                        android:textColor="#ccc"
+                        android:textSize="14dp"
+                        android:text="@string/ic_note"
+                        android:id="@+id/sll_notes"
+                        />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="标注"
+                          android:textColor="#333"
+                          android:textSize="14dp"
+                          android:layout_marginLeft="5dp"
+                        />
+            </com.mindpin.kc_android.widget.SelectableLinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="50dp"
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/rl_next"
+                    android:background="#44B2F5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+            >
+        <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                  android:textSize="16dp"
+                  android:textColor="#fff"
+                  android:text="继续学习"
+                  android:gravity="center_vertical"
+                  android:layout_alignParentLeft="true"
+                  android:id="@+id/tv_label_next_tutorial"
+                />
+        <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                  android:textSize="16dp"
+                  android:textColor="#fff"
+                  android:text="[80%]"
+                  android:gravity="center_vertical"
+                  android:layout_toRightOf="@+id/tv_label_next_tutorial" android:layout_toLeftOf="@+id/fatv_next"
+                  android:layout_marginLeft="5dp"
+                  android:layout_marginRight="5dp"
+                />
+        <com.mindpin.kc_android.widget.FontAwesomeTextView
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:text="@string/fontawesome_next"
+                android:padding="15dp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/fatv_next"/>
+    </RelativeLayout>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_below="@id/rl_tabs"
+                android:layout_above="@id/rl_next"
+            >
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      android:padding="5dp" android:background="#F1F1F1">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:layout_marginBottom="5dp"
+                          android:background="#FFF">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:id="@+id/tv_desc"
+                          android:padding="10dp"
+                          android:textSize="14dp"
+                          android:lineSpacingExtra="6dp"
+                          android:textColor="#333333"
+                          android:text="了解灶台"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="90dp" android:orientation="vertical"
+                          android:background="#FFF"
+                          android:layout_marginBottom="5dp"
+                    >
+                <TextView android:layout_width="match_parent" android:layout_height="40dp"
+                          android:id="@+id/tv_label_author"
+                          android:padding="10dp"
+                          android:textSize="14dp"
+                          android:lineSpacingExtra="6dp"
+                          android:textColor="#333333"
+                          android:text="作者"
+                          android:background="@drawable/white_with_eee_bottom_border"
+                        />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="50dp" android:orientation="horizontal" android:padding="5dp">
+                    <com.mindpin.kc_android.widget.AvatarImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            />
+                    <TextView android:layout_width="match_parent" android:layout_height="50dp"
+                              android:id="@+id/tv_author"
+                              android:padding="10dp"
+                              android:textSize="14dp"
+                              android:lineSpacingExtra="6dp"
+                              android:textColor="#333333"
+                              android:text="宋亮"
+                            />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"
+                          android:background="#FFF"
+                          android:layout_marginBottom="5dp"
+                    >
+                <TextView android:layout_width="match_parent" android:layout_height="40dp"
+                          android:id="@+id/tv_label_previous_tutorials"
+                          android:padding="10dp"
+                          android:textSize="14dp"
+                          android:lineSpacingExtra="6dp"
+                          android:textColor="#333333"
+                          android:background="@drawable/white_with_eee_bottom_border"
+                          android:text="前置教程"/>
+                <ListView android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:id="@+id/lv_previous"
+                        />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:id="@+id/tv_previous_none"
+                          android:textColor="#999"
+                          android:padding="10dp"
+                          android:textSize="14dp"
+                          android:lineSpacingExtra="6dp"
+                          android:text="没有前置教程"
+                        />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"
+                          android:background="#FFF"
+                          android:layout_marginBottom="5dp"
+                    >
+                <TextView android:layout_width="match_parent" android:layout_height="40dp"
+                          android:id="@+id/tv_label_next_tutorials"
+                          android:padding="10dp"
+                          android:textSize="14dp"
+                          android:lineSpacingExtra="6dp"
+                          android:textColor="#333333"
+                          android:background="@drawable/white_with_eee_bottom_border"
+                          android:text="后续教程"/>
+                <ListView android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:id="@+id/lv_next" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:id="@+id/tv_next_none"
+                          android:textColor="#999"
+                          android:padding="10dp"
+                          android:textSize="14dp"
+                          android:lineSpacingExtra="6dp"
+                          android:text="没有后续教程"
+                        />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <com.mindpin.android.loadingview.LoadingView
+            android:id="@+id/loading_view"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            />
+    <!--<com.github.destinyd.FlipBriefLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:id="@+id/kcflip"-->
+            <!-->-->
+    <!--</com.github.destinyd.FlipBriefLayout>-->
+</RelativeLayout>

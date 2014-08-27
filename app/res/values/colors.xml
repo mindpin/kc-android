@@ -11,4 +11,7 @@
     <color name="menu_background_pressed">#FFEDEDED</color>
     <color name="menu_border_selected">#44B2F5</color>
     <color name="menu_border_bottom">#FFDDDDDD</color>
+    <color name="eee">#EEEEEE</color>
+    <color name="ddd">#DDDDDD</color>
+    <color name="tutorial_tab_selected">#44B2F5</color>
 </resources>
