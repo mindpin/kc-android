@@ -1,6 +1,7 @@
 package com.mindpin.kc_android.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class TutorialActivity extends KnowledgeBaseActivity {
+public class TutorialActivity extends KnowledgeBaseActivity implements AdapterView.OnItemClickListener {
     private static final String TAG = "TutorialActivity";
     // brief
     protected ListView lv_list_brief;
@@ -146,7 +147,7 @@ public class TutorialActivity extends KnowledgeBaseActivity {
                 List<IStep.ISelectOption> select_options = select.get_select_options();
                 for (IStep.ISelectOption option : select_options) {
                     Button button = new Button(this);
-                    button.setText(option.get_title());
+                    button.setText(option.get_text());
                     button.setTag(option.get_next_step_id());
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -268,7 +269,7 @@ public class TutorialActivity extends KnowledgeBaseActivity {
     private void parents_to_views() {
         if(parents.size() >0 ) {
             adapter_parents = new TutorialTutorialListAdapter(this);
-            adapter_parents.add_items(children);
+            adapter_parents.add_items(parents);
             lv_previous.setAdapter(adapter_parents);
             lv_previous.setVisibility(View.VISIBLE);
             tv_previous_none.setVisibility(View.GONE);
@@ -305,6 +306,17 @@ public class TutorialActivity extends KnowledgeBaseActivity {
         sll_summary.set_res_selected(R.drawable.tutorial_tab_selected);
         sll_summary.select();
         rl_banner.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, BaseUtils.get_screen_size().width_px / 2));
+        lv_previous.setOnItemClickListener(this);
+        lv_next.setOnItemClickListener(this);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        ITutorial tutorial = (ITutorial) parent.getItemAtPosition(position);
+
+        Intent intent = new Intent(TutorialActivity.this, TutorialActivity.class);
+        intent.putExtra("tutorial", tutorial);
+        startActivity(intent);
     }
 //
 //    private void find_detail_views() {
