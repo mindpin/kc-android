@@ -8,10 +8,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.mindpin.kc_android.widget.AvatarImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/tutorial_creator_avatar"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
+        android:src="@drawable/avatar_default"
         android:layout_width="30dp"
         android:layout_height="30dp"/>
 

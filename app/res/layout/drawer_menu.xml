@@ -13,10 +13,13 @@
                   android:clickable="true"
                   android:longClickable="true"
             >
-        <com.mindpin.kc_android.widget.AvatarImageView
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:src="@drawable/avatar_default"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_margin="20dp"/>
+
         <TextView android:textSize="20dp" android:gravity="center_vertical"
                   android:layout_width="wrap_content" android:layout_height="40dp"
                   android:id="@+id/tv_user_name"
