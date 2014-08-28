@@ -15,7 +15,9 @@ import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.base.KnowledgeBaseActivity;
 import com.mindpin.kc_android.activity.fragment.KnowledgePointFragment;
 import com.mindpin.kc_android.adapter.KnowledgeNetPointListAdapter;
+import com.mindpin.kc_android.adapter.KnowledgeNetTutorialListAdapter;
 import com.mindpin.kc_android.adapter.TutorialStepListAdapter;
+import com.mindpin.kc_android.adapter.TutorialTutorialListAdapter;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
@@ -54,13 +56,32 @@ public class TutorialActivity extends KnowledgeBaseActivity {
     IStep step_now;
     String id_next_step;
     List<Button> list_buttons = new ArrayList<Button>();
-
+    List<ITutorial> parents;
+    List<ITutorial> children;
 //    private View current_view;
     private LoadingView loading_view_detail;
     private Bitmap tutorial_background;
     private ImageView iv_tutorial_background;
     private RelativeLayout rl_banner;
+
+
+//    private void bind_listener() {
+//        btn_next_step.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                get_next_step(step_now.get_next_id());
+//            }
+//        });
+//    }
     private SelectableLinearLayout sll_summary;
+    private ListView lv_previous;
+    private ListView lv_next;
+    private TutorialTutorialListAdapter adapter_children;
+    private TutorialTutorialListAdapter adapter_parents;
+    private TextView tv_next_none;
+    private TextView tv_previous_none;
+    private TextView tv_title;
+    private TextView tv_desc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,16 +102,6 @@ public class TutorialActivity extends KnowledgeBaseActivity {
 //        bind_listener();
         get_datas();
     }
-
-
-//    private void bind_listener() {
-//        btn_next_step.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                get_next_step(step_now.get_next_id());
-//            }
-//        });
-//    }
 
     private void datas_to_brief() {
         tv_description_brief.setText(tutorial.get_desc());
@@ -198,7 +209,6 @@ public class TutorialActivity extends KnowledgeBaseActivity {
         }.execute();
     }
 
-
     private void get_datas() {
         new KCAsyncTask<Void>(this) {
 
@@ -209,10 +219,11 @@ public class TutorialActivity extends KnowledgeBaseActivity {
 
             @Override
             public Void call() throws Exception {
+                parents = tutorial.get_parents();
+                children = tutorial.get_children();
                 point_list = tutorial.get_related_knowledge_point_list();
                 step_now = tutorial.get_first_step();
                 tutorial_background = ImageLoader.getInstance().loadImageSync(tutorial.get_icon_url());
-                Thread.sleep(5000);
                 return null;
             }
 
@@ -220,11 +231,52 @@ public class TutorialActivity extends KnowledgeBaseActivity {
             protected void onSuccess(Void aVoid) throws Exception {
                 System.out.println(tutorial.get_title());
                 iv_tutorial_background.setImageBitmap(tutorial_background);
+                datas_to_views();
 //                datas_to_brief();
 //                datas_to_detail();
                 loading_view.hide();
             }
         }.execute();
+    }
+
+    private void datas_to_views() {
+        tutorial_to_views();
+        parents_to_views();
+        children_to_views();
+    }
+
+    private void tutorial_to_views() {
+//        tv_author.setText(tutorial.);
+        tv_title.setText(tutorial.get_title());
+        tv_desc.setText(tutorial.get_desc());
+    }
+
+    private void children_to_views() {
+        if(children.size() >0 ) {
+            adapter_children = new TutorialTutorialListAdapter(this);
+            adapter_children.add_items(children);
+            lv_next.setAdapter(adapter_children);
+            lv_next.setVisibility(View.VISIBLE);
+            tv_next_none.setVisibility(View.GONE);
+        }
+        else{
+            tv_next_none.setVisibility(View.VISIBLE);
+            lv_next.setVisibility(View.GONE);
+        }
+    }
+
+    private void parents_to_views() {
+        if(parents.size() >0 ) {
+            adapter_parents = new TutorialTutorialListAdapter(this);
+            adapter_parents.add_items(children);
+            lv_previous.setAdapter(adapter_parents);
+            lv_previous.setVisibility(View.VISIBLE);
+            tv_previous_none.setVisibility(View.GONE);
+        }
+        else{
+            tv_previous_none.setVisibility(View.VISIBLE);
+            lv_previous.setVisibility(View.GONE);
+        }
     }
 
 //    private void get_and_add_layouts_to_flip() {
@@ -235,6 +287,12 @@ public class TutorialActivity extends KnowledgeBaseActivity {
 //    }
 
     private void find_views() {
+        tv_title = (TextView) findViewById(R.id.tv_title);
+        tv_desc = (TextView) findViewById(R.id.tv_desc);
+        tv_next_none = (TextView) findViewById(R.id.tv_next_none);
+        tv_previous_none = (TextView) findViewById(R.id.tv_previous_none);
+        lv_previous = (ListView) findViewById(R.id.lv_previous);
+        lv_next = (ListView) findViewById(R.id.lv_next);
         iv_tutorial_background = (ImageView) findViewById(R.id.iv_tutorial_background);
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) iv_tutorial_background.getLayoutParams();
         rl_banner = (RelativeLayout) findViewById(R.id.rl_banner);
