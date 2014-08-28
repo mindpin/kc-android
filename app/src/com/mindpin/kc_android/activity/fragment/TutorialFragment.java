@@ -140,7 +140,7 @@ public class TutorialFragment extends KnowledgeBaseFragment {
                 List<IStep.ISelectOption> select_options = select.get_select_options();
                 for (IStep.ISelectOption option : select_options) {
                     Button button = new Button(activity);
-                    button.setText(option.get_title());
+                    button.setText(option.get_text());
                     button.setTag(option.get_next_step_id());
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override

@@ -4,14 +4,17 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;
 import com.mindpin.kc_android.application.KCApplication;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -333,5 +336,28 @@ public class BaseUtils {
 
             return ss;
         }
+    }
+
+    public static File create_dir(File file_dir) {
+        file_dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
+                + file_dir.getPath());
+        if (file_dir.exists()) {
+            Log.i("目录已经存在 ", file_dir.getAbsolutePath());
+            return file_dir;
+        }
+
+        Log.i("目录不存在 开始创建目录 ", "true");
+
+        try{
+            boolean result = file_dir.mkdirs();
+            if (result) {
+                Log.i("目录创建成功 ", "true");
+                return file_dir;
+            }
+        } catch(SecurityException se){
+            Log.i("目录创建失败 ", se.toString());
+        }
+
+        return null;
     }
 }

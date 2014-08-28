@@ -16,7 +16,6 @@ public class Step implements IStep{
     private String tutorial_id;
     private String title;
     private String desc;
-    private String continue_type;
     @SerializedName("continue")
     private Object _continue;
 
@@ -37,15 +36,15 @@ public class Step implements IStep{
 
     @Override
     public ContinueType get_continue_type() {
-        if("select".equals(continue_type)){
+        if("select".equals(_get_type())){
             return ContinueType.SELECT;
         }
 
-        if("id".equals(continue_type)){
+        if("id".equals(_get_type())){
             return ContinueType.ID;
         }
 
-        if("end".equals(continue_type)){
+        if("end".equals(_get_type())){
             return ContinueType.END;
         }
         return null;
@@ -53,7 +52,7 @@ public class Step implements IStep{
 
     @Override
     public String get_next_id() {
-        if("id".equals(continue_type)){
+        if("id".equals(_get_type())){
             return ((LinkedTreeMap<String,String>)_continue).get("id");
         }
         return null;
@@ -61,7 +60,7 @@ public class Step implements IStep{
 
     @Override
     public boolean is_end() {
-        if("end".equals(continue_type)){
+        if("end".equals(_get_type())){
             return true;
         }
         return false;
@@ -69,19 +68,23 @@ public class Step implements IStep{
 
     @Override
     public ISelect get_select() {
-        if("select".equals(continue_type)){
-            LinkedTreeMap<String,LinkedTreeMap> select_map = (LinkedTreeMap<String,LinkedTreeMap>)_continue;
-            String question = (String)select_map.get("select").get("question");
+        if("select".equals(_get_type())){
+            LinkedTreeMap<String,Object> select_map = (LinkedTreeMap<String,Object>)_continue;
+            String question = (String)(select_map.get("question"));
 
             ArrayList<ISelectOption> options = new ArrayList<ISelectOption>();
-            ArrayList<LinkedTreeMap<String,String>> option_maps = (ArrayList<LinkedTreeMap<String,String>>) select_map.get("select").get("options");
+            ArrayList<LinkedTreeMap<String,String>> option_maps = (ArrayList<LinkedTreeMap<String,String>>) select_map.get("options");
             for(LinkedTreeMap<String,String> o : option_maps){
-                SelectOption select = new SelectOption(o.get("id"), o.get("title"));
+                SelectOption select = new SelectOption(o.get("id"), o.get("text"));
                 options.add(select);
             }
             return new Select(question, options);
         }
         return null;
+    }
+
+    private String _get_type(){
+        return (String)((LinkedTreeMap<String,Object>)_continue).get("type");
     }
 
 
@@ -106,12 +109,12 @@ public class Step implements IStep{
     }
 
     class SelectOption implements ISelectOption{
-        private String title;
+        private String text;
         private String id;
 
-        public SelectOption(String id, String title){
+        public SelectOption(String id, String text){
             this.id = id;
-            this.title = title;
+            this.text = text;
         }
 
         @Override
@@ -120,8 +123,8 @@ public class Step implements IStep{
         }
 
         @Override
-        public String get_title() {
-            return this.title;
+        public String get_text() {
+            return this.text;
         }
     }
 
