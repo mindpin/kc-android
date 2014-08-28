@@ -2,10 +2,8 @@ package com.mindpin.kc_android.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -22,10 +20,8 @@ import com.mindpin.kc_android.models.interfaces.ITutorial;
 import com.mindpin.kc_android.utils.BaseUtils;
 import com.mindpin.kc_android.utils.KCAsyncTask;
 import com.mindpin.kc_android.utils.UiFont;
+import com.mindpin.kc_android.widget.HorizontalListView;
 import com.nostra13.universalimageloader.core.ImageLoader;
-
-import it.sephiroth.android.library.widget.AbsHListView;
-import it.sephiroth.android.library.widget.HListView;
 
 /**
  * Created by fushang318 on 2014/8/22.
@@ -34,7 +30,7 @@ public class TopicTutorialListActivity extends KnowledgeBaseActivity{
     private ITopic topic;
 
     private LoadingView loading_view;
-    private HListView topic_tutorial_list_view;
+    private HorizontalListView topic_tutorial_list_view;
     private ImageView topic_icon_img;
     private TextView topic_title_tv;
     private TextView topic_desc_tv;
@@ -48,7 +44,7 @@ public class TopicTutorialListActivity extends KnowledgeBaseActivity{
 
         topic = (ITopic)getIntent().getSerializableExtra("topic");
         loading_view = (LoadingView) findViewById(R.id.loading_view);
-        topic_tutorial_list_view = (HListView) findViewById(R.id.topic_tutorial_list);
+        topic_tutorial_list_view = (HorizontalListView) findViewById(R.id.topic_tutorial_list);
         topic_tutorial_list_bg_tv = (TextView)findViewById(R.id.topic_tutorial_list_bg_tv);
         topic_icon_img = (ImageView)findViewById(R.id.topic_icon_img);
         Button back_btn = (Button)findViewById(R.id.back_btn);
@@ -98,9 +94,9 @@ public class TopicTutorialListActivity extends KnowledgeBaseActivity{
         adapter.add_items(topic.get_tutorial_list());
         topic_tutorial_list_view.setAdapter(adapter);
 
-        topic_tutorial_list_view.setOnItemClickListener(new it.sephiroth.android.library.widget.AdapterView.OnItemClickListener() {
+        topic_tutorial_list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(it.sephiroth.android.library.widget.AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 ITutorial tutorial = (ITutorial) parent.getItemAtPosition(position);
 

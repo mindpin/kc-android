@@ -14,9 +14,9 @@ import com.mindpin.kc_android.adapter.base.KnowledgeBaseAdapter;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
 import com.mindpin.kc_android.utils.BaseUtils;
 import com.mindpin.kc_android.utils.UiFont;
+import com.mindpin.kc_android.widget.HorizontalListView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import it.sephiroth.android.library.widget.AbsHListView;
 
 /**
  * Created by fushang318 on 2014/8/22.
@@ -46,7 +46,7 @@ public class TopicTutorialListAdapter extends KnowledgeBaseAdapter<ITutorial> {
 
         int width = dm.widthPixels * 45 / 100;
         int height = width * 2;
-        AbsHListView.LayoutParams lp = new AbsHListView.LayoutParams(width, AbsHListView.LayoutParams.WRAP_CONTENT);
+        HorizontalListView.LayoutParams lp = new HorizontalListView.LayoutParams(width, HorizontalListView.LayoutParams.WRAP_CONTENT);
         view.setLayoutParams(lp);
 
         RelativeLayout.LayoutParams icon_lp = new RelativeLayout.LayoutParams(
