@@ -1,8 +1,10 @@
 package com.mindpin.kc_android.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -36,6 +38,15 @@ public class SignInActivity extends KnowledgeBaseActivity {
         btn_signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // 关闭软键盘
+                // TODO
+                // 如果不关闭软键盘会触发下个页面的抽屉导航BUG，从而使页面显示不正常
+                // 先用关闭软键盘的方式避免触发抽屉导航BUG
+                InputMethodManager imm =(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm.isActive()) {
+                    imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_NOT_ALWAYS);
+                }
+
                 btn_signin.setEnabled(false);
                 myAuthenticator.sign_in(
                         et_login.getText().toString(),
