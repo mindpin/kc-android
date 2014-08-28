@@ -29,14 +29,21 @@ public class KCApplication extends Application {
 //        ImageLoaderConfiguration config =
 //                new ImageLoaderConfiguration.Builder(getApplicationContext()).build();
 
-        DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .cacheInMemory(false)
-                .cacheOnDisk(true)
-
-                .build();
-
+        DisplayImageOptions options;
 
         File cache_dir = BaseUtils.create_dir(new File("/kc/cache/image"));
+
+        if (cache_dir == null) {
+            options = new DisplayImageOptions.Builder()
+                    .cacheInMemory(false)
+                    .cacheOnDisk(false)
+                    .build();
+        } else {
+            options = new DisplayImageOptions.Builder()
+                    .cacheInMemory(false)
+                    .cacheOnDisk(true)
+                    .build();
+        }
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
 
             // 设置缓存图片的宽度跟高度
