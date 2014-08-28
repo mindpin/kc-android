@@ -26,15 +26,17 @@ public class KCApplication extends Application {
     public void onCreate() {
         super.onCreate();
         ActiveAndroid.initialize(this);
-//        ImageLoaderConfiguration config =
-//                new ImageLoaderConfiguration.Builder(getApplicationContext()).build();
+
 
         DisplayImageOptions options;
         ImageLoaderConfiguration config;
 
         File cache_dir = BaseUtils.create_dir(new File("/kc/cache/image"));
 
-        if (cache_dir != null) {
+        if (cache_dir == null) {
+            config =
+                    new ImageLoaderConfiguration.Builder(getApplicationContext()).build();
+        } else {
             options = new DisplayImageOptions.Builder()
                     .cacheInMemory(false)
                     .cacheOnDisk(true)
@@ -64,8 +66,10 @@ public class KCApplication extends Application {
 
                     .build();
 
-            ImageLoader.getInstance().init(config);
+
         }
+
+        ImageLoader.getInstance().init(config);
 
 
         context = this.getApplicationContext();
