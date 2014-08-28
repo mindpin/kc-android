@@ -2,6 +2,7 @@ package com.mindpin.kc_android.activity.base;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -65,5 +66,16 @@ public class KnowledgeBaseIncludeDrawerActivity extends KnowledgeBaseActivity{
         User user = User.current();
         if(user != null)
             ((TextView)view_menu.findViewById(R.id.tv_user_name)).setText(user.name);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            if(kcVerticalDrawerHandler.is_open()){
+                kcVerticalDrawerHandler.close();
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
