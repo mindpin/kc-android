@@ -20,13 +20,13 @@
               android:layout_marginRight="10dp"
             />
 
-    <com.mindpin.android.kcroundprogressbar.KCRoundProgressBar
-            android:id="@+id/tutorial_learn_progress"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="5dp"
-            android:layout_centerVertical="true"
-            />
+    <include
+        layout="@layout/tutorial_learn_progress"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:layout_centerVertical="true"
+        />
 
 </RelativeLayout>

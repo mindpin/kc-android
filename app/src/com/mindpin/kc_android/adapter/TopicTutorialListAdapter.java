@@ -60,12 +60,17 @@ public class TopicTutorialListAdapter extends KnowledgeBaseAdapter<ITutorial> {
 
         view_holder.tutorial_learned_tv.setTypeface(UiFont.FONTAWESOME_FONT);
 
-
-        view_holder.tutorial_learn_progress.set_bg_color(Color.parseColor("#e4f7e7"));
         view_holder.tutorial_learn_progress.set_fg_color(Color.parseColor("#4cc85e"));
-        view_holder.tutorial_learn_progress.set_border_display(false);
-        view_holder.tutorial_learn_progress.set_thickness(0.2f);
         view_holder.tutorial_learn_progress.set_text_size_dp(9);
+        view_holder.tutorial_learn_progress.set_thickness(0.2f);
+        view_holder.tutorial_learn_progress.set_internal_bg_color(Color.parseColor("#E4F7E7"));
+        view_holder.tutorial_learn_progress.set_text_color(Color.parseColor("#333333"));
+        view_holder.tutorial_learn_progress.set_text_show_type(KCRoundProgressBar.TextShowType.PERCENTAGE);
+        view_holder.tutorial_learn_progress.set_text_display(true);
+        view_holder.tutorial_learn_progress.set_border_display(false);
+
+        view_holder.tutorial_learn_progress.setVisibility(View.GONE);
+        view_holder.tutorial_learned_tv.setVisibility(View.GONE);
 
         return view_holder;
     }
@@ -77,9 +82,15 @@ public class TopicTutorialListAdapter extends KnowledgeBaseAdapter<ITutorial> {
         view_holder.tutorial_desc_tv.setText(item.get_desc());
         ImageLoader.getInstance().displayImage(item.get_icon_url(), view_holder.tutorial_icon_iv);
 
-        view_holder.tutorial_learn_progress.set_current(15);
-        view_holder.tutorial_learn_progress.set_text_display(true);
-        view_holder.tutorial_learned_tv.setVisibility(View.GONE);
+        if(item.get_step_count() == item.get_learned_step_count()){
+            view_holder.tutorial_learned_tv.setVisibility(View.VISIBLE);
+        }else{
+            view_holder.tutorial_learn_progress.set_max(item.get_step_count());
+            view_holder.tutorial_learn_progress.set_min(0);
+            view_holder.tutorial_learn_progress.set_current(item.get_learned_step_count());
+            view_holder.tutorial_learn_progress.setVisibility(View.VISIBLE);
+        }
+
     }
 
     private class ViewHolder implements BaseViewHolder {
