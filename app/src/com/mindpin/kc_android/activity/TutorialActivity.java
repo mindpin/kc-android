@@ -25,6 +25,7 @@ import com.mindpin.kc_android.models.interfaces.ITutorial;
 import com.mindpin.kc_android.network.DataProvider;
 import com.mindpin.kc_android.utils.BaseUtils;
 import com.mindpin.kc_android.utils.KCAsyncTask;
+import com.mindpin.kc_android.utils.ListViewUtils;
 import com.mindpin.kc_android.widget.SelectableLinearLayout;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -260,6 +261,7 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
             lv_next.setAdapter(adapter_children);
             lv_next.setVisibility(View.VISIBLE);
             tv_next_none.setVisibility(View.GONE);
+            ListViewUtils.setListViewHeightBasedOnChildren(lv_next);
         }
         else{
             tv_next_none.setVisibility(View.VISIBLE);
@@ -274,6 +276,7 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
             lv_previous.setAdapter(adapter_parents);
             lv_previous.setVisibility(View.VISIBLE);
             tv_previous_none.setVisibility(View.GONE);
+            ListViewUtils.setListViewHeightBasedOnChildren(lv_previous);
         }
         else{
             tv_previous_none.setVisibility(View.VISIBLE);
