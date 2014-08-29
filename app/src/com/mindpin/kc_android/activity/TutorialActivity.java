@@ -19,6 +19,7 @@ import com.mindpin.kc_android.adapter.KnowledgeNetPointListAdapter;
 import com.mindpin.kc_android.adapter.KnowledgeNetTutorialListAdapter;
 import com.mindpin.kc_android.adapter.TutorialStepListAdapter;
 import com.mindpin.kc_android.adapter.TutorialTutorialListAdapter;
+import com.mindpin.kc_android.models.User;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
@@ -28,6 +29,7 @@ import com.mindpin.kc_android.utils.KCAsyncTask;
 import com.mindpin.kc_android.utils.ListViewUtils;
 import com.mindpin.kc_android.widget.SelectableLinearLayout;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,6 +87,7 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
     private TextView tv_title;
     private TextView tv_desc;
     private TextView tv_learned_percent;
+    private TextView tv_author;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -252,6 +255,14 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
 //        tv_author.setText(tutorial.);
         tv_title.setText(tutorial.get_title());
         tv_desc.setText(tutorial.get_desc());
+        User user = tutorial.get_creator();
+        if(user != null){
+            tv_author.setText(user.name);
+            ImageLoader.getInstance().displayImage(
+                    user.get_avatar_url(),
+                    ((CircleImageView) findViewById(R.id.civ_creator_avatar))
+            );
+        }
     }
 
     private void children_to_views() {
@@ -293,6 +304,7 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
 
     private void find_views() {
         tv_learned_percent = (TextView) findViewById(R.id.tv_learned_percent);
+        tv_author = (TextView) findViewById(R.id.tv_author);
         tv_title = (TextView) findViewById(R.id.tv_title);
         tv_desc = (TextView) findViewById(R.id.tv_desc);
         tv_next_none = (TextView) findViewById(R.id.tv_next_none);
