@@ -16,25 +16,12 @@
         android:layout_width="30dp"
         android:layout_height="30dp"/>
 
-    <TextView
-        android:id="@+id/tutorial_learned_tv"
+
+    <include
+        layout="@layout/tutorial_learn_progress"
         android:layout_marginLeft="5dp"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@id/tutorial_creator_avatar"
-        android:background="@drawable/circle"
-        android:text="@string/fontawesome_checkmark"
-        android:textColor="#fff"
-        android:gravity="center"
-        android:textSize="12dp"
-        />
-
-    <com.mindpin.android.kcroundprogressbar.KCRoundProgressBar
-        android:id="@+id/tutorial_learn_progress"
-        android:layout_marginLeft="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/tutorial_creator_avatar"
         />

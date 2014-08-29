@@ -61,7 +61,6 @@ public class TopicTutorialListAdapter extends KnowledgeBaseAdapter<ITutorial> {
         view_holder.tutorial_learned_tv.setTypeface(UiFont.FONTAWESOME_FONT);
 
 
-        view_holder.tutorial_learn_progress.set_width_dp(30);
         view_holder.tutorial_learn_progress.set_bg_color(Color.parseColor("#e4f7e7"));
         view_holder.tutorial_learn_progress.set_fg_color(Color.parseColor("#4cc85e"));
         view_holder.tutorial_learn_progress.set_border_display(false);
