@@ -83,6 +83,7 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
     private TextView tv_previous_none;
     private TextView tv_title;
     private TextView tv_desc;
+    private TextView tv_learned_percent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -288,6 +289,7 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
 //    }
 
     private void find_views() {
+        tv_learned_percent = (TextView) findViewById(R.id.tv_learned_percent);
         tv_title = (TextView) findViewById(R.id.tv_title);
         tv_desc = (TextView) findViewById(R.id.tv_desc);
         tv_next_none = (TextView) findViewById(R.id.tv_next_none);
@@ -308,6 +310,7 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
         rl_banner.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, BaseUtils.get_screen_size().width_px / 2));
         lv_previous.setOnItemClickListener(this);
         lv_next.setOnItemClickListener(this);
+        tv_learned_percent.setText("[" + (int)(100f * tutorial.get_learned_step_count() / tutorial.get_step_count()) + "%]");
     }
 
     @Override
