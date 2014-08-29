@@ -1,5 +1,7 @@
 package com.mindpin.kc_android.models.interfaces;
 
+import com.mindpin.kc_android.models.User;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -25,4 +27,5 @@ public interface ITutorial extends Serializable {
 
     public int get_step_count();
     public int get_learned_step_count();
+    public User get_creator();
 }

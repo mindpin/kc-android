@@ -3,6 +3,7 @@ package com.mindpin.kc_android.models.http;
 import android.util.Log;
 
 import com.google.gson.annotations.SerializedName;
+import com.mindpin.kc_android.models.User;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
@@ -28,6 +29,7 @@ public class Tutorial implements ITutorial{
 
     private int step_count;
     private int learned_step_count;
+    private User creator;
 
     @Override
     public String get_id() {
@@ -139,5 +141,10 @@ public class Tutorial implements ITutorial{
     @Override
     public int get_learned_step_count() {
         return this.learned_step_count;
+    }
+
+    @Override
+    public User get_creator() {
+        return this.creator;
     }
 }
