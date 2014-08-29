@@ -76,7 +76,7 @@ public class FirstTest  {
 //        System.out.println(point_list.get(0).get_name());
 //        System.out.println(point_list.get(0).get_desc());
 //
-//        String knowledge_net_id = "53fd896c6c696e1615000000";
+//        String knowledge_net_id = "53fd9c036c696e1939240000";
 //        IKnowledgeNet snet = HttpApi.get_knowledge_net(knowledge_net_id);
 //
 //        System.out.println(snet.get_name());
@@ -97,7 +97,7 @@ public class FirstTest  {
 //        System.out.println(tutorial_list.get(0).get_desc());
 //
 //
-//        String knowledge_point_id = "53fd896d6c696e16150d0000";
+//        String knowledge_point_id = "53fd9bfd6c696e19390d0000";
 //        IKnowledgePoint point = HttpApi.get_knowledge_point(knowledge_point_id);
 //
 //        System.out.println(point.get_id());
@@ -112,7 +112,7 @@ public class FirstTest  {
 //        System.out.println(stutorial_list.get(0).get_desc());
 //
 //
-//        String tutorial_id = "53fd89cf6c696e16156e0100";
+//        String tutorial_id = "53fd9c5f6c696e19396e0100";
 //        ITutorial tutorial = HttpApi.get_tutorial(tutorial_id);
 //
 //        System.out.println(tutorial.get_title());
@@ -125,7 +125,7 @@ public class FirstTest  {
 //        System.out.println(tpoint_list.get(0).get_name());
 //        System.out.println(tpoint_list.get(0).get_desc());
 //
-//        String stutorial_id = "53fd89db6c696e1615bc0100";
+//        String stutorial_id = "53fd9c6a6c696e1939bc0100";
 //        List<IStep> step_list = HttpApi.get_step_list(stutorial_id);
 //
 //        System.out.println(step_list.size());
@@ -177,7 +177,7 @@ public class FirstTest  {
 //
 //        System.out.println("~~~~~~~~~~~~~~~~~~~~~ get_net_topic_list start");
 //
-//        String meishu_net_id = "53fd89726c696e1615240000";
+//        String meishu_net_id = "53fd9c036c696e1939240000";
 //        List<ITopic> net_topic_list = HttpApi.get_net_topic_list(meishu_net_id);
 //        System.out.println("topics count is " + net_topic_list.size());
 //
@@ -199,7 +199,7 @@ public class FirstTest  {
 //        }
 //
 //
-//        String pc_tutorial_id = "53fd89cf6c696e16156e0100";
+//        String pc_tutorial_id = "53fd9c5f6c696e19396e0100";
 //
 //        System.out.println("~~~~~~~~~~~~~~~~~~~~~ get_parent_tutorial_list start");
 //
@@ -219,6 +219,10 @@ public class FirstTest  {
 //            System.out.println(t.get_title());
 //            System.out.println(t.get_desc());
 //        }
+//
+//
+//        String sstep_id = "53fd9c6a6c696e1939bd0100";
+//        HttpApi.learn_step(sstep_id);
     }
 
 }

@@ -26,6 +26,9 @@ public class Tutorial implements ITutorial{
     @SerializedName("image")
     private String icon_url;
 
+    private int step_count;
+    private int learned_step_count;
+
     @Override
     public String get_id() {
         return this.id;
@@ -126,5 +129,15 @@ public class Tutorial implements ITutorial{
             Log.d("debug", "获取教程的第一个步骤失败");
         }
         return this.first_step;
+    }
+
+    @Override
+    public int get_step_count() {
+        return this.step_count;
+    }
+
+    @Override
+    public int get_learned_step_count() {
+        return this.learned_step_count;
     }
 }

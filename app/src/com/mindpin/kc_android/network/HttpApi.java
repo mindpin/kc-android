@@ -33,6 +33,8 @@ public class HttpApi {
 
     public static final String 获取知识网络列表 = SITE + "/api/nets.json";
 
+    public static final String 标记学习步骤为已学 = SITE + "/api/learn_records.json";
+
     public static String 获取知识网络(String knowledge_net_id){
         return SITE + String.format("/api/nets/%s.json", knowledge_net_id);
     }
@@ -80,7 +82,6 @@ public class HttpApi {
     public static String 获取教程的后续教程列表(String tutorial_id){
         return SITE + String.format("/api/tutorials.json?parent_id=%s", tutorial_id);
     }
-
     /**
      * http api url end
      */
@@ -337,6 +338,22 @@ public class HttpApi {
             @Override
             public HttpRequest build_request() {
                 return HttpRequest.get(HttpApi.获取教程的后续教程列表(tutorial_id));
+            }
+        }.request();
+    }
+
+    public static boolean learn_step(final String step_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<Boolean>(){
+
+            @Override
+            public Boolean call(RequestResult rr) {
+                return true;
+            }
+
+            @Override
+            public HttpRequest build_request() {
+                HttpRequest request = HttpRequest.post(HttpApi.标记学习步骤为已学);
+                return request.part("learn_record[step_id]", step_id);
             }
         }.request();
     }

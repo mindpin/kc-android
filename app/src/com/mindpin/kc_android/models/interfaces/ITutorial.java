@@ -22,4 +22,7 @@ public interface ITutorial extends Serializable {
     public List<IStep> get_step_list();
 
     public IStep get_first_step();
+
+    public int get_step_count();
+    public int get_learned_step_count();
 }
