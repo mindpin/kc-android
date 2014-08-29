@@ -35,8 +35,11 @@ public class TutorialTutorialListAdapter extends KnowledgeBaseAdapter<ITutorial>
         view_holder.tutorial_learn_progress.set_fg_color(Color.parseColor("#4CC85E"));
         view_holder.tutorial_learn_progress.set_bg_color(Color.parseColor("#E4F7E7"));
         view_holder.tutorial_learn_progress.set_text_size_dp(9);
+        view_holder.tutorial_learn_progress.set_thickness(0.2f);
+        view_holder.tutorial_learn_progress.set_internal_bg_color(Color.parseColor("#E4F7E7"));
+        view_holder.tutorial_learn_progress.set_text_color(Color.parseColor("#333333"));
+        view_holder.tutorial_learn_progress.set_text_show_type(KCRoundProgressBar.TextShowType.PERCENTAGE);
         view_holder.tutorial_learn_progress.set_text_display(true);
-        view_holder.tutorial_learn_progress.set_thickness(0.15f);
         return view_holder;
     }
 
