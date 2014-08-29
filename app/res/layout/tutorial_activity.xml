@@ -146,6 +146,7 @@
                   android:layout_toRightOf="@+id/tv_label_next_tutorial" android:layout_toLeftOf="@+id/fatv_next"
                   android:layout_marginLeft="5dp"
                   android:layout_marginRight="5dp"
+                  android:id="@+id/tv_learned_percent"
                 />
         <com.mindpin.kc_android.widget.FontAwesomeTextView
                 android:layout_height="50dp"
