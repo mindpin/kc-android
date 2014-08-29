@@ -42,10 +42,11 @@ git checkout v0.1.3 -b v0.1.3
 mvn clean install
 ```
 
-### 安装 KCRoundProgressBar
+### 安装 KCRoundProgressBar v0.1.2
 ```
 git clone https://github.com/mindpin/KCRoundProgressBar.git
 cd KCRoundProgressBar
+git checkout v0.1.2 -b v0.1.2
 mvn clean install
 ```
 
