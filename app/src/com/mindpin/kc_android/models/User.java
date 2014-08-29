@@ -9,13 +9,14 @@ import com.mindpin.android.authenticator.IUser;
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.network.HttpApi;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 /**
  * Created by dd on 14-6-10.
  */
 @Table(name = "Users")
-public class User extends IUser {
+public class User extends IUser implements Serializable {
     private static final String TAG = "User";
 
     // 下面几个字段根据具体业务逻辑确定
