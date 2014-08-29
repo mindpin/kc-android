@@ -6,6 +6,8 @@ import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 import com.google.gson.annotations.SerializedName;
 import com.mindpin.android.authenticator.IUser;
+import com.mindpin.kc_android.R;
+import com.mindpin.kc_android.network.HttpApi;
 
 import java.util.Calendar;
 
@@ -27,6 +29,8 @@ public class User extends IUser {
     public String email;
     @Column(name = "Login")
     public String login;
+    @Column(name = "Avatar")
+    private String avatar;
 
     @Column(name = "Updated_at", index = true)
     public long updated_at;
@@ -69,4 +73,12 @@ public class User extends IUser {
     public static void delete_all(){
         new Delete().from(User.class).execute();
     }
+
+    public String get_avatar_url(){
+        if(this.avatar == null || "".equals(this.avatar)){
+            return "drawable://" + R.drawable.avatar_default;
+        }
+        return HttpApi.SITE + this.avatar;
+    }
+
 }

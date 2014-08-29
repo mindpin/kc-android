@@ -12,6 +12,9 @@ import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.fragment.TopicListFragment;
 import com.mindpin.kc_android.models.User;
 import com.mindpin.kc_android.widget.SelectableLinearLayout;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by fushang318 on 2014/8/26.
@@ -64,8 +67,13 @@ public class KnowledgeBaseIncludeDrawerActivity extends KnowledgeBaseActivity{
         View view_menu = kcVerticalDrawerHandler.get_background_view();
         ((SelectableLinearLayout)view_menu.findViewById(R.id.sll_all_classes)).select();
         User user = User.current();
-        if(user != null)
+        if(user != null){
             ((TextView)view_menu.findViewById(R.id.tv_user_name)).setText(user.name);
+            ImageLoader.getInstance().displayImage(
+                user.get_avatar_url(),
+                ((CircleImageView) view_menu.findViewById(R.id.iv_user_avatar))
+            );
+        }
     }
 
     @Override
