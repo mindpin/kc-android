@@ -17,6 +17,8 @@ import com.mindpin.kc_android.utils.UiFont;
 import com.mindpin.kc_android.widget.HorizontalListView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 /**
  * Created by fushang318 on 2014/8/22.
@@ -40,6 +42,7 @@ public class TopicTutorialListAdapter extends KnowledgeBaseAdapter<ITutorial> {
         view_holder.tutorial_desc_tv = (TextView) view.findViewById(R.id.tutorial_desc_tv);
         view_holder.tutorial_learned_tv = (TextView)view.findViewById(R.id.tutorial_learned_tv);
         view_holder.tutorial_learn_progress = (KCRoundProgressBar)view.findViewById(R.id.tutorial_learn_progress);
+        view_holder.tutorial_creator_avatar = (CircleImageView)view.findViewById(R.id.tutorial_creator_avatar);
 
         DisplayMetrics dm = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -81,6 +84,7 @@ public class TopicTutorialListAdapter extends KnowledgeBaseAdapter<ITutorial> {
         view_holder.tutorial_title_tv.setText(item.get_title());
         view_holder.tutorial_desc_tv.setText(item.get_desc());
         ImageLoader.getInstance().displayImage(item.get_icon_url(), view_holder.tutorial_icon_iv);
+        ImageLoader.getInstance().displayImage(item.get_creator().get_avatar_url(), view_holder.tutorial_creator_avatar);
 
         if(item.get_step_count() == item.get_learned_step_count()){
             view_holder.tutorial_learned_tv.setVisibility(View.VISIBLE);
@@ -98,6 +102,7 @@ public class TopicTutorialListAdapter extends KnowledgeBaseAdapter<ITutorial> {
         ImageView tutorial_icon_iv;
         TextView tutorial_desc_tv;
         TextView tutorial_learned_tv;
+        CircleImageView tutorial_creator_avatar;
         KCRoundProgressBar tutorial_learn_progress;
     }
 }
