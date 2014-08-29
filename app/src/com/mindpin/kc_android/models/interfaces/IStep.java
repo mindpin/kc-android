@@ -16,7 +16,7 @@ public interface IStep extends Serializable {
     public ISelect get_select();
 
     enum ContinueType{
-        ID,SELECT,END
+        STEP,SELECT,END
     }
 
 

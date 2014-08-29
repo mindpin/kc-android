@@ -40,8 +40,8 @@ public class Step implements IStep{
             return ContinueType.SELECT;
         }
 
-        if("id".equals(_get_type())){
-            return ContinueType.ID;
+        if("step".equals(_get_type())){
+            return ContinueType.STEP;
         }
 
         if("end".equals(_get_type())){
@@ -52,7 +52,7 @@ public class Step implements IStep{
 
     @Override
     public String get_next_id() {
-        if("id".equals(_get_type())){
+        if("step".equals(_get_type())){
             return ((LinkedTreeMap<String,String>)_continue).get("id");
         }
         return null;
