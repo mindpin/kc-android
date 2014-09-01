@@ -142,8 +142,8 @@ public class FirstTest  {
 //        for(IStep s : step_list){
 //            System.out.println(">>>>");
 //            System.out.println(s.get_continue_type());
-//            if(s.get_continue_type() == IStep.ContinueType.ID){
-//                System.out.println("ID TYPE");
+//            if(s.get_continue_type() == IStep.ContinueType.STEP){
+//                System.out.println("STEP TYPE");
 //                System.out.println(s.get_next_id());
 //            }
 //            if(s.get_continue_type() == IStep.ContinueType.END){
