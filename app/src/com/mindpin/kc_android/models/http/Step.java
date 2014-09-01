@@ -3,6 +3,7 @@ package com.mindpin.kc_android.models.http;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.internal.LinkedTreeMap;
 import com.mindpin.kc_android.models.interfaces.IStep;
+import com.mindpin.kc_android.network.HttpApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +16,9 @@ public class Step implements IStep{
     private String id;
     private String tutorial_id;
     private String title;
-    private String desc;
     @SerializedName("continue")
     private Object _continue;
+    private List<ContentBlock> blocks;
 
     @Override
     public String get_id() {
@@ -27,11 +28,6 @@ public class Step implements IStep{
     @Override
     public String get_title() {
         return this.title;
-    }
-
-    @Override
-    public String get_desc() {
-        return this.desc;
     }
 
     @Override
@@ -83,6 +79,11 @@ public class Step implements IStep{
         return null;
     }
 
+    @Override
+    public List<IContentBlock> get_blocks() {
+        return new ArrayList<IContentBlock>(this.blocks);
+    }
+
     private String _get_type(){
         return (String)((LinkedTreeMap<String,Object>)_continue).get("type");
     }
@@ -125,6 +126,44 @@ public class Step implements IStep{
         @Override
         public String get_text() {
             return this.text;
+        }
+    }
+
+    class ContentBlock implements IContentBlock{
+        private String kind;
+        private String content;
+        private Object virtual_file;
+
+        @Override
+        public ContentKind get_kind() {
+            if("text".equals(kind)){
+                return ContentKind.TEXT;
+            }
+            if("image".equals(kind)){
+                return ContentKind.IMAGE;
+            }
+            if("video".equals(kind)){
+                return ContentKind.VIDEO;
+            }
+
+            return null;
+        }
+
+        @Override
+        public String get_url() {
+            if(get_kind() == ContentKind.IMAGE || get_kind() == ContentKind.VIDEO){
+                String url = ((LinkedTreeMap<String,String>)virtual_file).get("url");
+                return HttpApi.SITE + url;
+            }
+            return null;
+        }
+
+        @Override
+        public String get_content() {
+            if(get_kind() == ContentKind.TEXT){
+                return this.content;
+            }
+            return null;
         }
     }
 

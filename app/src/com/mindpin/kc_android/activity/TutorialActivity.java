@@ -141,7 +141,6 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
         LinearLayout ll_step = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.step_list_item, null);
         if (step != null) {
             ((TextView) ll_step.findViewById(R.id.tv_title)).setText(step.get_title());
-            ((TextView) ll_step.findViewById(R.id.tv_description)).setText(step.get_desc());
             if (step.get_continue_type() == IStep.ContinueType.SELECT) {
                 IStep.ISelect select = step.get_select();
 

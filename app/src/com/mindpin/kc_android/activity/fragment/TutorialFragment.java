@@ -129,7 +129,6 @@ public class TutorialFragment extends KnowledgeBaseFragment {
         LinearLayout ll_step = (LinearLayout) LayoutInflater.from(activity).inflate(R.layout.step_list_item, null);
         if (step != null) {
             ((TextView) ll_step.findViewById(R.id.tv_title)).setText(step.get_title());
-            ((TextView) ll_step.findViewById(R.id.tv_description)).setText(step.get_desc());
             if (step.get_continue_type() == IStep.ContinueType.SELECT) {
                 IStep.ISelect select = step.get_select();
 
