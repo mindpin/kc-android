@@ -27,6 +27,7 @@ import com.mindpin.kc_android.network.DataProvider;
 import com.mindpin.kc_android.utils.BaseUtils;
 import com.mindpin.kc_android.utils.KCAsyncTask;
 import com.mindpin.kc_android.utils.ListViewUtils;
+import com.mindpin.kc_android.widget.FontAwesomeTextView;
 import com.mindpin.kc_android.widget.SelectableLinearLayout;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -88,6 +89,7 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
     private TextView tv_desc;
     private TextView tv_learned_percent;
     private TextView tv_author;
+    private FontAwesomeTextView fatv_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -303,6 +305,7 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
 //    }
 
     private void find_views() {
+        fatv_back = (FontAwesomeTextView) findViewById(R.id.fatv_back);
         tv_learned_percent = (TextView) findViewById(R.id.tv_learned_percent);
         tv_author = (TextView) findViewById(R.id.tv_author);
         tv_title = (TextView) findViewById(R.id.tv_title);
@@ -326,6 +329,12 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
         lv_previous.setOnItemClickListener(this);
         lv_next.setOnItemClickListener(this);
         tv_learned_percent.setText("[" + (int)(100f * tutorial.get_learned_step_count() / tutorial.get_step_count()) + "%]");
+        fatv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override
