@@ -98,8 +98,8 @@ public class HttpApi {
             }
 
             @Override
-            public HttpRequest build_request() {
-                return HttpRequest.get(获取知识网络列表);
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(获取知识网络列表, "GET");
             }
         }.request();
     }
@@ -115,8 +115,8 @@ public class HttpApi {
             }
 
             @Override
-            public HttpRequest build_request() {
-                return HttpRequest.get(HttpApi.获取知识网络(knowledge_net_id));
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.获取知识网络(knowledge_net_id),"GET");
             }
         }.request();
     }
@@ -132,8 +132,8 @@ public class HttpApi {
             }
 
             @Override
-            public HttpRequest build_request() {
-                return HttpRequest.get(HttpApi.获取知识点列表(knowledge_net_id));
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.获取知识点列表(knowledge_net_id), "GET");
             }
         }.request();
     }
@@ -149,8 +149,8 @@ public class HttpApi {
             }
 
             @Override
-            public HttpRequest build_request() {
-                return HttpRequest.get(HttpApi.获取知识网络的教程列表(knowledge_net_id));
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.获取知识网络的教程列表(knowledge_net_id), "GET");
             }
         }.request();
     }
@@ -166,8 +166,8 @@ public class HttpApi {
             }
 
             @Override
-            public HttpRequest build_request() {
-                return HttpRequest.get(HttpApi.获取知识点(knowledge_point_id));
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.获取知识点(knowledge_point_id), "GET");
             }
         }.request();
     }
@@ -183,8 +183,8 @@ public class HttpApi {
             }
 
             @Override
-            public HttpRequest build_request() {
-                return HttpRequest.get(HttpApi.获取知识点相关联的教程列表(knowledge_point_id));
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.获取知识点相关联的教程列表(knowledge_point_id), "GET");
             }
         }.request();
     }
@@ -201,8 +201,8 @@ public class HttpApi {
             }
 
             @Override
-            public HttpRequest build_request() {
-                return HttpRequest.get(HttpApi.获取教程(tutorial_id));
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.获取教程(tutorial_id), "GET");
             }
         }.request();
     }
@@ -218,8 +218,8 @@ public class HttpApi {
             }
 
             @Override
-            public HttpRequest build_request() {
-                return HttpRequest.get(HttpApi.获取教程相关联的知识点列表(tutorial_id));
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.获取教程相关联的知识点列表(tutorial_id), "GET");
             }
         }.request();
     }
@@ -235,8 +235,8 @@ public class HttpApi {
             }
 
             @Override
-            public HttpRequest build_request() {
-                return HttpRequest.get(HttpApi.获取教程的步骤列表(tutorial_id));
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.获取教程的步骤列表(tutorial_id), "GET");
             }
         }.request();
     }
@@ -251,8 +251,8 @@ public class HttpApi {
             }
 
             @Override
-            public HttpRequest build_request() {
-                return HttpRequest.get(HttpApi.获取教程步骤(step_id));
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.获取教程步骤(step_id), "GET");
             }
         }.request();
     }
@@ -268,8 +268,8 @@ public class HttpApi {
             }
 
             @Override
-            public HttpRequest build_request() {
-                return HttpRequest.get(HttpApi.获取主题列表);
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.获取主题列表, "GET");
             }
         }.request();
     }
@@ -285,8 +285,8 @@ public class HttpApi {
             }
 
             @Override
-            public HttpRequest build_request() {
-                return HttpRequest.get(HttpApi.获取知识网络的主题列表(knowledge_net_id));
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.获取知识网络的主题列表(knowledge_net_id), "GET");
             }
         }.request();
     }
@@ -302,8 +302,8 @@ public class HttpApi {
             }
 
             @Override
-            public HttpRequest build_request() {
-                return HttpRequest.get(HttpApi.获取主题的教程列表(topic_id));
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.获取主题的教程列表(topic_id), "GET");
             }
         }.request();
     }
@@ -319,8 +319,8 @@ public class HttpApi {
             }
 
             @Override
-            public HttpRequest build_request() {
-                return HttpRequest.get(HttpApi.获取教程的前置教程列表(tutorial_id));
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.获取教程的前置教程列表(tutorial_id), "GET");
             }
         }.request();
     }
@@ -336,8 +336,8 @@ public class HttpApi {
             }
 
             @Override
-            public HttpRequest build_request() {
-                return HttpRequest.get(HttpApi.获取教程的后续教程列表(tutorial_id));
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.获取教程的后续教程列表(tutorial_id), "GET");
             }
         }.request();
     }
@@ -351,9 +351,8 @@ public class HttpApi {
             }
 
             @Override
-            public HttpRequest build_request() {
-                HttpRequest request = HttpRequest.post(HttpApi.标记学习步骤为已学);
-                return request.part("learn_record[step_id]", step_id);
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.标记学习步骤为已学, "POST").part("learn_record[step_id]", step_id);
             }
         }.request();
     }
@@ -365,7 +364,7 @@ public class HttpApi {
     public abstract static class RequestProcess<T>{
         public T request() throws AuthErrorException, RequestDataErrorException, NetworkErrorException{
             AuthenticatorsController auth = new AuthenticatorsController(KCApplication.get_context());
-            HttpRequest request = build_request();
+            HttpRequest request = build_request(auth);
             RequestResult rr = auth.syn_request(request);
             if(rr == null) throw new NetworkErrorException();
             if(rr.status == 200){
@@ -379,7 +378,7 @@ public class HttpApi {
 
         public abstract T call(RequestResult rr);
 
-        public abstract HttpRequest build_request();
+        public abstract HttpRequest build_request(AuthenticatorsController auth);
     }
 
     public static class AuthErrorException extends Exception{};

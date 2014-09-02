@@ -14,6 +14,8 @@ public interface IStep extends Serializable {
     public boolean is_end();
     public ISelect get_select();
     public List<IContentBlock> get_blocks();
+    public boolean is_learned();
+    public void do_learn();
 
     enum ContinueType{
         STEP,SELECT,END

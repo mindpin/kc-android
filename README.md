@@ -11,11 +11,11 @@ cd ActiveAndroid
 mvn clean install -Dmaven.test.skip=true
 ```
 
-### 安装KCAuthenticator v0.0.5
+### 安装KCAuthenticator v0.0.6
 ```
 git clone https://github.com/mindpin/KCAuthenticator
 cd KCAuthenticator
-git checkout v0.0.5 -b v0.0.5
+git checkout v0.0.6 -b v0.0.6
 mvn clean install
 ```
 

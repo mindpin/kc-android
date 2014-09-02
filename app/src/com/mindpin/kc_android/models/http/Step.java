@@ -1,5 +1,7 @@
 package com.mindpin.kc_android.models.http;
 
+import android.util.Log;
+
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.internal.LinkedTreeMap;
 import com.mindpin.kc_android.models.interfaces.IStep;
@@ -19,6 +21,7 @@ public class Step implements IStep{
     @SerializedName("continue")
     private Object _continue;
     private List<ContentBlock> blocks;
+    private boolean is_learned;
 
     @Override
     public String get_id() {
@@ -82,6 +85,23 @@ public class Step implements IStep{
     @Override
     public List<IContentBlock> get_blocks() {
         return new ArrayList<IContentBlock>(this.blocks);
+    }
+
+    @Override
+    public boolean is_learned() {
+        return this.is_learned;
+    }
+
+    @Override
+    public void do_learn() {
+        if(!this.is_learned()){
+            try {
+                HttpApi.learn_step(this.get_id());
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.d("debug", "标记学习步骤失败");
+            }
+        }
     }
 
     private String _get_type(){
