@@ -130,11 +130,9 @@ public class FirstTest  {
 //
 //        System.out.println(step_list.size());
 //        System.out.println(step_list.get(0).get_title());
-//        System.out.println(step_list.get(0).get_desc());
 //
 //        IStep step = HttpApi.get_step(step_list.get(0).get_id());
 //        System.out.println(step.get_title());
-//        System.out.println(step.get_desc());
 //        System.out.println(step.get_id());
 //
 //        System.out.println("~~~~~~~~~~~~~~~~~~~~~ steps begin");
@@ -223,6 +221,30 @@ public class FirstTest  {
 //
 //        String sstep_id = "53fd9c6a6c696e1939bd0100";
 //        HttpApi.learn_step(sstep_id);
+//
+//        System.out.println("~~~~~~~~~~~~~ get_step_list begin ~~~~~~~~~~~~~");
+//        String ntutorial_id = "54042af26c696e1288010000";
+//        List<IStep> sstep_list = HttpApi.get_step_list(ntutorial_id);
+//
+//        for(IStep sstep: sstep_list){
+//            System.out.println(sstep.get_title());
+//
+//            List<IStep.IContentBlock> blocks = sstep.get_blocks();
+//            for(IStep.IContentBlock block : blocks){
+//                if(block.get_kind() == IStep.IContentBlock.ContentKind.TEXT){
+//                    System.out.println("IStep.IContentBlock.ContentKind.TEXT");
+//                    System.out.println(block.get_content());
+//                }
+//                if(block.get_kind() == IStep.IContentBlock.ContentKind.IMAGE){
+//                    System.out.println("IStep.IContentBlock.ContentKind.IMAGE");
+//                    System.out.println(block.get_url());
+//                }
+//                if(block.get_kind() == IStep.IContentBlock.ContentKind.VIDEO){
+//                    System.out.println("IStep.IContentBlock.ContentKind.VIDEO");
+//                    System.out.println(block.get_url());
+//                }
+//            }
+//        }
     }
 
 }

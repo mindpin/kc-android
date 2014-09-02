@@ -35,7 +35,6 @@ public class TutorialStepListAdapter extends KnowledgeBaseAdapter<IStep> {
     public void fill_with_data(BaseViewHolder holder, IStep item, int position) {
         ViewHolder view_holder = (ViewHolder) holder;
         view_holder.tv_title.setText(item.get_title());
-        view_holder.tv_description.setText(item.get_desc());
     }
 
     private class ViewHolder implements BaseViewHolder {
