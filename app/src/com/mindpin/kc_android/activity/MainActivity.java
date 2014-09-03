@@ -26,7 +26,7 @@ public class MainActivity extends KnowledgeBaseActivity {
         AuthenticatorsController auth = new AuthenticatorsController(this);
         User user = (User)auth.current_user();
         if(user != null){
-            HttpRequest request = HttpRequest.get(auth.get_user_info_url());
+            HttpRequest request = auth.get_http_request(auth.get_user_info_url(),"GET");
             auth.request(request, new RequestCallback() {
                 @Override
                 public void is_200(RequestResult request) {
