@@ -90,6 +90,7 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
     private TextView tv_learned_percent;
     private TextView tv_author;
     private FontAwesomeTextView fatv_back;
+    private RelativeLayout rl_next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -317,6 +318,7 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) iv_tutorial_background.getLayoutParams();
         rl_banner = (RelativeLayout) findViewById(R.id.rl_banner);
         sll_summary = (SelectableLinearLayout) findViewById(R.id.sll_summary);
+        rl_next = (RelativeLayout) findViewById(R.id.rl_next);
 //        find_brief_views();
 //        find_detail_views();
     }
@@ -332,6 +334,14 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        rl_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TutorialActivity.this, LearnActivity.class);
+                intent.putExtra("tutorial", tutorial);
+                startActivity(intent);
             }
         });
     }

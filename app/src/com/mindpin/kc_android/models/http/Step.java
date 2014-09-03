@@ -7,8 +7,8 @@ import com.google.gson.internal.LinkedTreeMap;
 import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.network.HttpApi;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
+import java.util.*;
 
 
 /**
@@ -19,7 +19,7 @@ public class Step implements IStep{
     private String tutorial_id;
     private String title;
     @SerializedName("continue")
-    private Object _continue;
+    private Continue _continue;
     private List<ContentBlock> blocks;
     private boolean is_learned;
 
@@ -52,7 +52,7 @@ public class Step implements IStep{
     @Override
     public String get_next_id() {
         if("step".equals(_get_type())){
-            return ((LinkedTreeMap<String,String>)_continue).get("id");
+            return _continue.get_id();
         }
         return null;
     }
@@ -67,14 +67,12 @@ public class Step implements IStep{
 
     @Override
     public ISelect get_select() {
-        if("select".equals(_get_type())){
-            LinkedTreeMap<String,Object> select_map = (LinkedTreeMap<String,Object>)_continue;
-            String question = (String)(select_map.get("question"));
+        if(get_continue_type() == ContinueType.SELECT){
+            String question = _continue.getQuestion();
 
             ArrayList<ISelectOption> options = new ArrayList<ISelectOption>();
-            ArrayList<LinkedTreeMap<String,String>> option_maps = (ArrayList<LinkedTreeMap<String,String>>) select_map.get("options");
-            for(LinkedTreeMap<String,String> o : option_maps){
-                SelectOption select = new SelectOption(o.get("id"), o.get("text"));
+            for(SelectOption o : _continue.getOptions()){
+                SelectOption select = new SelectOption(o.get_next_step_id(), o.get_text());
                 options.add(select);
             }
             return new Select(question, options);
@@ -105,9 +103,40 @@ public class Step implements IStep{
     }
 
     private String _get_type(){
-        return (String)((LinkedTreeMap<String,Object>)_continue).get("type");
+        return _continue.getType();
     }
 
+    class Continue implements Serializable{
+        private Oid id;
+        private String type;
+        private String question;
+        private List<SelectOption> options;
+
+        public String get_id() {
+            return id.get_oid();
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public String getQuestion() {
+            return question;
+        }
+
+        public List<SelectOption> getOptions() {
+            return options;
+        }
+
+        class Oid implements Serializable{
+            private String $oid;
+
+            public String get_oid() {
+                return $oid;
+            }
+        }
+
+    }
 
     class Select implements ISelect{
         private String question;
@@ -152,7 +181,7 @@ public class Step implements IStep{
     class ContentBlock implements IContentBlock{
         private String kind;
         private String content;
-        private Object virtual_file;
+        private VirtualFile virtual_file;
 
         @Override
         public ContentKind get_kind() {
@@ -172,7 +201,7 @@ public class Step implements IStep{
         @Override
         public String get_url() {
             if(get_kind() == ContentKind.IMAGE || get_kind() == ContentKind.VIDEO){
-                String url = ((LinkedTreeMap<String,String>)virtual_file).get("url");
+                String url = virtual_file.get_url();
                 return HttpApi.SITE + url;
             }
             return null;
@@ -184,6 +213,34 @@ public class Step implements IStep{
                 return this.content;
             }
             return null;
+        }
+
+        class VirtualFile implements Serializable{
+            private String id;
+            private String name;
+            private String virtual_path;
+            private String url;
+            private boolean is_dir;
+
+            public String getId() {
+                return id;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public String getVirtual_path() {
+                return virtual_path;
+            }
+
+            public String get_url() {
+                return url;
+            }
+
+            public boolean isIs_dir() {
+                return is_dir;
+            }
         }
     }
 
