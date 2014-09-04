@@ -2,6 +2,7 @@ package com.mindpin.kc_android.activity;
 
 import android.content.DialogInterface;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,9 +101,11 @@ public class LearnActivity extends KnowledgeBaseActivity {
                     ll_step.addView(imageView, layoutParamsHeightWrap20dp);
                     ImageLoader.getInstance().displayImage(block.get_url(), imageView);
                 } else if(block.get_kind() == IStep.IContentBlock.ContentKind.VIDEO){
+                    System.out.println(block.get_url());
                     KCVideoView kcVideoView = new KCVideoView(this);
                     kcVideoView.setBackgroundColor(0xffff0000);
                     ll_step.addView(kcVideoView, layoutParamsHeight200dp);
+                    kcVideoView.load_url(block.get_url());
 //                    kcVideoView.load(block.get_url());
                 }
             }
