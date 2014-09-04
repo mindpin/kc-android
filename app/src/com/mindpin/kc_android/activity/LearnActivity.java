@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import com.github.destinyd.kcvideoview.widget.KCVideoView;
 import com.mindpin.android.loadingview.LoadingView;
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.base.KnowledgeBaseActivity;
@@ -46,6 +47,7 @@ public class LearnActivity extends KnowledgeBaseActivity {
     private static int dp20 = BaseUtils.dp_to_px(10);
     private static int dp5 = BaseUtils.dp_to_px(2.5f);
     private LinearLayout.LayoutParams layoutParams, layoutParamsHeightWrap20dp, layoutParamsHeightWrap5dp;
+    private LinearLayout.LayoutParams layoutParamsHeight200dp;
 
 
     @Override
@@ -67,6 +69,8 @@ public class LearnActivity extends KnowledgeBaseActivity {
         layoutParamsHeightWrap20dp.setMargins(dp20, dp20, dp20, 0);
         layoutParamsHeightWrap5dp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParamsHeightWrap5dp.setMargins(dp5, dp5, dp5, 0);
+        layoutParamsHeight200dp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp20 * 10);
+        layoutParamsHeight200dp.setMargins(dp20, dp20, dp20, 0);
     }
 
     private void datas_to_views() {
@@ -94,7 +98,10 @@ public class LearnActivity extends KnowledgeBaseActivity {
                     ll_step.addView(imageView, layoutParamsHeightWrap20dp);
                     ImageLoader.getInstance().displayImage(block.get_url(), imageView);
                 } else if(block.get_kind() == IStep.IContentBlock.ContentKind.VIDEO){
-
+                    KCVideoView kcVideoView = new KCVideoView(this);
+                    kcVideoView.setBackgroundColor(0xffff0000);
+                    ll_step.addView(kcVideoView, layoutParamsHeight200dp);
+//                    kcVideoView.load(block.get_url());
                 }
             }
             if (step.get_continue_type() == IStep.ContinueType.SELECT) {
