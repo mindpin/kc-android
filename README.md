@@ -50,10 +50,11 @@ git checkout v0.1.2 -b v0.1.2
 mvn clean install
 ```
 
-### 安装 KCRoundProgressBar v0.2.1-SNAPSHOT
+### 安装 KCRoundProgressBar v0.2.1
 ```
 git clone https://github.com/destinyd/Android-KCVideoView
 cd Android-KCVideoView
+git checkout v0.2.1 -b v0.2.1
 mvn clean install
 ```
 
