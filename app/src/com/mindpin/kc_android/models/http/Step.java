@@ -107,13 +107,13 @@ public class Step implements IStep{
     }
 
     class Continue implements Serializable{
-        private Oid id;
+        private String id;
         private String type;
         private String question;
         private List<SelectOption> options;
 
         public String get_id() {
-            return id.get_oid();
+            return id;
         }
 
         public String getType() {
@@ -126,14 +126,6 @@ public class Step implements IStep{
 
         public List<SelectOption> getOptions() {
             return options;
-        }
-
-        class Oid implements Serializable{
-            private String $oid;
-
-            public String get_oid() {
-                return $oid;
-            }
         }
 
     }
