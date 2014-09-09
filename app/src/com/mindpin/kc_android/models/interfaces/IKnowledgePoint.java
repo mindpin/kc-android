@@ -10,6 +10,7 @@ public interface IKnowledgePoint extends Serializable {
     public String get_id();
     public String get_name();
     public String get_desc();
+    public String get_color();
     public IKnowledgeNet get_knowledge_net();
 
     public List<ITutorial> get_tutorial_list();

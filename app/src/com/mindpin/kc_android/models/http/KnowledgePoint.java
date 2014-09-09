@@ -19,6 +19,7 @@ public class KnowledgePoint implements IKnowledgePoint{
     private String desc;
     private List<ITutorial> tutorial_list;
     private IKnowledgeNet knowledge_net;
+    private String color;
 
     @Override
     public String get_id() {
@@ -33,6 +34,11 @@ public class KnowledgePoint implements IKnowledgePoint{
     @Override
     public String get_desc() {
         return this.desc;
+    }
+
+    @Override
+    public String get_color() {
+        return this.color;
     }
 
     @Override
