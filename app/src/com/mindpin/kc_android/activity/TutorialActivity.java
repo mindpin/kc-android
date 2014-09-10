@@ -14,9 +14,11 @@ import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.base.KnowledgeBaseActivity;
 import com.mindpin.kc_android.activity.fragment.KnowledgePointFragment;
 import com.mindpin.kc_android.adapter.KnowledgeNetPointListAdapter;
+import com.mindpin.kc_android.adapter.TutorialPointListAdapter;
 import com.mindpin.kc_android.adapter.TutorialStepListAdapter;
 import com.mindpin.kc_android.adapter.TutorialTutorialListAdapter;
 import com.mindpin.kc_android.models.User;
+import com.mindpin.kc_android.models.http.KnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
 import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
@@ -52,7 +54,7 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
 //    FlipBriefLayout kcFlip;
     KnowledgeNetPointListAdapter adapter_brief;
     TutorialStepListAdapter adapter_detail;
-    List<IKnowledgePoint> point_list;
+    List<IKnowledgePoint> points;
     LoadingView loading_view;
 //    String tutorial_id;
     IStep step_now;
@@ -80,6 +82,7 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
     private ListView lv_next;
     private TutorialTutorialListAdapter adapter_children;
     private TutorialTutorialListAdapter adapter_parents;
+    private TutorialPointListAdapter adapter_points;
     private TextView tv_next_none;
     private TextView tv_previous_none;
     private TextView tv_title;
@@ -90,6 +93,8 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
     private RelativeLayout rl_next;
     private SelectableLinearLayout sll_points;
     private SelectableLinearLayout sll_notes;
+    private ListView lv_notes;
+    private ListView lv_points;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +120,7 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
         tv_description_brief.setText(tutorial.get_desc());
         ImageLoader.getInstance().displayImage(tutorial.get_icon_url(), iv_cover);
         adapter_brief = new KnowledgeNetPointListAdapter(this);
-        adapter_brief.add_items(point_list);
+        adapter_brief.add_items(points);
         lv_list_brief.setAdapter(adapter_brief);
         lv_list_brief.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -228,7 +233,7 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
             public Void call() throws Exception {
                 parents = tutorial.get_parents();
                 children = tutorial.get_children();
-                point_list = tutorial.get_related_knowledge_point_list();
+                points = tutorial.get_related_knowledge_point_list();
                 step_now = tutorial.get_first_step();
                 tutorial_background = ImageLoader.getInstance().loadImageSync(tutorial.get_icon_url());
                 return null;
@@ -250,6 +255,15 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
         tutorial_to_views();
         parents_to_views();
         children_to_views();
+        points_to_views();
+    }
+
+    private void points_to_views() {
+        Log.d(TAG, "points count:" + points.size());
+        adapter_points = new TutorialPointListAdapter(this);
+        adapter_points.add_items(points);
+        lv_points.setAdapter(adapter_points);
+//        ListViewUtils.setListViewHeightBasedOnChildren(lv_points);
     }
 
     private void tutorial_to_views() {
@@ -321,6 +335,8 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
         sll_notes = (SelectableLinearLayout) findViewById(R.id.sll_notes);
         rl_next = (RelativeLayout) findViewById(R.id.rl_next);
 
+        lv_notes = (ListView) findViewById(R.id.lv_notes);
+        lv_points = (ListView) findViewById(R.id.lv_points);
 //        find_brief_views();
 //        find_detail_views();
     }
@@ -376,8 +392,8 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
                     sll_points.select();
 
                     findViewById(R.id.sv_summary).setVisibility(View.GONE);
-                    findViewById(R.id.lv_notes).setVisibility(View.GONE);
-                    findViewById(R.id.lv_points).setVisibility(View.VISIBLE);
+                    lv_notes.setVisibility(View.GONE);
+                    lv_points.setVisibility(View.VISIBLE);
                 }
                 break;
             case R.id.sll_notes:
@@ -387,8 +403,8 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
                     sll_notes.select();
 
                     findViewById(R.id.sv_summary).setVisibility(View.GONE);
-                    findViewById(R.id.lv_points).setVisibility(View.GONE);
-                    findViewById(R.id.lv_notes).setVisibility(View.VISIBLE);
+                    lv_points.setVisibility(View.GONE);
+                    lv_notes.setVisibility(View.VISIBLE);
                 }
                 break;
             case R.id.sll_summary:
@@ -397,8 +413,8 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
                     sll_points.unselect();
                     sll_summary.select();
 
-                    findViewById(R.id.lv_notes).setVisibility(View.GONE);
-                    findViewById(R.id.lv_points).setVisibility(View.GONE);
+                    lv_notes.setVisibility(View.GONE);
+                    lv_points.setVisibility(View.GONE);
                     findViewById(R.id.sv_summary).setVisibility(View.VISIBLE);
                 }
                 break;
