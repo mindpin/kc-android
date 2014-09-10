@@ -1,6 +1,5 @@
 package com.mindpin.kc_android.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -10,13 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import com.github.destinyd.FlipBriefLayout;
 import com.mindpin.android.loadingview.LoadingView;
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.base.KnowledgeBaseActivity;
 import com.mindpin.kc_android.activity.fragment.KnowledgePointFragment;
 import com.mindpin.kc_android.adapter.KnowledgeNetPointListAdapter;
-import com.mindpin.kc_android.adapter.KnowledgeNetTutorialListAdapter;
 import com.mindpin.kc_android.adapter.TutorialStepListAdapter;
 import com.mindpin.kc_android.adapter.TutorialTutorialListAdapter;
 import com.mindpin.kc_android.models.User;
@@ -36,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class TutorialActivity extends KnowledgeBaseActivity implements AdapterView.OnItemClickListener {
+public class TutorialActivity extends KnowledgeBaseActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
     private static final String TAG = "TutorialActivity";
     // brief
     protected ListView lv_list_brief;
@@ -91,6 +88,8 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
     private TextView tv_author;
     private FontAwesomeTextView fatv_back;
     private RelativeLayout rl_next;
+    private SelectableLinearLayout sll_points;
+    private SelectableLinearLayout sll_notes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -318,14 +317,16 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) iv_tutorial_background.getLayoutParams();
         rl_banner = (RelativeLayout) findViewById(R.id.rl_banner);
         sll_summary = (SelectableLinearLayout) findViewById(R.id.sll_summary);
+        sll_points = (SelectableLinearLayout) findViewById(R.id.sll_points);
+        sll_notes = (SelectableLinearLayout) findViewById(R.id.sll_notes);
         rl_next = (RelativeLayout) findViewById(R.id.rl_next);
+
 //        find_brief_views();
 //        find_detail_views();
     }
 
     private void init_views() {
-        sll_summary.set_res_selected(R.drawable.tutorial_tab_selected);
-        sll_summary.select();
+        init_slls();
         rl_banner.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, BaseUtils.get_screen_size().width_px / 2));
         lv_previous.setOnItemClickListener(this);
         lv_next.setOnItemClickListener(this);
@@ -346,6 +347,16 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
         });
     }
 
+    private void init_slls() {
+        sll_summary.set_res_selected(R.drawable.tutorial_tab_selected);
+        sll_points.set_res_selected(R.drawable.tutorial_tab_selected);
+        sll_notes.set_res_selected(R.drawable.tutorial_tab_selected);
+        sll_summary.select();
+        sll_summary.setOnClickListener(this);
+        sll_points.setOnClickListener(this);
+        sll_notes.setOnClickListener(this);
+    }
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ITutorial tutorial = (ITutorial) parent.getItemAtPosition(position);
@@ -353,6 +364,45 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
         Intent intent = new Intent(TutorialActivity.this, TutorialActivity.class);
         intent.putExtra("tutorial", tutorial);
         startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.sll_points:
+                if(!sll_points.isSelected()) {
+                    sll_summary.unselect();
+                    sll_notes.unselect();
+                    sll_points.select();
+
+                    findViewById(R.id.sv_summary).setVisibility(View.GONE);
+                    findViewById(R.id.lv_notes).setVisibility(View.GONE);
+                    findViewById(R.id.lv_points).setVisibility(View.VISIBLE);
+                }
+                break;
+            case R.id.sll_notes:
+                if(!sll_notes.isSelected()) {
+                    sll_summary.unselect();
+                    sll_points.unselect();
+                    sll_notes.select();
+
+                    findViewById(R.id.sv_summary).setVisibility(View.GONE);
+                    findViewById(R.id.lv_points).setVisibility(View.GONE);
+                    findViewById(R.id.lv_notes).setVisibility(View.VISIBLE);
+                }
+                break;
+            case R.id.sll_summary:
+                if(!sll_points.isSelected()) {
+                    sll_notes.unselect();
+                    sll_points.unselect();
+                    sll_summary.select();
+
+                    findViewById(R.id.lv_notes).setVisibility(View.GONE);
+                    findViewById(R.id.lv_points).setVisibility(View.GONE);
+                    findViewById(R.id.sv_summary).setVisibility(View.VISIBLE);
+                }
+                break;
+        }
     }
 //
 //    private void find_detail_views() {
