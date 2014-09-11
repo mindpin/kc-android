@@ -63,7 +63,9 @@ public class KnowledgePointActivity extends KnowledgeBaseActivity
 
 
     private void get_datas() {
-        knowledge_point_id = "53fdc692286e6f4d70100000";
+        // knowledge_point_id = "53fdc692286e6f4d70100000";
+
+        point = (IKnowledgePoint)getIntent().getSerializableExtra("point");
         new KCAsyncTask<Void>(this) {
 
             @Override
@@ -73,7 +75,8 @@ public class KnowledgePointActivity extends KnowledgeBaseActivity
 
             @Override
             public Void call() throws Exception {
-                point = DataProvider.get_knowledge_point(knowledge_point_id);
+                // point = DataProvider.get_knowledge_point(knowledge_point_id);
+                point = (IKnowledgePoint)getIntent().getSerializableExtra("point");
 
                 point.get_knowledge_net();
                 knowledge_point_desc = point.get_desc();
