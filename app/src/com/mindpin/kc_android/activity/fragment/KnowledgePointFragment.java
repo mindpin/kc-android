@@ -46,7 +46,7 @@ public class KnowledgePointFragment  extends KnowledgeBaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        current_view = inflater.inflate(R.layout.knowledge_point_activity, null);
+        current_view = inflater.inflate(R.layout.knowledge_point_fragment, null);
         return current_view;
     }
 
