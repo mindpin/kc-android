@@ -346,6 +346,7 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
         rl_banner.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, BaseUtils.get_screen_size().width_px / 2));
         lv_previous.setOnItemClickListener(this);
         lv_next.setOnItemClickListener(this);
+        lv_points.setOnItemClickListener(this);
         tv_learned_percent.setText("[" + (int)(100f * tutorial.get_learned_step_count() / tutorial.get_step_count()) + "%]");
         fatv_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -376,7 +377,7 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent;
-        switch (view.getId()) {
+        switch (parent.getId()) {
             case R.id.lv_previous:
             case R.id.lv_next:
                 ITutorial tutorial = (ITutorial) parent.getItemAtPosition(position);
@@ -388,10 +389,9 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
             case R.id.lv_points:
                 IKnowledgePoint point = (IKnowledgePoint) parent.getItemAtPosition(position);
 
-                //TODO start PointActivity
-//                intent = new Intent(TutorialActivity.this, TutorialActivity.class);
-//                intent.putExtra("point", point);
-//                startActivity(intent);
+                intent = new Intent(TutorialActivity.this, KnowledgePointActivity.class);
+                intent.putExtra("point", point);
+                startActivity(intent);
                 break;
         }
     }
