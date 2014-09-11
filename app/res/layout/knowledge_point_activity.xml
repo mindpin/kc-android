@@ -1,58 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:background="#F1F1F1"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <com.mindpin.android.loadingview.LoadingView
-        android:id="@+id/loading_view"
-        android:visibility="visible"
+
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/white_with_ddd_bottom_border"
+        android:layout_marginBottom="5dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/circle_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_alignParentLeft="true"
+            >
+
+            <com.mindpin.android.kcroundprogressbar.KCRoundProgressBar
+                android:id="@+id/knowledge_point_progress"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/title_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/knowledge_point_title"
+                android:textSize="14dp"
+                android:lineSpacingExtra="6dp"
+                android:textColor="#333333"
+                android:text=""
+                android:maxLines="3"
+                android:singleLine="false"
+                android:ellipsize="end"
+                />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        android:layout_marginBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/knowledge_point_desc"
+            android:padding="10dp"
+            android:textSize="14dp"
+            android:lineSpacingExtra="6dp"
+            android:textColor="#333333"
+            android:background="@drawable/white_with_eee_bottom_border"
+            android:text="没有描述信息"
+            />
+
+    </LinearLayout>
+
+
+
+    <ScrollView android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="name"
-        android:id="@+id/knowledge_point_name"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"
+            android:background="@drawable/white_with_eee_bottom_border"
+            android:layout_marginBottom="5dp"
+            >
+            <TextView android:layout_width="match_parent" android:layout_height="40dp"
+                android:id="@+id/tv_label_previous_tutorials"
+                android:padding="10dp"
+                android:textSize="14dp"
+                android:lineSpacingExtra="6dp"
+                android:textColor="#333333"
+                android:background="@drawable/white_with_eee_bottom_border"
+                android:text="相关教程"/>
+            <ListView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:id="@+id/lv_previous"
+                android:visibility="gone"
+                />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:id="@+id/tv_previous_none"
+                android:textColor="#999"
+                android:padding="10dp"
+                android:textSize="14dp"
+                android:lineSpacingExtra="6dp"
+                android:text=""
+                />
+        </LinearLayout>
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="desc"
-        android:id="@+id/knowledge_point_desc"/>
-
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/knowledge_net_section"
-        android:id="@+id/knowledge_net_section"/>
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="name"
-        android:clickable="true"
-        android:id="@+id/knowledge_net_name"/>
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/tutorial_section"
-        android:id="@+id/tutorial_section"/>
-
-
-    <ListView
-        android:id="@+id/knowledge_point_tutorial_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
+    </ScrollView>
 
 </LinearLayout>
+
