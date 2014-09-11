@@ -375,11 +375,25 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        ITutorial tutorial = (ITutorial) parent.getItemAtPosition(position);
+        Intent intent;
+        switch (view.getId()) {
+            case R.id.lv_previous:
+            case R.id.lv_next:
+                ITutorial tutorial = (ITutorial) parent.getItemAtPosition(position);
 
-        Intent intent = new Intent(TutorialActivity.this, TutorialActivity.class);
-        intent.putExtra("tutorial", tutorial);
-        startActivity(intent);
+                intent = new Intent(TutorialActivity.this, TutorialActivity.class);
+                intent.putExtra("tutorial", tutorial);
+                startActivity(intent);
+                break;
+            case R.id.lv_points:
+                IKnowledgePoint point = (IKnowledgePoint) parent.getItemAtPosition(position);
+
+                //TODO start PointActivity
+//                intent = new Intent(TutorialActivity.this, TutorialActivity.class);
+//                intent.putExtra("point", point);
+//                startActivity(intent);
+                break;
+        }
     }
 
     @Override

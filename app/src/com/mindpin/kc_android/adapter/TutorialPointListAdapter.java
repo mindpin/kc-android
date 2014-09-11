@@ -36,8 +36,8 @@ public class TutorialPointListAdapter extends KnowledgeBaseAdapter<IKnowledgePoi
     @Override
     public void fill_with_data(BaseViewHolder holder, IKnowledgePoint item, int position) {
         ViewHolder view_holder = (ViewHolder) holder;
-        System.out.println(item.get_color());
         view_holder.rpb_round.set_current(100);
+//        view_holder.rpb_round.set_thickness(1f / 3f); //环所在位置没设置好，被切割
         view_holder.rpb_round.set_fg_color(Color.parseColor(item.get_color()));
         view_holder.tv_name.setText(item.get_name());
     }

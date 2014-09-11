@@ -14,13 +14,29 @@
               android:id="@+id/rpb_round"
               android:layout_alignParentLeft="true"
             />
-    <TextView android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:id="@+id/tv_name"
-              android:layout_toRightOf="@id/rpb_round"
-              android:layout_alignParentRight="true"
-              android:text="test"
-              android:layout_marginLeft="10dp"
-              android:gravity="center_vertical"
-            />
+    <com.mindpin.kc_android.widget.ArrowBubbleLayout
+            xmlns:bubble="http://schemas.android.com/apk/res/com.mindpin.kc_android"
+            android:id="@+id/bubble_view"
+            android:layout_width="wrap_content" android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:background="@android:color/transparent"
+            android:paddingLeft="15dp"
+            android:paddingRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:layout_toRightOf="@id/rpb_round"
+            bubble:bubble_cornerRadius="2dp"
+            bubble:bubble_pointerHeight="5dp"
+            bubble:bubble_pointerWidth="10dp"
+            bubble:bubble_color="#333"
+            bubble:bubble_outlineColor="#333"
+            >
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:id="@+id/tv_name"
+                  android:textColor="#fff"
+                  android:gravity="center_vertical"
+                />
+    </com.mindpin.kc_android.widget.ArrowBubbleLayout>
 </RelativeLayout>
