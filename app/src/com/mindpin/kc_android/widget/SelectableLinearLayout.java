@@ -57,7 +57,10 @@ public class SelectableLinearLayout extends LinearLayout {
     }
 
     void refresh_background() {
-        setBackgroundDrawable(getContext().getResources().getDrawable(selected ? res_selected : res_unselected));
+        setBackgroundResource(selected ? res_selected : res_unselected);
+        System.out.println(selected);
+        System.out.println(getBackground());
+//        setBackgroundDrawable(getContext().getResources().getDrawable(selected ? res_selected : res_unselected));
         refreshDrawableState();
     }
 }
