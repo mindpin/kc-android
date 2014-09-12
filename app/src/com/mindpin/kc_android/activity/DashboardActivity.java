@@ -4,14 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.mindpin.kc_android.R;
-import com.mindpin.kc_android.activity.base.KnowledgeBaseActivity;
 import com.mindpin.kc_android.activity.base.KnowledgeBaseIncludeDrawerActivity;
-import com.mindpin.kc_android.activity.fragment.KnowledgeNetListFragment;
 import com.mindpin.kc_android.activity.fragment.TopicListFragment;
 import com.mindpin.kc_android.controllers.AuthenticatorsController;
 import com.mindpin.kc_android.models.User;
