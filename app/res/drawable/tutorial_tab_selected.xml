@@ -6,6 +6,9 @@
             <solid android:color="@color/tutorial_tab_selected"/>
         </shape>
     </item>
-    <item android:bottom="5dp" android:drawable="@color/white">
+    <item android:bottom="5dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white"/>
+        </shape>
     </item>
 </layer-list>
