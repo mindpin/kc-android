@@ -202,7 +202,6 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
 
             @Override
             protected void onSuccess(IStep step) throws Exception {
-                System.out.println(step.get_title());
                 add_step(step);
                 step_now = step;
                 loading_view_detail.hide();
@@ -241,7 +240,6 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
 
             @Override
             protected void onSuccess(Void aVoid) throws Exception {
-                System.out.println(tutorial.get_title());
                 iv_tutorial_background.setImageBitmap(tutorial_background);
                 datas_to_views();
 //                datas_to_brief();

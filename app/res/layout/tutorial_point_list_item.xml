@@ -1,42 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="40dp"
-              android:orientation="horizontal"
-              android:padding="5dp"
-              android:background="#FFF"
-              android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFF"
         >
-    <com.mindpin.android.kcroundprogressbar.KCRoundProgressBar
-            android:layout_width="30dp"
-              android:layout_height="30dp"
-              android:id="@+id/rpb_round"
-              android:layout_alignParentLeft="true"
-            />
-    <com.mindpin.kc_android.widget.ArrowBubbleLayout
-            xmlns:bubble="http://schemas.android.com/apk/res/com.mindpin.kc_android"
-            android:id="@+id/bubble_view"
-            android:layout_width="wrap_content" android:layout_height="30dp"
-            android:orientation="horizontal"
-            android:background="@android:color/transparent"
-            android:paddingLeft="15dp"
-            android:paddingRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_alignParentRight="true"
-            android:gravity="center_vertical"
-            android:layout_toRightOf="@id/rpb_round"
-            bubble:bubble_cornerRadius="2dp"
-            bubble:bubble_pointerHeight="5dp"
-            bubble:bubble_pointerWidth="10dp"
-            bubble:bubble_color="#333"
-            bubble:bubble_outlineColor="#333"
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:padding="10dp"
+                    android:gravity="center_vertical"
             >
-        <TextView android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:id="@+id/tv_name"
-                  android:textColor="#fff"
-                  android:gravity="center_vertical"
+        <com.mindpin.android.kcroundprogressbar.KCRoundProgressBar
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/rpb_round"
+                android:layout_alignParentLeft="true"
                 />
-    </com.mindpin.kc_android.widget.ArrowBubbleLayout>
+        <com.mindpin.kc_android.widget.ArrowBubbleLayout
+                xmlns:bubble="http://schemas.android.com/apk/res/com.mindpin.kc_android"
+                android:id="@+id/bubble_view"
+                android:layout_width="wrap_content" android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:background="@android:color/transparent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:layout_toRightOf="@id/rpb_round"
+                bubble:bubble_cornerRadius="2dp"
+                bubble:bubble_pointerHeight="5dp"
+                bubble:bubble_pointerWidth="10dp"
+                bubble:bubble_color="#333"
+                bubble:bubble_outlineColor="#333"
+                >
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:id="@+id/tv_name"
+                      android:textColor="#fff"
+                      android:gravity="center_vertical"
+                    />
+        </com.mindpin.kc_android.widget.ArrowBubbleLayout>
+    </RelativeLayout>
 </RelativeLayout>
