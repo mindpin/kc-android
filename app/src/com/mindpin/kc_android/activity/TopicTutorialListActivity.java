@@ -93,6 +93,7 @@ public class TopicTutorialListActivity extends KnowledgeBaseActivity{
         TopicTutorialListAdapter adapter = new TopicTutorialListAdapter(this);
         adapter.add_items(topic.get_tutorial_list());
         topic_tutorial_list_view.setAdapter(adapter);
+        topic_tutorial_list_view.setOverScrollMode(View.OVER_SCROLL_NEVER);
 
         topic_tutorial_list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

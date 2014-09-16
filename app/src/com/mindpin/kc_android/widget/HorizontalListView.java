@@ -46,6 +46,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EdgeEffect;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -544,7 +545,7 @@ public class HorizontalListView extends AdapterView<ListAdapter> {
             mNextX = 0;
 
             // Show an edge effect absorbing the current velocity
-            if (mEdgeGlowLeft.isFinished()) {
+            if (mEdgeGlowLeft != null && mEdgeGlowLeft.isFinished()) {
                 mEdgeGlowLeft.onAbsorb((int) determineFlingAbsorbVelocity());
             }
 
@@ -555,7 +556,7 @@ public class HorizontalListView extends AdapterView<ListAdapter> {
             mNextX = mMaxX;
 
             // Show an edge effect absorbing the current velocity
-            if (mEdgeGlowRight.isFinished()) {
+            if (mEdgeGlowRight != null && mEdgeGlowRight.isFinished()) {
                 mEdgeGlowRight.onAbsorb((int) determineFlingAbsorbVelocity());
             }
 
@@ -1331,5 +1332,15 @@ public class HorizontalListView extends AdapterView<ListAdapter> {
         public static float getCurrVelocity(Scroller scroller) {
             return scroller.getCurrVelocity();
         }
+    }
+
+
+    @Override
+    public void setOverScrollMode(int mode) {
+        if (mode == OVER_SCROLL_NEVER) {
+            mEdgeGlowLeft = null;
+            mEdgeGlowRight = null;
+        }
+        super.setOverScrollMode(mode);
     }
 }

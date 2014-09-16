@@ -13,6 +13,7 @@
         />
 
     <GridView
+        android:overScrollMode="never"
         android:id="@+id/topic_list"
         android:numColumns="2"
         android:gravity="center"
