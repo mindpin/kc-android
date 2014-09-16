@@ -202,7 +202,6 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
 
             @Override
             protected void onSuccess(IStep step) throws Exception {
-                System.out.println(step.get_title());
                 add_step(step);
                 step_now = step;
                 loading_view_detail.hide();
@@ -241,7 +240,6 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
 
             @Override
             protected void onSuccess(Void aVoid) throws Exception {
-                System.out.println(tutorial.get_title());
                 iv_tutorial_background.setImageBitmap(tutorial_background);
                 datas_to_views();
 //                datas_to_brief();
@@ -366,9 +364,14 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
 
     private void init_slls() {
         sll_summary.set_res_selected(R.drawable.tutorial_tab_selected);
+        sll_summary.set_res_unselected(R.drawable.tutorial_tab_unselected);
         sll_points.set_res_selected(R.drawable.tutorial_tab_selected);
+        sll_points.set_res_unselected(R.drawable.tutorial_tab_unselected);
         sll_notes.set_res_selected(R.drawable.tutorial_tab_selected);
+        sll_notes.set_res_unselected(R.drawable.tutorial_tab_unselected);
         sll_summary.select();
+        sll_points.unselect();
+        sll_notes.unselect();
         sll_summary.setOnClickListener(this);
         sll_points.setOnClickListener(this);
         sll_notes.setOnClickListener(this);
@@ -400,7 +403,9 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.sll_points:
+                System.out.println("onClick sll_points");
                 if(!sll_points.isSelected()) {
+                    System.out.println("onClick sll_points !isSelected");
                     sll_summary.unselect();
                     sll_notes.unselect();
                     sll_points.select();
@@ -411,7 +416,9 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
                 }
                 break;
             case R.id.sll_notes:
+                System.out.println("onClick sll_notes");
                 if(!sll_notes.isSelected()) {
+                    System.out.println("onClick sll_notes !isSelected");
                     sll_summary.unselect();
                     sll_points.unselect();
                     sll_notes.select();
@@ -422,7 +429,9 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
                 }
                 break;
             case R.id.sll_summary:
+                System.out.println("onClick sll_summary");
                 if(!sll_points.isSelected()) {
+                    System.out.println("onClick sll_summary !isSelected");
                     sll_notes.unselect();
                     sll_points.unselect();
                     sll_summary.select();
