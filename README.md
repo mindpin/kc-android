@@ -42,13 +42,13 @@ git checkout v0.1.2 -b v0.1.2
 mvn clean install
 ```
 
-### 安装 KCVideoView v0.2.1
+### 安装 KCVideoView v0.2.2-SNAPSHOT
 ```
 git clone https://github.com/destinyd/Android-KCVideoView
 cd Android-KCVideoView
-git checkout v0.2.1 -b v0.2.1
 mvn clean install
 ```
+_git checkout v0.2.1 -b v0.2.1_
 
 ### 安装 android.support 19.0.1 到本地 maven 库
 测试库依赖这个版本的 android.support 所以需要安装

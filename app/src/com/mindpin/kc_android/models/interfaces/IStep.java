@@ -35,8 +35,17 @@ public interface IStep extends Serializable {
         enum ContentKind{
             TEXT, IMAGE, VIDEO
         }
+        interface IVirtualFile extends Serializable{
+            public Integer get_duration();
+            public Integer get_width();
+            public Integer get_height();
+        }
         public ContentKind get_kind();
         public String get_url();
         public String get_content();
+        public Integer get_duration();
+        public Integer get_width();
+        public Integer get_height();
+        public IVirtualFile get_virtual_file();
     }
 }

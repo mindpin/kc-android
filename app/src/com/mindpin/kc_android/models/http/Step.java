@@ -2,6 +2,7 @@ package com.mindpin.kc_android.models.http;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.internal.LinkedTreeMap;
 import com.mindpin.kc_android.models.interfaces.IStep;
@@ -207,12 +208,35 @@ public class Step implements IStep{
             return null;
         }
 
-        class VirtualFile implements Serializable{
+        @Override
+        public Integer get_duration() {
+            return virtual_file != null ? virtual_file.get_duration() : null;
+        }
+
+        @Override
+        public Integer get_width() {
+            return virtual_file != null ? virtual_file.get_width() : null;
+        }
+
+        @Override
+        public Integer get_height() {
+            return virtual_file != null ? virtual_file.get_height() : null;
+        }
+
+        @Override
+        public VirtualFile get_virtual_file() {
+            return virtual_file;
+        }
+
+        class VirtualFile implements IVirtualFile{
             private String id;
             private String name;
             private String virtual_path;
             private String url;
             private boolean is_dir;
+            private Integer duration;
+            private Integer width;
+            private Integer height;
 
             public String getId() {
                 return id;
@@ -232,6 +256,23 @@ public class Step implements IStep{
 
             public boolean isIs_dir() {
                 return is_dir;
+            }
+
+            public Integer get_duration(){
+                return duration;
+            }
+
+            public Integer get_width(){
+                return width;
+            }
+
+            public Integer get_height(){
+                return height;
+            }
+
+            @Override
+            public String toString() {
+                return new Gson().toJson(this, VirtualFile.class);
             }
         }
     }

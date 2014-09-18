@@ -2,46 +2,88 @@
 
 <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
                 xmlns:android="http://schemas.android.com/apk/res/android">
-    <ScrollView android:layout_width="match_parent"
-                android:layout_height="match_parent">
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                      android:orientation="vertical">
-            <ImageView android:layout_width="match_parent" android:layout_height="wrap_content"
-                       android:id="@+id/iv_cover"
-                       android:scaleType="centerCrop"
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:id="@+id/rl_banner"
+            >
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="center_vertical"
+                        android:layout_alignParentTop="true"
+                        android:id="@+id/rl_titlebar"
+                        android:background="#44B2F5"
+                >
+            <com.mindpin.kc_android.widget.FontAwesomeTextView
+                    android:layout_height="50dp"
+                    android:layout_width="50dp"
+                    android:textColor="#fff"
+                    android:textSize="20dp"
+                    android:text="@string/fontawesome_back"
+                    android:padding="15dp"
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/fatv_back"/>
+            <!--android:layout_margin="15dp"-->
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="50dp"
+                      android:textColor="#fff"
+                      android:textSize="16dp"
+                      android:layout_alignParentRight="true"
+                      android:layout_alignParentBottom="true"
+                      android:layout_alignParentTop="true"
+                      android:layout_toRightOf="@id/fatv_back"
+                      android:gravity="center_vertical|left"
+                      android:id="@+id/tv_title"
                     />
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                          android:id="@+id/ll_detail"
-                          android:orientation="vertical"
-                          android:paddingTop="20dp"
-                    >
-                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                          android:id="@+id/tv_title"
-                          android:paddingLeft="20dp"
-                          android:paddingRight="20dp"
-                          android:textStyle="bold"
-                          android:textSize="20dp"
-                          android:layout_marginBottom="20dp"
-                        />
-                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                          android:id="@+id/tv_desc"
-                          android:textSize="14dp"
-                          android:paddingLeft="20dp"
-                          android:paddingRight="20dp"
-                        />
-                <include layout="@layout/include_dotted_dividing_line"
-                         android:layout_width="fill_parent"
-                         android:layout_height="wrap_content"
-                         android:layout_marginLeft="5dip"
-                         android:layout_marginRight="5dip"
-                         android:layout_marginTop="20dp" />
-            </LinearLayout>
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                          android:id="@+id/ll_steps"
-                          android:orientation="vertical"
-                    >
+        </RelativeLayout>
+    </RelativeLayout>
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_banner"
+                android:layout_alignParentBottom="true"
+                android:background="#f1f1f1"
+            >
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      android:id="@+id/ll_steps"
+                      android:padding="5dp"
+                >
+            <!--<ImageView android:layout_width="match_parent" android:layout_height="wrap_content"-->
+                       <!--android:id="@+id/iv_cover"-->
+                       <!--android:scaleType="centerCrop"-->
+                    <!--/>-->
+            <!--<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"-->
+                          <!--android:id="@+id/ll_detail"-->
+                          <!--android:orientation="vertical"-->
+                          <!--android:paddingTop="20dp"-->
+                    <!-->-->
+                <!--<TextView android:layout_width="match_parent" android:layout_height="wrap_content"-->
+                          <!--android:id="@+id/tv_step_title"-->
+                          <!--android:paddingLeft="20dp"-->
+                          <!--android:paddingRight="20dp"-->
+                          <!--android:textStyle="bold"-->
+                          <!--android:textSize="20dp"-->
+                          <!--android:layout_marginBottom="20dp"-->
+                        <!--/>-->
+                <!--<TextView android:layout_width="match_parent" android:layout_height="wrap_content"-->
+                          <!--android:id="@+id/tv_desc"-->
+                          <!--android:textSize="14dp"-->
+                          <!--android:paddingLeft="20dp"-->
+                          <!--android:paddingRight="20dp"-->
+                        <!--/>-->
+                <!--<include layout="@layout/include_dotted_dividing_line"-->
+                         <!--android:layout_width="fill_parent"-->
+                         <!--android:layout_height="wrap_content"-->
+                         <!--android:layout_marginLeft="5dip"-->
+                         <!--android:layout_marginRight="5dip"-->
+                         <!--android:layout_marginTop="20dp" />-->
+            <!--</LinearLayout>-->
+            <!--<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"-->
+                          <!--android:orientation="vertical"-->
+                    <!-->-->
 
-            </LinearLayout>
+            <!--</LinearLayout>-->
         </LinearLayout>
     </ScrollView>
 

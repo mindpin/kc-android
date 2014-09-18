@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@android:color/white"
+        >
+    <TextView android:layout_width="match_parent" android:layout_height="50dp"
+              android:background="@drawable/white_with_eee_bottom_border"
+              android:paddingLeft="10dp"
+              android:paddingRight="10dp"
+              android:gravity="center_vertical|left"
+              android:textSize="16dp"
+              android:textColor="#333"
+              android:id="@+id/tv_step_title"
+            />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:padding="10dp"
+                  android:id="@+id/ll_step_blocks"
+                  android:orientation="vertical"
+            >
+    </LinearLayout>
+
+</LinearLayout>

@@ -12,7 +12,7 @@
 
 	<modules>
 		<module>app</module>
-	</modules>
+	</modules>v
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
