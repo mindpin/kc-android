@@ -1,5 +1,7 @@
 package com.mindpin.kc_android.activity.base;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.KeyEvent;
@@ -77,6 +79,16 @@ public class KnowledgeBaseIncludeDrawerActivity extends KnowledgeBaseActivity{
             if(drawer_layout.isDrawerOpen(left_drawer)){
                 drawer_layout.closeDrawer(left_drawer);
                 return true;
+            }else{
+                new AlertDialog.Builder(this)
+                    .setMessage("要退出吗？")
+                    .setNegativeButton("取消", null)
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            finish();
+                        }
+                    }).show();
             }
         }
         return super.onKeyDown(keyCode, event);
