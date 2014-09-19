@@ -1,6 +1,7 @@
 package com.mindpin.kc_android.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -19,6 +20,7 @@ import com.mindpin.kc_android.network.DataProvider;
 import com.mindpin.kc_android.utils.BaseUtils;
 import com.mindpin.kc_android.utils.KCAsyncTask;
 import com.mindpin.kc_android.widget.FontAwesomeTextView;
+import com.mindpin.kc_android.widget.ObservableScrollView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectView;
@@ -81,6 +83,24 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
         margin_bottom_10dp.setMargins(0, 0, 0, 10);
 
         mHiddenAction = AnimationUtils.loadAnimation(this, R.anim.push_up_out);
+        mHiddenAction.setAnimationListener(
+                new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        ((ViewGroup)last_btn_next_step.getParent()).removeView(last_btn_next_step);
+//                        last_btn_next_step.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                }
+        );
         mShowAction = AnimationUtils.loadAnimation(this, R.anim.push_up_in);
     }
 
@@ -142,6 +162,7 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
             if(ll_steps.getChildCount() > 1) { // cas already add
                 ll_step.startAnimation(mShowAction);
             }
+            ll_steps.requestLayout();
 
         }
     }
@@ -157,27 +178,9 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
 
             @Override
             protected void onSuccess(IStep step) throws Exception {
-                if(btn_next_step != null && btn_next_step.getParent() != null){
+                if(btn_next_step != null){
                     last_btn_next_step = btn_next_step;
                     last_btn_next_step.startAnimation(mHiddenAction);
-                    mHiddenAction.setAnimationListener(
-                            new Animation.AnimationListener() {
-                                @Override
-                                public void onAnimationStart(Animation animation) {
-
-                                }
-
-                                @Override
-                                public void onAnimationEnd(Animation animation) {
-                                    last_btn_next_step.setVisibility(View.GONE);
-                                }
-
-                                @Override
-                                public void onAnimationRepeat(Animation animation) {
-
-                                }
-                            }
-                    );
                     btn_next_step = null;
                 }
                 add_step(step);
