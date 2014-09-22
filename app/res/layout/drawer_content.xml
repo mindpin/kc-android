@@ -1,153 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <android.support.v4.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/drawer_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
-        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <include layout="@layout/title_bar"/>
 
         <FrameLayout
-            android:id="@+id/frame_layout_content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        </LinearLayout>
+                android:id="@+id/frame_layout_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/left_drawer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:orientation="vertical"
-        android:background="@drawable/menu_background"
-        >
-        <com.mindpin.kc_android.widget.SelectableLinearLayout android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:gravity="center_vertical"
-            android:background="@drawable/menu_line_background"
-            android:clickable="true"
-            android:longClickable="true"
+            android:id="@+id/left_drawer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:orientation="vertical"
+            android:background="@drawable/menu_background"
             >
+        <com.mindpin.kc_android.widget.SelectableLinearLayout
+                style="@style/MenuLine">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/iv_user_avatar"
-                android:src="@drawable/avatar_default"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_margin="20dp"/>
+                    android:id="@+id/iv_user_avatar"
+                    android:src="@drawable/avatar_default"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="20dp"/>
 
-            <TextView android:textSize="20dp" android:gravity="center_vertical"
-                android:layout_width="wrap_content" android:layout_height="40dp"
-                android:id="@+id/tv_user_name"
-                />
+            <TextView style="@style/MenuLineTV"
+                      android:id="@+id/tv_user_name"
+                    />
         </com.mindpin.kc_android.widget.SelectableLinearLayout>
-        <com.mindpin.kc_android.widget.SelectableLinearLayout android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:id="@+id/sll_all_classes"
-            android:gravity="center_vertical"
-            android:background="@drawable/menu_line_background"
-            android:clickable="true"
-            android:focusable="true"
-            android:longClickable="true"
-            >
+        <com.mindpin.kc_android.widget.SelectableLinearLayout
+                style="@style/MenuLine"
+                android:id="@+id/sll_all_classes"
+                >
             <com.mindpin.kc_android.widget.FontAwesomeTextView
-                android:layout_height="40dp"
-                android:layout_width="40dp"
-                android:textColor="#4d4d4d"
-                android:textSize="40dp"
-                android:text="@string/ic_home"
-                android:layout_margin="20dp"
-                />
-            <TextView android:textSize="20dp" android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="40dp"
-                android:text="@string/all_classes"/>
+                    android:text="@string/ic_home"
+                    style="@style/MenuLineFATV"/>
+            <TextView style="@style/MenuLineTV"
+                      android:text="@string/all_classes"/>
         </com.mindpin.kc_android.widget.SelectableLinearLayout>
-        <com.mindpin.kc_android.widget.SelectableLinearLayout android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:id="@+id/sll_my_classes"
-            android:gravity="center_vertical"
-            android:background="@drawable/menu_line_background"
-            android:clickable="true"
-            >
+        <com.mindpin.kc_android.widget.SelectableLinearLayout
+                style="@style/MenuLine"
+                android:id="@+id/sll_my_classes"
+                >
             <com.mindpin.kc_android.widget.FontAwesomeTextView
-                android:layout_height="40dp"
-                android:layout_width="40dp"
-                android:textColor="#4d4d4d"
-                android:textSize="40dp"
-                android:text="@string/ic_book"
-                android:layout_margin="20dp"
-                />
-            <TextView android:textSize="20dp" android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="40dp"
-                android:text="@string/my_classes"/>
+                    style="@style/MenuLineFATV"
+                    android:text="@string/ic_book"
+                    />
+            <TextView style="@style/MenuLineTV"
+                      android:text="@string/my_classes"/>
         </com.mindpin.kc_android.widget.SelectableLinearLayout>
-        <com.mindpin.kc_android.widget.SelectableLinearLayout android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:id="@+id/sll_my_difficulties"
-            android:gravity="center_vertical"
-            android:background="@drawable/menu_line_background"
-            android:clickable="true"
-            android:longClickable="true"
-            >
+        <com.mindpin.kc_android.widget.SelectableLinearLayout
+                style="@style/MenuLine"
+                android:id="@+id/sll_my_difficulties"
+                >
             <com.mindpin.kc_android.widget.FontAwesomeTextView
-                android:layout_height="40dp"
-                android:layout_width="40dp"
-                android:textColor="#4d4d4d"
-                android:textSize="40dp"
-                android:text="@string/ic_info"
-                android:layout_margin="20dp"
-                />
-            <TextView android:textSize="20dp" android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="40dp"
-                android:text="@string/my_difficulties"/>
+                    style="@style/MenuLineFATV"
+                    android:text="@string/ic_info"
+                    />
+            <TextView style="@style/MenuLineTV"
+                      android:text="@string/my_difficulties"/>
         </com.mindpin.kc_android.widget.SelectableLinearLayout>
-        <com.mindpin.kc_android.widget.SelectableLinearLayout android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:id="@+id/sll_my_questions"
-            android:gravity="center_vertical"
-            android:background="@drawable/menu_line_background"
-            android:clickable="true"
-            android:longClickable="true"
-            >
+        <com.mindpin.kc_android.widget.SelectableLinearLayout
+                style="@style/MenuLine"
+                android:id="@+id/sll_my_questions"
+                >
             <com.mindpin.kc_android.widget.FontAwesomeTextView
-                android:layout_height="40dp"
-                android:layout_width="40dp"
-                android:textColor="#4d4d4d"
-                android:textSize="40dp"
-                android:text="@string/ic_question"
-                android:layout_margin="20dp"
-                />
-            <TextView android:textSize="20dp" android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="40dp"
-                android:text="@string/my_questions"/>
+                    style="@style/MenuLineFATV"
+                    android:text="@string/ic_question"
+                    />
+            <TextView android:text="@string/my_questions"
+                      style="@style/MenuLineTV"/>
         </com.mindpin.kc_android.widget.SelectableLinearLayout>
-        <com.mindpin.kc_android.widget.SelectableLinearLayout android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:id="@+id/sll_my_notes"
-            android:gravity="center_vertical"
-            android:background="@drawable/menu_line_background"
-            android:clickable="true"
-            >
+        <com.mindpin.kc_android.widget.SelectableLinearLayout
+                style="@style/MenuLine"
+                android:id="@+id/sll_my_notes"
+                >
             <com.mindpin.kc_android.widget.FontAwesomeTextView
-                android:layout_height="40dp"
-                android:layout_width="40dp"
-                android:textColor="#4d4d4d"
-                android:textSize="40dp"
-                android:text="@string/ic_note"
-                android:layout_margin="20dp"
-                />
-            <TextView android:textSize="20dp" android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="40dp"
-                android:text="@string/my_notes"/>
+                    style="@style/MenuLineFATV"
+                    android:text="@string/ic_note"
+                    />
+            <TextView android:text="@string/my_notes"
+                      style="@style/MenuLineTV"/>
         </com.mindpin.kc_android.widget.SelectableLinearLayout>
-        <Button
-            android:id="@+id/btn_menu_topic"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="topic list button"
-            android:visibility="gone"
-            />
     </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>
