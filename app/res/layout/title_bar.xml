@@ -1,35 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_alignParentTop="true"
-    android:layout_width="match_parent"
-    android:id="@+id/title_bar"
-    android:background="@color/titlebar_background_color"
-    android:layout_height="50dp"
-    >
-    <com.mindpin.kc_android.widget.FontAwesomeButton android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:text="@string/ic_menu"
-        android:id="@+id/btn_menu"
-        android:textColor="#4D4D4D"
-        android:textSize="20dp"
-        android:layout_alignParentLeft="true"
-        android:background="@drawable/titlebar_icon"
-        />
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/tv_actionbar_title"
+                android:orientation="horizontal"
+                android:layout_alignParentTop="true"
+                android:layout_width="match_parent"
+                android:id="@+id/title_bar"
+                android:background="@color/titlebar_background_color"
+                android:layout_height="50dp"
+        >
+    <com.mindpin.kc_android.widget.FontAwesomeButton
+            android:text="@string/ic_menu"
+            android:id="@+id/btn_menu"
+            android:layout_alignParentLeft="true"
+            style="@style/ActionBarButton"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:id="@+id/tv_actionbar_title"
               android:layout_alignParentTop="true" android:layout_toLeftOf="@+id/btn_search"
               android:layout_alignParentBottom="true" android:layout_toRightOf="@+id/btn_menu"
               android:gravity="center"
             />
-    <com.mindpin.kc_android.widget.FontAwesomeButton android:layout_width="50dp"
-            android:layout_height="50dp"
+    <com.mindpin.kc_android.widget.FontAwesomeButton
+            style="@style/ActionBarButton"
             android:text="@string/ic_search"
             android:id="@+id/btn_search"
-            android:textColor="#4D4D4D"
-            android:textSize="20dp"
             android:layout_alignParentRight="true"
-            android:background="@drawable/titlebar_icon"
             />
 
 </RelativeLayout>
