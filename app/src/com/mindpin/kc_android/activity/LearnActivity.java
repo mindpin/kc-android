@@ -2,6 +2,7 @@ package com.mindpin.kc_android.activity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -44,6 +45,8 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     TextView tv_title;
     @InjectView(R.id.fatv_back)
     FontAwesomeTextView fatv_back;
+    @InjectView(R.id.sv_steps)
+    ObservableScrollView sv_steps;
 
     private IStep step_now;
     private String id_next_step;
@@ -223,5 +226,16 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
                 finish();
                 break;
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode==KeyEvent.KEYCODE_BACK && event.getRepeatCount()==0){   //確定按下退出鍵and防止重複按下退出鍵
+            if(sv_steps.getScrollY() > 0){
+                sv_steps.smoothScrollTo(0, 0);
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
