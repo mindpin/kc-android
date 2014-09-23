@@ -12,6 +12,18 @@ import roboguice.activity.RoboFragmentActivity;
  */
 public class KnowledgeBaseActivity extends RoboFragmentActivity{
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        ActivitiesStackSingleton.tidy_and_push_activity(this);
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivitiesStackSingleton.remove_activity(this);
+    }
+
     protected  void change_fragment(Fragment fragment){
         Bundle args = new Bundle();
         change_fragment(fragment,args);
