@@ -37,6 +37,13 @@ public class ActivitiesStackSingleton {
         get_activities_stack().remove(activity);
     }
 
+    protected static boolean activities_stack_top_is(Class cls){
+        Stack<KnowledgeBaseActivity> activities_stack = get_activities_stack();
+
+        KnowledgeBaseActivity activity = activities_stack.get(activities_stack.size() - 1);
+        return activity.getClass() == cls;
+    }
+
 
     // 先遍历查找相同类型的 activitiy，如果存在，就清除并关闭两个activity之间的所有实例
     // 先查找类型相同的实例的下标

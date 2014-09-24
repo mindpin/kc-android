@@ -31,6 +31,8 @@ public class Tutorial implements ITutorial{
     private int learned_step_count;
     private User creator;
 
+    private String topic_id;
+
     @Override
     public String get_id() {
         return this.id;
@@ -146,5 +148,10 @@ public class Tutorial implements ITutorial{
     @Override
     public User get_creator() {
         return this.creator;
+    }
+
+    @Override
+    public String get_topic_id() {
+        return this.topic_id;
     }
 }

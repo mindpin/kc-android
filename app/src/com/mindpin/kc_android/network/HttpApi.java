@@ -82,6 +82,9 @@ public class HttpApi {
     public static String 获取教程的后续教程列表(String tutorial_id){
         return SITE + String.format("/api/tutorials.json?parent_id=%s", tutorial_id);
     }
+    public static String 获取主题(String topic_id){
+        return SITE + String.format("/api/topics/%s.json",topic_id);
+    }
     /**
      * http api url end
      */
@@ -356,6 +359,23 @@ public class HttpApi {
             }
         }.request();
     }
+
+    public static ITopic get_topic(final String topic_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<ITopic>(){
+
+            @Override
+            public ITopic call(RequestResult rr) {
+                Gson gson = new GsonBuilder().create();
+                return gson.fromJson(rr.body, Topic.class);
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.获取主题(topic_id), "GET");
+            }
+        }.request();
+    }
+
     /**
      * http api method end
      ***********************************************************************************/

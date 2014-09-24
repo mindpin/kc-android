@@ -28,4 +28,5 @@ public interface ITutorial extends Serializable {
     public int get_step_count();
     public int get_learned_step_count();
     public User get_creator();
+    public String get_topic_id();
 }

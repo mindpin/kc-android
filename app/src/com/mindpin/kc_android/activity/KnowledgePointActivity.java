@@ -160,6 +160,8 @@ public class KnowledgePointActivity extends KnowledgeBaseActivity
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ITutorial tutorial = (ITutorial) parent.getItemAtPosition(position);
 
+        tidy_by_class(TopicTutorialListActivity.class);
+
         Intent intent = new Intent(KnowledgePointActivity.this, TutorialActivity.class);
         intent.putExtra("tutorial", tutorial);
         startActivity(intent);

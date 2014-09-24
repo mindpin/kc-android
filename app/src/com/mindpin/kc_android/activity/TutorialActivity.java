@@ -1,16 +1,20 @@
 package com.mindpin.kc_android.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.mindpin.android.loadingview.LoadingView;
 import com.mindpin.kc_android.R;
+import com.mindpin.kc_android.activity.base.ActivitiesStackSingleton;
 import com.mindpin.kc_android.activity.base.KnowledgeBaseActivity;
 import com.mindpin.kc_android.activity.fragment.KnowledgePointFragment;
 import com.mindpin.kc_android.adapter.KnowledgeNetPointListAdapter;
@@ -349,7 +353,7 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
         fatv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                back();
             }
         });
         rl_next.setOnClickListener(new View.OnClickListener() {
@@ -383,10 +387,15 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
         switch (parent.getId()) {
             case R.id.lv_previous:
             case R.id.lv_next:
-                ITutorial tutorial = (ITutorial) parent.getItemAtPosition(position);
+                ITutorial to_tutorial = (ITutorial) parent.getItemAtPosition(position);
 
+                if(this.tutorial.get_topic_id().equals(to_tutorial.get_topic_id())){
+                    this.finish();
+                }else{
+                    tidy_by_class(TopicTutorialListActivity.class);
+                }
                 intent = new Intent(TutorialActivity.this, TutorialActivity.class);
-                intent.putExtra("tutorial", tutorial);
+                intent.putExtra("tutorial", to_tutorial);
                 startActivity(intent);
                 break;
             case R.id.lv_points:
@@ -458,5 +467,26 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
 //        iv_cover = (ImageView) brief.findViewById(R.id.iv_cover);
 //    }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            if(!activities_stack_top_is(TopicTutorialListActivity.class)){
+                back();
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
+    private void back(){
+        if(!activities_stack_top_is(TopicTutorialListActivity.class)){
+            finish();
+            String topic_id = tutorial.get_topic_id();
+            Intent intent = new Intent(this, TopicTutorialListActivity.class);
+            intent.putExtra("topic_id", topic_id);
+            startActivity(intent);
+        }else{
+            finish();
+        }
+    }
 }

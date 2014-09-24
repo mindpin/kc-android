@@ -24,6 +24,14 @@ public class KnowledgeBaseActivity extends RoboFragmentActivity{
         ActivitiesStackSingleton.remove_activity(this);
     }
 
+    protected void tidy_by_class(Class cls){
+        ActivitiesStackSingleton.tidy_by_class(cls);
+    }
+
+    protected boolean activities_stack_top_is(Class cls){
+        return ActivitiesStackSingleton.activities_stack_top_is(cls);
+    }
+
     protected  void change_fragment(Fragment fragment){
         Bundle args = new Bundle();
         change_fragment(fragment,args);

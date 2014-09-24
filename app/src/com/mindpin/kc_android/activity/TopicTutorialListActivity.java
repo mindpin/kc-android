@@ -17,6 +17,7 @@ import com.mindpin.kc_android.activity.base.KnowledgeBaseActivity;
 import com.mindpin.kc_android.adapter.TopicTutorialListAdapter;
 import com.mindpin.kc_android.models.interfaces.ITopic;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
+import com.mindpin.kc_android.network.DataProvider;
 import com.mindpin.kc_android.utils.BaseUtils;
 import com.mindpin.kc_android.utils.KCAsyncTask;
 import com.mindpin.kc_android.utils.UiFont;
@@ -28,6 +29,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
  */
 public class TopicTutorialListActivity extends KnowledgeBaseActivity{
     private ITopic topic;
+    private String topic_id;
 
     private LoadingView loading_view;
     private HorizontalListView topic_tutorial_list_view;
@@ -43,6 +45,9 @@ public class TopicTutorialListActivity extends KnowledgeBaseActivity{
         setContentView(R.layout.topic_tutorial_list);
 
         topic = (ITopic)getIntent().getSerializableExtra("topic");
+        if(topic == null){
+            topic_id = getIntent().getStringExtra("topic_id");
+        }
         loading_view = (LoadingView) findViewById(R.id.loading_view);
         topic_tutorial_list_view = (HorizontalListView) findViewById(R.id.topic_tutorial_list);
         topic_tutorial_list_bg_tv = (TextView)findViewById(R.id.topic_tutorial_list_bg_tv);
@@ -59,9 +64,6 @@ public class TopicTutorialListActivity extends KnowledgeBaseActivity{
         topic_title_tv = (TextView)findViewById(R.id.topic_title_tv);
         topic_desc_tv = (TextView)findViewById(R.id.topic_desc_tv);
 
-        topic_title_tv.setText(topic.get_title());
-        topic_desc_tv.setText(topic.get_desc());
-
         get_datas();
     }
 
@@ -75,6 +77,9 @@ public class TopicTutorialListActivity extends KnowledgeBaseActivity{
 
             @Override
             public Void call() throws Exception {
+                if(topic == null){
+                    topic = DataProvider.get_topic(topic_id);
+                }
                 topic.get_tutorial_list();
                 topic_background = ImageLoader.getInstance().loadImageSync(topic.get_icon_url());
                 return null;
@@ -82,6 +87,8 @@ public class TopicTutorialListActivity extends KnowledgeBaseActivity{
 
             @Override
             protected void onSuccess(Void aVoid) throws Exception {
+                topic_title_tv.setText(topic.get_title());
+                topic_desc_tv.setText(topic.get_desc());
                 build_view();
                 topic_icon_img.setImageBitmap(topic_background);
                 loading_view.hide();
