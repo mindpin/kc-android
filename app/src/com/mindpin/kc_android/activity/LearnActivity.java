@@ -231,8 +231,19 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode==KeyEvent.KEYCODE_BACK && event.getRepeatCount()==0){   //確定按下退出鍵and防止重複按下退出鍵
-            if(sv_steps.getScrollY() > 0){
-                sv_steps.smoothScrollTo(0, 0);
+            if(sv_steps.getScrollY() > ll_steps.getPaddingTop()){
+                View view = null;
+                int height = ll_steps.getPaddingTop();
+                for(int i=0; i< ll_steps.getChildCount(); i++) {
+                    view = ll_steps.getChildAt(i);
+                    if(height + view.getHeight()   >= sv_steps.getScrollY()) {
+                        sv_steps.smoothScrollTo(0, height);
+                        return true;
+                    }
+                    else
+                        height += view.getHeight();
+                }
+                sv_steps.smoothScrollTo(0, ll_steps.getPaddingTop());
                 return true;
             }
         }
