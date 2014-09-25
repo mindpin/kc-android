@@ -31,6 +31,7 @@ public interface IStep extends Serializable {
     public void destroy_note();
     public void set_hard();
     public void unset_hard();
+    public ITutorial get_tutorial();
 
     enum ContinueType{
         STEP,SELECT,END

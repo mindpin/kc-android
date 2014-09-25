@@ -8,6 +8,7 @@ import com.google.gson.internal.LinkedTreeMap;
 import com.mindpin.kc_android.models.interfaces.INote;
 import com.mindpin.kc_android.models.interfaces.IQuestion;
 import com.mindpin.kc_android.models.interfaces.IStep;
+import com.mindpin.kc_android.models.interfaces.ITutorial;
 import com.mindpin.kc_android.network.DataProvider;
 import com.mindpin.kc_android.network.HttpApi;
 
@@ -274,6 +275,17 @@ public class Step implements IStep{
             e.printStackTrace();
             Log.d("debug", "取消标记重点失败");
         }
+    }
+
+    @Override
+    public ITutorial get_tutorial() {
+        try {
+            return DataProvider.get_tutorial(this.tutorial_id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("debug", "获取 step.get_tutorial 失败");
+        }
+        return null;
     }
 
     private String _get_type(){

@@ -139,4 +139,20 @@ public class DataProvider {
         return HttpApi.unset_step_hard(step_id);
     }
 
+    public static List<IStep> get_my_step_list() throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.get_my_step_list();
+    }
+
+    public static List<IQuestion> get_my_question_list() throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.get_my_question_list();
+    }
+
+    public static List<INote> get_my_note_list() throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.get_my_note_list();
+    }
+
+    public static List<ITopic> get_my_topic_list() throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.get_my_topic_list();
+    }
+
 }

@@ -9,4 +9,5 @@ public interface IQuestion extends Serializable {
     public String get_id();
     public String get_step_id();
     public String get_content();
+    public ITutorial get_tutorial();
 }
