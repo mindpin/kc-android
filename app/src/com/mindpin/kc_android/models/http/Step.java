@@ -23,6 +23,9 @@ public class Step implements IStep{
     private Continue _continue;
     private List<ContentBlock> blocks;
     private boolean is_learned;
+    private boolean is_hard;
+    private String question_id;
+    private String note_id;
 
     @Override
     public String get_id() {
@@ -101,6 +104,31 @@ public class Step implements IStep{
                 Log.d("debug", "标记学习步骤失败");
             }
         }
+    }
+
+    @Override
+    public boolean has_question() {
+        return this.question_id != null && this.question_id != "";
+    }
+
+    @Override
+    public boolean has_note() {
+        return this.note_id != null && this.note_id != "";
+    }
+
+    @Override
+    public boolean is_hard() {
+        return this.is_hard;
+    }
+
+    @Override
+    public String get_question_id() {
+        return this.question_id;
+    }
+
+    @Override
+    public String get_note_id() {
+        return this.note_id;
     }
 
     private String _get_type(){

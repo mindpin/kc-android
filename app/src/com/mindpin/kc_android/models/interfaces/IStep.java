@@ -16,6 +16,11 @@ public interface IStep extends Serializable {
     public List<IContentBlock> get_blocks();
     public boolean is_learned();
     public void do_learn();
+    public boolean has_question();
+    public boolean has_note();
+    public boolean is_hard();
+    public String get_question_id();
+    public String get_note_id();
 
     enum ContinueType{
         STEP,SELECT,END
