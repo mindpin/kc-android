@@ -5,7 +5,10 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.internal.LinkedTreeMap;
+import com.mindpin.kc_android.models.interfaces.INote;
+import com.mindpin.kc_android.models.interfaces.IQuestion;
 import com.mindpin.kc_android.models.interfaces.IStep;
+import com.mindpin.kc_android.network.DataProvider;
 import com.mindpin.kc_android.network.HttpApi;
 
 import java.io.Serializable;
@@ -98,7 +101,7 @@ public class Step implements IStep{
     public void do_learn() {
         if(!this.is_learned()){
             try {
-                HttpApi.learn_step(this.get_id());
+                DataProvider.learn_step(this.get_id());
             } catch (Exception e) {
                 e.printStackTrace();
                 Log.d("debug", "标记学习步骤失败");
@@ -129,6 +132,148 @@ public class Step implements IStep{
     @Override
     public String get_note_id() {
         return this.note_id;
+    }
+
+    @Override
+    public void create_question(String content) {
+        if(has_question()){
+            return;
+        }
+        try {
+            IQuestion question = DataProvider.create_question(this.id, content);
+            this.question_id = question.get_id();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("debug", "创建问题失败");
+        }
+    }
+
+    @Override
+    public IQuestion get_question() {
+        if(!has_question()){
+            return null;
+        }
+        try {
+            return DataProvider.get_question(this.question_id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("debug", "获取问题失败");
+        }
+        return null;
+    }
+
+    @Override
+    public void edit_question(String content) {
+        if(!has_question()){
+            return;
+        }
+        try {
+            DataProvider.edit_question(this.question_id, content);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("debug", "编辑问题失败");
+        }
+        return;
+    }
+
+    @Override
+    public void destroy_question() {
+        if(!has_question()){
+            return;
+        }
+        try {
+            DataProvider.destroy_question(this.question_id);
+            this.question_id = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("debug", "删除问题失败");
+        }
+        return;
+    }
+
+    @Override
+    public void create_note(String content) {
+        if(has_note()){
+            return;
+        }
+        try {
+            INote note = DataProvider.create_note(this.id, content);
+            this.note_id = note.get_id();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("debug", "创建笔记失败");
+        }
+    }
+
+    @Override
+    public INote get_note() {
+        if(!has_note()){
+            return null;
+        }
+        try {
+            return DataProvider.get_note(this.note_id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("debug", "获取笔记失败");
+        }
+        return null;
+    }
+
+    @Override
+    public void edit_note(String content) {
+        if(!has_note()){
+            return;
+        }
+        try {
+            DataProvider.edit_note(this.note_id, content);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("debug", "编辑笔记失败");
+        }
+        return;
+    }
+
+    @Override
+    public void destroy_note() {
+        if(!has_note()){
+            return;
+        }
+        try {
+            DataProvider.destroy_note(this.note_id);
+            this.note_id = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("debug", "删除笔记失败");
+        }
+        return;
+    }
+
+    @Override
+    public void set_hard() {
+        if(is_hard()){
+            return;
+        }
+        try {
+            DataProvider.set_step_hard(this.get_id());
+            this.is_hard = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("debug", "标记重点失败");
+        }
+    }
+
+    @Override
+    public void unset_hard() {
+        if(!is_hard()){
+            return;
+        }
+        try {
+            DataProvider.unset_step_hard(this.get_id());
+            this.is_hard = false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("debug", "取消标记重点失败");
+        }
     }
 
     private String _get_type(){
