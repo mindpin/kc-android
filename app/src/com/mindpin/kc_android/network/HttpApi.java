@@ -554,7 +554,7 @@ public class HttpApi {
             @Override
             public HttpRequest build_request(AuthenticatorsController auth) {
                 return auth.get_http_request(HttpApi.标记重点(step_id), "PUT")
-                        .part("step[id_hard]", "true");
+                        .part("step[is_hard]", "true");
             }
         }.request();
     }
@@ -570,7 +570,7 @@ public class HttpApi {
             @Override
             public HttpRequest build_request(AuthenticatorsController auth) {
                 return auth.get_http_request(HttpApi.取消标记重点(step_id), "PUT")
-                        .part("step[id_hard]", "false");
+                        .part("step[is_hard]", "false");
             }
         }.request();
     }
