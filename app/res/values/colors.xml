@@ -14,4 +14,7 @@
     <color name="eee">#EEEEEE</color>
     <color name="ddd">#DDDDDD</color>
     <color name="tutorial_tab_selected">#44B2F5</color>
+    <color name="learn_step_action_no_actioned_color">#b3b3b3</color>
+    <color name="learn_step_action_actioned_color">#666</color>
+    <color name="learn_step_action_is_hard_point_color">#FFCC3F</color>
 </resources>

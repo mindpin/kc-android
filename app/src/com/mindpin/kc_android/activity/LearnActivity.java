@@ -1,7 +1,7 @@
 package com.mindpin.kc_android.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +20,7 @@ import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.network.DataProvider;
 import com.mindpin.kc_android.utils.BaseUtils;
 import com.mindpin.kc_android.utils.KCAsyncTask;
+import com.mindpin.kc_android.widget.FontAwesomeButton;
 import com.mindpin.kc_android.widget.FontAwesomeTextView;
 import com.mindpin.kc_android.widget.ObservableScrollView;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -145,6 +146,27 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
                     );
                 }
             }
+
+            LinearLayout actions = (LinearLayout) getLayoutInflater().inflate(R.layout.learn_step_list_item_actions, null);
+            ll_step_blocks.addView(actions, margin_bottom_10dp);
+            //todo for action actioned
+            actions.findViewById(R.id.fabtn_note).setTag(istep);
+            actions.findViewById(R.id.fabtn_question).setTag(istep);
+            actions.findViewById(R.id.fabtn_hard_point).setTag(istep);
+//            if(istep.is_noted())
+//                ((FontAwesomeButton)actions.findViewById(R.id.fabtn_note))
+//                        .setTextColor(getResources().getColor(R.color.learn_step_action_actioned_color));
+//            if(istep.has_question())
+//                ((FontAwesomeButton)actions.findViewById(R.id.fabtn_question))
+//                        .setTextColor(getResources().getColor(R.color.learn_step_action_actioned_color));
+//            if(istep.is_hard_point())
+//                ((FontAwesomeButton)actions.findViewById(R.id.fabtn_hard_point))
+//                        .setTextColor(getResources().getColor(R.color.learn_step_action_is_hard_point_color));
+
+            actions.findViewById(R.id.fabtn_note).setOnClickListener(this);
+            actions.findViewById(R.id.fabtn_question).setOnClickListener(this);
+            actions.findViewById(R.id.fabtn_hard_point).setOnClickListener(this);
+
             if (istep.get_continue_type() == IStep.ContinueType.STEP){
                 LinearLayout linearLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.learn_step_list_item_next, null);
                 btn_next_step = (Button) linearLayout.findViewById(R.id.btn_next_step);
@@ -224,6 +246,13 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
         switch (v.getId()){
             case R.id.fatv_back:
                 finish();
+                break;
+            //todo click step action
+            case R.id.fabtn_note:
+                break;
+            case R.id.fabtn_question:
+                break;
+            case R.id.fabtn_hard_point:
                 break;
         }
     }

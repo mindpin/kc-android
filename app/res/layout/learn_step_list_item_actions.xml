@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent" android:layout_height="wrap_content" android:weightSum="3"
+              android:orientation="horizontal"
+              android:gravity="center"
+        >
+    <com.mindpin.kc_android.widget.FontAwesomeButton
+            android:layout_marginRight="5dp"
+            android:text="@string/fontawesome_note_square"
+            style="@style/LearnStepAction"
+            android:id="@+id/fabtn_note"
+            />
+    <com.mindpin.kc_android.widget.FontAwesomeButton
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:text="@string/ic_question"
+            style="@style/LearnStepAction"
+            android:id="@+id/fabtn_question"
+            />
+    <com.mindpin.kc_android.widget.FontAwesomeButton
+            android:layout_marginLeft="5dp"
+            android:text="@string/fontawesome_hard_point"
+            style="@style/LearnStepAction"
+            android:id="@+id/fabtn_hard_point"
+            />
+</LinearLayout>

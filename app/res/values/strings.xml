@@ -35,4 +35,6 @@
     <string name="fontawesome_count">&#xf02d;</string>
     <string name="fontawesome_checkmark">&#xf00c;</string>
     <string name="fontawesome_smile">&#xf118;</string>
+    <string name="fontawesome_note_square">&#xf14b;</string>
+    <string name="fontawesome_hard_point">&#xf02e;</string>
 </resources>
