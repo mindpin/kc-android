@@ -154,15 +154,7 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
             actions.findViewById(R.id.fabtn_note).setTag(istep);
             actions.findViewById(R.id.fabtn_question).setTag(istep);
             actions.findViewById(R.id.fabtn_hard_point).setTag(istep);
-//            if(istep.is_noted())
-//                ((FontAwesomeButton)actions.findViewById(R.id.fabtn_note))
-//                        .setTextColor(getResources().getColor(R.color.learn_step_action_actioned_color));
-//            if(istep.has_question())
-//                ((FontAwesomeButton)actions.findViewById(R.id.fabtn_question))
-//                        .setTextColor(getResources().getColor(R.color.learn_step_action_actioned_color));
-//            if(istep.is_hard_point())
-//                ((FontAwesomeButton)actions.findViewById(R.id.fabtn_hard_point))
-//                        .setTextColor(getResources().getColor(R.color.learn_step_action_is_hard_point_color));
+            refresh_step_actions(istep, actions);
 
             actions.findViewById(R.id.fabtn_note).setOnClickListener(this);
             actions.findViewById(R.id.fabtn_question).setOnClickListener(this);
@@ -190,6 +182,22 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
             }
             ll_steps.requestLayout();
 
+        }
+    }
+
+    private void refresh_step_actions(IStep istep, LinearLayout actions) {
+        if(istep.has_note())
+            ((FontAwesomeButton)actions.findViewById(R.id.fabtn_note))
+                    .setTextColor(getResources().getColor(R.color.learn_step_action_actioned_color));
+        if(istep.has_question())
+            ((FontAwesomeButton)actions.findViewById(R.id.fabtn_question))
+                    .setTextColor(getResources().getColor(R.color.learn_step_action_actioned_color));
+        if(istep.is_hard()) {
+            ((FontAwesomeButton) actions.findViewById(R.id.fabtn_hard_point))
+                    .setTextColor(getResources().getColor(R.color.learn_step_action_is_hard_point_color));
+        } else {
+            ((FontAwesomeButton) actions.findViewById(R.id.fabtn_hard_point))
+                    .setTextColor(getResources().getColor(R.color.learn_step_action_no_actioned_color));
         }
     }
 
@@ -249,7 +257,6 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
             case R.id.fatv_back:
                 finish();
                 break;
-            //todo click step action
             case R.id.fabtn_note:
                 intent = new Intent(this, NotesActivity.class);
                 intent.putExtra("step", (Step)v.getTag());
@@ -261,6 +268,19 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
                 startActivity(intent);
                 break;
             case R.id.fabtn_hard_point:
+                System.out.println("hard point");
+                Step s = (Step) v.getTag();
+                if(s.is_hard()) {
+                    System.out.println("unset_hard");
+                    s.unset_hard();
+                    System.out.println(s.is_hard() ? "is hard" : "not hard");
+                } else {
+                    System.out.println("set_hard");
+                    s.set_hard();
+                    System.out.println(s.is_hard() ? "is hard" : "not hard");
+                }
+                v.setTag(s);
+                refresh_step_actions(s, (LinearLayout) v.getParent());
                 break;
         }
     }

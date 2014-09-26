@@ -1,5 +1,7 @@
 package com.mindpin.kc_android.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import com.mindpin.kc_android.R;
@@ -15,25 +17,27 @@ public class QuestionActivity extends KnowledgeBaseWriteActivity implements View
     }
 
     @Override
+    protected String get_default_write_text() {
+        return step.has_question() ? step.get_question().get_content() : "";
+    }
+
+    @Override
     protected int get_edit_text_write_hint_res_id() {
         return R.string.question_edit_text_hint;
     }
 
     @Override
     protected View.OnClickListener get_button_cancel_on_click_listener(View btn_cancel) {
-        //todo bind
         return this;
     }
 
     @Override
     protected View.OnClickListener get_button_save_on_click_listener(View btn_save) {
-        //todo bind
         return this;
     }
 
     @Override
     protected View.OnClickListener get_actionbar_button_on_click_listener(View btn_write_actionbar) {
-        //todo bind
         return this;
     }
 
@@ -49,32 +53,51 @@ public class QuestionActivity extends KnowledgeBaseWriteActivity implements View
 
     @Override
     protected int get_title_res_id() {
-        //todo for step
-//        if(step.is_noted)
-//        return R.string.edit_notes;
-//        else
-        return R.string.create_question;
+        if (step.has_question())
+            return R.string.edit_question;
+        else
+            return R.string.create_question;
     }
 
     @Override
     protected boolean is_actionbar_button_show() {
-        //todo for step
-//        return step.is_noted
-        return false;
-//        return true; // todo for test
+        return step.has_question();
     }
 
     @Override
     public void onClick(View v) {
-        //todo for btn click
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_cancel:
                 System.out.println("btn_cancel");
+                finish();
                 break;
             case R.id.btn_save:
                 System.out.println("btn_save");
+                if("".equals(et_write.getText().toString())){
+                    new AlertDialog.Builder(this).setTitle("提示")
+                            .setMessage("未输入任何内容")
+                            .setNegativeButton("取消提交", null)
+                            .setPositiveButton("退出页面", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                }
+                            }).create().show();
+                    return;
+                }
+
+                if (step.has_question()) {
+                    step.edit_question(et_write.getText().toString());
+                } else {
+                    step.create_question(et_write.getText().toString());
+                }
+                finish();
                 break;
-            case R.id.btn_write_actionbar:
+            case R.id.btn_delete:
+                if (step.has_question()) {
+                    step.destroy_question();
+                }
+                finish();
                 System.out.println("btn_write_actionbar");
                 break;
         }

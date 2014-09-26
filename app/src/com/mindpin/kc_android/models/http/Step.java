@@ -199,6 +199,9 @@ public class Step implements IStep{
         }
         try {
             INote note = DataProvider.create_note(this.id, content);
+            System.out.println(this.id);
+            System.out.println(content);
+            System.out.println(note == null ? "null" : "noteid:" + note.get_id());
             this.note_id = note.get_id();
         } catch (Exception e) {
             e.printStackTrace();

@@ -21,7 +21,7 @@ public abstract class KnowledgeBaseWriteActivity extends KnowledgeBaseActivity{
     FontAwesomeTextView fatv_write_actionbar_icon;
     @InjectView(R.id.tv_write_actionbar_title)
     TextView tv_write_actionbar_title;
-    @InjectView(R.id.btn_write_actionbar)
+    @InjectView(R.id.btn_delete)
     Button btn_write_actionbar;
 
     @InjectView(R.id.btn_save)
@@ -29,7 +29,7 @@ public abstract class KnowledgeBaseWriteActivity extends KnowledgeBaseActivity{
     @InjectView(R.id.btn_cancel)
     Button btn_cancel;
     @InjectView(R.id.et_write)
-    EditText et_write;
+    protected EditText et_write;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public abstract class KnowledgeBaseWriteActivity extends KnowledgeBaseActivity{
 
     private void build_edit_text_write() {
         et_write.setHint(get_edit_text_write_hint_res_id());
+        et_write.setText(get_default_write_text());
     }
 
     private void build_bottom() {
@@ -62,6 +63,8 @@ public abstract class KnowledgeBaseWriteActivity extends KnowledgeBaseActivity{
             btn_write_actionbar.setVisibility(View.INVISIBLE);
 
     }
+
+    protected abstract String get_default_write_text();
 
     protected abstract boolean is_actionbar_button_show();
 
