@@ -6,46 +6,45 @@ import android.widget.TextView;
 
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.adapter.base.KnowledgeBaseAdapter;
-import com.mindpin.kc_android.models.interfaces.IQuestion;
+import com.mindpin.kc_android.models.interfaces.INote;
 
 
-
-public class MyQuestionListAdapter extends KnowledgeBaseAdapter<IQuestion> {
+public class MyNoteListAdapter extends KnowledgeBaseAdapter<INote> {
 
 
     final Activity activity;
 
 
-    public MyQuestionListAdapter(Activity activity) {
+    public MyNoteListAdapter(Activity activity) {
         super(activity);
         this.activity = activity;
     }
 
     @Override
     public View inflate_view() {
-        return inflate(R.layout.my_question_list_item, null);
+        return inflate(R.layout.my_note_list_item, null);
     }
 
 
     @Override
     public BaseViewHolder build_view_holder(View view) {
         ViewHolder view_holder = new ViewHolder();
-        view_holder.question_content_view = (TextView) view.findViewById(R.id.question_content_view);
+        view_holder.note_content_view = (TextView) view.findViewById(R.id.note_content_view);
 
         return view_holder;
     }
 
 
     @Override
-    public void fill_with_data(BaseViewHolder holder, IQuestion item, int position) {
+    public void fill_with_data(BaseViewHolder holder, INote item, int position) {
         ViewHolder view_holder = (ViewHolder) holder;
-        view_holder.question_content_view.setText(item.get_content());
+        view_holder.note_content_view.setText(item.get_content());
 
 
     }
 
 
     private class ViewHolder implements BaseViewHolder {
-        TextView question_content_view;
+        TextView note_content_view;
     }
 }

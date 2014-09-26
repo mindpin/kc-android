@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.mindpin.kc_android.R;
+import com.mindpin.kc_android.activity.fragment.MyNoteListFragment;
 import com.mindpin.kc_android.activity.fragment.MyQuestionListFragment;
 import com.mindpin.kc_android.activity.fragment.MyStepListFragment;
 import com.mindpin.kc_android.activity.fragment.MyTopicListFragment;
@@ -115,6 +116,18 @@ public class KnowledgeBaseIncludeDrawerActivity extends KnowledgeBaseActivity{
                 change_fragment(new MyQuestionListFragment());
 
                 highlight_current_menu(left_drawer, btn_menu_myquestion);
+            }
+        });
+
+
+        // 点击我的笔记
+        btn_menu_mynote = (SelectableLinearLayout) findViewById(R.id.sll_my_notes);
+        btn_menu_mynote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                change_fragment(new MyNoteListFragment());
+
+                highlight_current_menu(left_drawer, btn_menu_mynote);
             }
         });
 
