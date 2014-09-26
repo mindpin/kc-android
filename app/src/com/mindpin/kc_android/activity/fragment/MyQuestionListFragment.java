@@ -14,7 +14,6 @@ import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.fragment.base.KnowledgeBaseFragment;
 import com.mindpin.kc_android.adapter.MyQuestionListAdapter;
 import com.mindpin.kc_android.models.interfaces.IQuestion;
-import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.network.DataProvider;
 import com.mindpin.kc_android.utils.KCAsyncTask;
 
@@ -98,10 +97,10 @@ public class MyQuestionListFragment extends KnowledgeBaseFragment {
                 Log.i("listview 事件 ", "true");
 
 
-                IStep step =
-                        (IStep) parent.getItemAtPosition(position);
+                IQuestion question =
+                        (IQuestion) parent.getItemAtPosition(position);
 
-                question_id = step.get_id();
+                question_id = question.get_id();
                 Log.i("question_id ID ", question_id);
 
             }
