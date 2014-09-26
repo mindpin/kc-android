@@ -1,9 +1,18 @@
 package com.mindpin.kc_android.network;
 
 
+import com.github.kevinsawicki.http.HttpRequest;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.mindpin.android.authenticator.RequestResult;
+import com.mindpin.kc_android.controllers.AuthenticatorsController;
 import com.mindpin.kc_android.models.ITopicData;
+import com.mindpin.kc_android.models.http.Note;
+import com.mindpin.kc_android.models.http.Question;
 import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
+import com.mindpin.kc_android.models.interfaces.INote;
+import com.mindpin.kc_android.models.interfaces.IQuestion;
 import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.models.interfaces.ITopic;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
@@ -79,4 +88,71 @@ public class DataProvider {
     public static ITopic get_topic(String topic_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
         return HttpApi.get_topic(topic_id);
     }
+
+    public static boolean learn_step(String step_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.learn_step(step_id);
+    }
+
+
+    // 创建问题
+    public static IQuestion create_question(String step_id, String content) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.create_question(step_id,content);
+    }
+
+    // 查询问题
+    public static IQuestion get_question(String question_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.get_question(question_id);
+    }
+
+    // 修改问题
+    public static IQuestion edit_question(String question_id, String content) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.edit_question(question_id, content);
+    }
+    // 删除问题
+    public static boolean destroy_question(String question_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.destroy_question(question_id);
+    }
+
+    // 创建笔记
+    public static INote create_note(String step_id, String content) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.create_note(step_id, content);
+    }
+
+    // 查询笔记
+    public static INote get_note(String note_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.get_note(note_id);
+    }
+
+    // 修改笔记
+    public static INote edit_note(String note_id, String content) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.edit_note(note_id, content);
+    }
+    // 删除笔记
+    public static boolean destroy_note(String note_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.destroy_note(note_id);
+    }
+    public static boolean set_step_hard(String step_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.set_step_hard(step_id);
+    }
+
+    public static boolean unset_step_hard(String step_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.unset_step_hard(step_id);
+    }
+
+    public static List<IStep> get_my_step_list() throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.get_my_step_list();
+    }
+
+    public static List<IQuestion> get_my_question_list() throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.get_my_question_list();
+    }
+
+    public static List<INote> get_my_note_list() throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.get_my_note_list();
+    }
+
+    public static List<ITopic> get_my_topic_list() throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.get_my_topic_list();
+    }
+
 }

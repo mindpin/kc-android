@@ -7,6 +7,8 @@ import com.mindpin.kc_android.controllers.AuthenticatorsController;
 import com.mindpin.kc_android.models.User;
 import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
+import com.mindpin.kc_android.models.interfaces.INote;
+import com.mindpin.kc_android.models.interfaces.IQuestion;
 import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.models.interfaces.ITopic;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
@@ -76,7 +78,7 @@ public class FirstTest  {
 //        System.out.println(point_list.get(0).get_name());
 //        System.out.println(point_list.get(0).get_desc());
 //
-//        String knowledge_net_id = "53fd9c036c696e1939240000";
+//        String knowledge_net_id = "5423a33a6c696e66a1000000";
 //        IKnowledgeNet snet = HttpApi.get_knowledge_net(knowledge_net_id);
 //
 //        System.out.println(snet.get_name());
@@ -97,7 +99,7 @@ public class FirstTest  {
 //        System.out.println(tutorial_list.get(0).get_desc());
 //
 //
-//        String knowledge_point_id = "53fd9bfd6c696e19390d0000";
+//        String knowledge_point_id = "5423a33a6c696e66a1060000";
 //        IKnowledgePoint point = HttpApi.get_knowledge_point(knowledge_point_id);
 //
 //        System.out.println(point.get_id());
@@ -112,7 +114,7 @@ public class FirstTest  {
 //        System.out.println(stutorial_list.get(0).get_desc());
 //
 //
-//        String tutorial_id = "53fd9c5f6c696e19396e0100";
+//        String tutorial_id = "5423a3ad6c696e66a16c0100";
 //        ITutorial tutorial = HttpApi.get_tutorial(tutorial_id);
 //
 //        System.out.println(tutorial.get_title());
@@ -125,7 +127,7 @@ public class FirstTest  {
 //        System.out.println(tpoint_list.get(0).get_name());
 //        System.out.println(tpoint_list.get(0).get_desc());
 //
-//        String stutorial_id = "53fd9c6a6c696e1939bc0100";
+//        String stutorial_id = "5423a3ad6c696e66a16c0100";
 //        List<IStep> step_list = HttpApi.get_step_list(stutorial_id);
 //
 //        System.out.println(step_list.size());
@@ -175,7 +177,7 @@ public class FirstTest  {
 //
 //        System.out.println("~~~~~~~~~~~~~~~~~~~~~ get_net_topic_list start");
 //
-//        String meishu_net_id = "53fd9c036c696e1939240000";
+//        String meishu_net_id = "5423a3406c696e66a1250000";
 //        List<ITopic> net_topic_list = HttpApi.get_net_topic_list(meishu_net_id);
 //        System.out.println("topics count is " + net_topic_list.size());
 //
@@ -197,7 +199,7 @@ public class FirstTest  {
 //        }
 //
 //
-//        String pc_tutorial_id = "53fd9c5f6c696e19396e0100";
+//        String pc_tutorial_id = "5423a3b66c696e66a17e0100";
 //
 //        System.out.println("~~~~~~~~~~~~~~~~~~~~~ get_parent_tutorial_list start");
 //
@@ -219,11 +221,11 @@ public class FirstTest  {
 //        }
 //
 //
-//        String sstep_id = "53fd9c6a6c696e1939bd0100";
+//        String sstep_id = "5423a4216c696e66a1ee0200";
 //        HttpApi.learn_step(sstep_id);
 //
 //        System.out.println("~~~~~~~~~~~~~ get_step_list begin ~~~~~~~~~~~~~");
-//        String ntutorial_id = "54042af26c696e1288010000";
+//        String ntutorial_id = "5423a3b66c696e66a17e0100";
 //        List<IStep> sstep_list = HttpApi.get_step_list(ntutorial_id);
 //
 //        for(IStep sstep: sstep_list){
@@ -245,6 +247,96 @@ public class FirstTest  {
 //                }
 //            }
 //        }
+//
+//        System.out.println("~~~~~~~~~~~~~ step question ~~~~~~~~~~~~~");
+//        step = sstep_list.get(0);
+//
+//        IQuestion question = HttpApi.create_question(step.get_id(), "我是问题1");
+//        IQuestion question1 = HttpApi.get_question(question.get_id());
+//        System.out.println(question1.get_content());
+//
+//        sstep_list = HttpApi.get_step_list(ntutorial_id);
+//        step = sstep_list.get(0);
+//        System.out.println(step.has_question());
+//
+//        HttpApi.edit_question(question.get_id(), "我是问题1改");
+//        IQuestion question2 = HttpApi.get_question(question.get_id());
+//        System.out.println(question2.get_content());
+//
+//        HttpApi.destroy_question(question.get_id());
+//        sstep_list = HttpApi.get_step_list(ntutorial_id);
+//        step = sstep_list.get(0);
+//        System.out.println(step.has_question());
+//
+//        System.out.println("~~~~~~~~~~~~~ step note ~~~~~~~~~~~~~");
+//        step = sstep_list.get(0);
+//
+//        INote note = HttpApi.create_note(step.get_id(), "我是笔记1");
+//        INote note1 = HttpApi.get_note(note.get_id());
+//        System.out.println(note1.get_content());
+//
+//        sstep_list = HttpApi.get_step_list(ntutorial_id);
+//        step = sstep_list.get(0);
+//        System.out.println(step.has_note());
+//
+//        HttpApi.edit_note(note.get_id(), "我是笔记1改");
+//        INote note2 = HttpApi.get_note(note.get_id());
+//        System.out.println(note2.get_content());
+//
+//        HttpApi.destroy_note(note.get_id());
+//        sstep_list = HttpApi.get_step_list(ntutorial_id);
+//        step = sstep_list.get(0);
+//        System.out.println(step.has_note());
+//
+//        System.out.println("~~~~~~~~~~~~~ step hard ~~~~~~~~~~~~~");
+//        System.out.println(step.is_hard());
+//
+//        HttpApi.set_step_hard(step.get_id());
+//
+//        sstep_list = HttpApi.get_step_list(ntutorial_id);
+//        step = sstep_list.get(0);
+//        System.out.println(step.is_hard());
+//
+//        HttpApi.unset_step_hard(step.get_id());
+//
+//        sstep_list = HttpApi.get_step_list(ntutorial_id);
+//        step = sstep_list.get(0);
+//        System.out.println(step.is_hard());
+//
+//
+//        System.out.println("~~~~~~~~~~~~~ my topic ~~~~~~~~~~~~~");
+//        topic_list = HttpApi.get_my_topic_list();
+//        System.out.println("topic_list count " + topic_list.size());
+//        ITopic topic = topic_list.get(0);
+//        System.out.println(topic.get_title());
+//
+//        System.out.println("~~~~~~~~~~~~~ my step ~~~~~~~~~~~~~");
+//        System.out.println(step.get_id());
+//        HttpApi.set_step_hard(step.get_id());
+//        step_list = HttpApi.get_my_step_list();
+//        System.out.println("step_list count " + step_list.size());
+//        step = step_list.get(0);
+//        System.out.println(step.get_id());
+//        System.out.println("tutorial_id " + step.get_tutorial().get_id());
+//
+//        System.out.println("~~~~~~~~~~~~~ my question ~~~~~~~~~~~~~");
+//        HttpApi.create_question(step.get_id(),"问题");
+//
+//        List<IQuestion> question_list = HttpApi.get_my_question_list();
+//        System.out.println("count " + question_list.size());
+//
+//        System.out.println(question_list.get(0).get_content());
+//        System.out.println("tutorial_id " + question_list.get(0).get_tutorial().get_id());
+//
+//        System.out.println("~~~~~~~~~~~~~ my note ~~~~~~~~~~~~~");
+//        HttpApi.create_note(step.get_id(), "笔记");
+//
+//        List<INote> note_list = HttpApi.get_my_note_list();
+//
+//        System.out.println("count " + note_list.size());
+//        System.out.println(note_list.get(0).get_content());
+//        System.out.println("tutorial_id " + note_list.get(0).get_tutorial().get_id());
+        ////
     }
 
 }

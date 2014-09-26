@@ -16,6 +16,22 @@ public interface IStep extends Serializable {
     public List<IContentBlock> get_blocks();
     public boolean is_learned();
     public void do_learn();
+    public boolean has_question();
+    public boolean has_note();
+    public boolean is_hard();
+    public String get_question_id();
+    public String get_note_id();
+    public void create_question(String content);
+    public IQuestion get_question();
+    public void edit_question(String content);
+    public void destroy_question();
+    public void create_note(String content);
+    public INote get_note();
+    public void edit_note(String content);
+    public void destroy_note();
+    public void set_hard();
+    public void unset_hard();
+    public ITutorial get_tutorial();
 
     enum ContinueType{
         STEP,SELECT,END

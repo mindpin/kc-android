@@ -10,11 +10,15 @@ import com.mindpin.kc_android.application.KCApplication;
 import com.mindpin.kc_android.controllers.AuthenticatorsController;
 import com.mindpin.kc_android.models.http.KnowledgeNet;
 import com.mindpin.kc_android.models.http.KnowledgePoint;
+import com.mindpin.kc_android.models.http.Note;
+import com.mindpin.kc_android.models.http.Question;
 import com.mindpin.kc_android.models.http.Step;
 import com.mindpin.kc_android.models.http.Topic;
 import com.mindpin.kc_android.models.http.Tutorial;
 import com.mindpin.kc_android.models.interfaces.IKnowledgeNet;
 import com.mindpin.kc_android.models.interfaces.IKnowledgePoint;
+import com.mindpin.kc_android.models.interfaces.INote;
+import com.mindpin.kc_android.models.interfaces.IQuestion;
 import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.models.interfaces.ITopic;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
@@ -85,6 +89,36 @@ public class HttpApi {
     public static String 获取主题(String topic_id){
         return SITE + String.format("/api/topics/%s.json",topic_id);
     }
+    public static final String 创建问题 = SITE + "/api/questions.json";
+    public static String 获取问题(String question_id){
+        return SITE + String.format("/api/questions/%s.json", question_id);
+    }
+    public static String 编辑问题(String question_id){
+        return SITE + String.format("/api/questions/%s.json", question_id);
+    }
+    public static String 删除问题(String question_id){
+        return SITE + String.format("/api/questions/%s.json", question_id);
+    }
+    public static final String 创建笔记 = SITE + "/api/notes.json";
+    public static String 获取笔记(String note_id){
+        return SITE + String.format("/api/notes/%s.json", note_id);
+    }
+    public static String 编辑笔记(String note_id){
+        return SITE + String.format("/api/notes/%s.json", note_id);
+    }
+    public static String 删除笔记(String note_id){
+        return SITE + String.format("/api/notes/%s.json", note_id);
+    }
+    public static String 标记重点(String step_id){
+        return SITE + String.format("/api/steps/%s.json", step_id);
+    }
+    public static String 取消标记重点(String step_id){
+        return SITE + String.format("/api/steps/%s.json", step_id);
+    }
+    public static final String 我的难点 = SITE + "/api/steps.json?is_hard=true";
+    public static final String 我的问题 = SITE + "/api/questions.json";
+    public static final String 我的笔记 = SITE + "/api/notes.json";
+    public static final String 获取我的主题列表 = SITE + "/api/topics.json?is_started=true";
     /**
      * http api url end
      */
@@ -376,6 +410,242 @@ public class HttpApi {
         }.request();
     }
 
+    // 创建问题
+    public static IQuestion create_question(final String step_id, final String content) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<IQuestion>(){
+
+            @Override
+            public IQuestion call(RequestResult rr) {
+                Gson gson = new GsonBuilder().create();
+                return gson.fromJson(rr.body, Question.class);
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.创建问题, "POST")
+                        .part("question[step_id]", step_id)
+                        .part("question[content]", content);
+            }
+        }.request();
+    }
+
+    // 查询问题
+    public static IQuestion get_question(final String question_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<IQuestion>(){
+
+            @Override
+            public IQuestion call(RequestResult rr) {
+                Gson gson = new GsonBuilder().create();
+                return gson.fromJson(rr.body, Question.class);
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.获取问题(question_id), "GET");
+            }
+        }.request();
+    }
+
+    // 修改问题
+    public static IQuestion edit_question(final String question_id, final String content) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<IQuestion>(){
+
+            @Override
+            public IQuestion call(RequestResult rr) {
+                Gson gson = new GsonBuilder().create();
+                return gson.fromJson(rr.body, Question.class);
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.编辑问题(question_id), "PUT")
+                        .part("question[content]", content);
+            }
+        }.request();
+    }
+    // 删除问题
+    public static boolean destroy_question(final String question_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<Boolean>(){
+
+            @Override
+            public Boolean call(RequestResult rr) {
+                return true;
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.删除问题(question_id), "DELETE");
+            }
+        }.request();
+    }
+
+    // 创建笔记
+    public static INote create_note(final String step_id, final String content) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<INote>(){
+
+            @Override
+            public INote call(RequestResult rr) {
+                Gson gson = new GsonBuilder().create();
+                return gson.fromJson(rr.body, Note.class);
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.创建笔记, "POST")
+                        .part("note[step_id]", step_id)
+                        .part("note[content]", content);
+            }
+        }.request();
+    }
+
+    // 查询笔记
+    public static INote get_note(final String note_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<INote>(){
+
+            @Override
+            public INote call(RequestResult rr) {
+                Gson gson = new GsonBuilder().create();
+                return gson.fromJson(rr.body, Note.class);
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.获取笔记(note_id), "GET");
+            }
+        }.request();
+    }
+
+    // 修改笔记
+    public static INote edit_note(final String note_id, final String content) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<INote>(){
+
+            @Override
+            public INote call(RequestResult rr) {
+                Gson gson = new GsonBuilder().create();
+                return gson.fromJson(rr.body, Note.class);
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.编辑笔记(note_id), "PUT")
+                        .part("note[content]", content);
+            }
+        }.request();
+    }
+    // 删除笔记
+    public static boolean destroy_note(final String note_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<Boolean>(){
+
+            @Override
+            public Boolean call(RequestResult rr) {
+                return true;
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.删除笔记(note_id), "DELETE");
+            }
+        }.request();
+    }
+    public static boolean set_step_hard(final String step_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<Boolean>(){
+
+            @Override
+            public Boolean call(RequestResult rr) {
+                return true;
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.标记重点(step_id), "PUT")
+                        .part("step[is_hard]", "true");
+            }
+        }.request();
+    }
+
+    public static boolean unset_step_hard(final String step_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<Boolean>(){
+
+            @Override
+            public Boolean call(RequestResult rr) {
+                return true;
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.取消标记重点(step_id), "PUT")
+                        .part("step[is_hard]", "false");
+            }
+        }.request();
+    }
+
+    public static List<IStep> get_my_step_list() throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<List<IStep>>(){
+
+            @Override
+            public List<IStep> call(RequestResult rr) {
+                Type collectionType = new TypeToken<List<Step>>(){}.getType();
+                Gson gson = new Gson();
+                return gson.fromJson(rr.body, collectionType);
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.我的难点, "GET");
+            }
+        }.request();
+    }
+
+    public static List<IQuestion> get_my_question_list() throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<List<IQuestion>>(){
+
+            @Override
+            public List<IQuestion> call(RequestResult rr) {
+                Type collectionType = new TypeToken<List<Question>>(){}.getType();
+                Gson gson = new Gson();
+                return gson.fromJson(rr.body, collectionType);
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.我的问题, "GET");
+            }
+        }.request();
+    }
+
+    public static List<INote> get_my_note_list() throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<List<INote>>(){
+
+            @Override
+            public List<INote> call(RequestResult rr) {
+                Type collectionType = new TypeToken<List<Note>>(){}.getType();
+                Gson gson = new Gson();
+                return gson.fromJson(rr.body, collectionType);
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.我的笔记, "GET");
+            }
+        }.request();
+    }
+
+    public static List<ITopic> get_my_topic_list() throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<List<ITopic>>(){
+
+            @Override
+            public List<ITopic> call(RequestResult rr) {
+                Type collectionType = new TypeToken<List<Topic>>(){}.getType();
+                Gson gson = new Gson();
+                return gson.fromJson(rr.body, collectionType);
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(HttpApi.获取我的主题列表, "GET");
+            }
+        }.request();
+    }
     /**
      * http api method end
      ***********************************************************************************/
