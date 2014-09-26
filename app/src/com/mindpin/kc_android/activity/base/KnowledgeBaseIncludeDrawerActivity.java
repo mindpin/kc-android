@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -52,6 +53,9 @@ public class KnowledgeBaseIncludeDrawerActivity extends KnowledgeBaseActivity{
             }
         });
 
+        // 默认选中所有课程
+        ((SelectableLinearLayout)findViewById(R.id.sll_all_classes)).select();
+
 
         // 点击所有课程
         SelectableLinearLayout btn_menu_topic = (SelectableLinearLayout) findViewById(R.id.sll_all_classes);
@@ -59,7 +63,11 @@ public class KnowledgeBaseIncludeDrawerActivity extends KnowledgeBaseActivity{
             @Override
             public void onClick(View view) {
                 change_fragment(new TopicListFragment());
-                drawer_layout.closeDrawer(left_drawer);
+//                drawer_layout.closeDrawer(left_drawer);
+
+                SelectableLinearLayout selected_drawer =
+                        (SelectableLinearLayout)findViewById(R.id.sll_all_classes);
+                highlight_current_menu(left_drawer, selected_drawer);
             }
         });
 
@@ -69,11 +77,14 @@ public class KnowledgeBaseIncludeDrawerActivity extends KnowledgeBaseActivity{
             @Override
             public void onClick(View view) {
                 change_fragment(new MyTopicListFragment());
-                drawer_layout.closeDrawer(left_drawer);
+
+                SelectableLinearLayout selected_drawer =
+                        (SelectableLinearLayout)findViewById(R.id.sll_my_classes);
+                highlight_current_menu(left_drawer, selected_drawer);
             }
         });
 //
-        ((SelectableLinearLayout)findViewById(R.id.sll_all_classes)).select();
+
         User user = User.current();
         if(user != null){
             ((TextView)findViewById(R.id.tv_user_name)).setText(user.name);
@@ -103,5 +114,28 @@ public class KnowledgeBaseIncludeDrawerActivity extends KnowledgeBaseActivity{
             }
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+
+    // 选中当前菜单，左侧蓝条
+    protected void highlight_current_menu(LinearLayout left_drawer,
+                                   SelectableLinearLayout selected_drawer) {
+
+        int childcount = left_drawer.getChildCount();
+        for (int i=0; i < childcount; i++){
+            View v = left_drawer.getChildAt(i);
+            if (v.getClass().equals(SelectableLinearLayout.class)) {
+                Log.i("View id: ", Integer.toString(v.getId()));
+                SelectableLinearLayout l =
+                        (SelectableLinearLayout)findViewById(v.getId());
+                if (l != null) {
+                    Log.i("取消选中状态 : ", Integer.toString(v.getId()));
+                    l.unselect();
+                }
+            }
+        }
+        selected_drawer.select();
+
+        drawer_layout.closeDrawer(left_drawer);
     }
 }

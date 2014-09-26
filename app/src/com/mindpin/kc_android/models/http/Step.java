@@ -291,6 +291,11 @@ public class Step implements IStep{
         return null;
     }
 
+    @Override
+    public String get_tutorial_id() {
+        return this.tutorial_id;
+    }
+
     private String _get_type(){
         return _continue.getType();
     }
