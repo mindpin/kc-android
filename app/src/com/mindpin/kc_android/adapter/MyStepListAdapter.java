@@ -12,13 +12,13 @@ import com.mindpin.kc_android.models.interfaces.IStep;
 
 
 
-public class StepListAdapter extends KnowledgeBaseAdapter<IStep> {
+public class MyStepListAdapter extends KnowledgeBaseAdapter<IStep> {
 
 
     final Activity activity;
 
 
-    public StepListAdapter(Activity activity) {
+    public MyStepListAdapter(Activity activity) {
         super(activity);
         this.activity = activity;
     }

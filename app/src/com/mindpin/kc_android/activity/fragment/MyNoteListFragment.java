@@ -12,8 +12,8 @@ import android.widget.ListView;
 import com.mindpin.android.loadingview.LoadingView;
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.fragment.base.KnowledgeBaseFragment;
-import com.mindpin.kc_android.adapter.MyStepListAdapter;
-import com.mindpin.kc_android.models.interfaces.IStep;
+import com.mindpin.kc_android.adapter.MyNoteListAdapter;
+import com.mindpin.kc_android.models.interfaces.INote;
 import com.mindpin.kc_android.network.DataProvider;
 import com.mindpin.kc_android.utils.KCAsyncTask;
 
@@ -21,17 +21,16 @@ import java.util.List;
 
 
 
-
-public class MyStepListFragment extends KnowledgeBaseFragment {
+public class MyNoteListFragment extends KnowledgeBaseFragment {
 
     private Activity activity;
     private View current_view;
 
-    private String step_id;
+    private String note_id;
     ListView listview;
     private LoadingView loading_view;
 
-    private List<IStep> step_list;
+    private List<INote> note_list;
 
 
 
@@ -44,7 +43,7 @@ public class MyStepListFragment extends KnowledgeBaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        current_view = inflater.inflate(R.layout.my_step_list_fragment, null);
+        current_view = inflater.inflate(R.layout.my_note_list_fragment, null);
         return current_view;
     }
 
@@ -54,7 +53,7 @@ public class MyStepListFragment extends KnowledgeBaseFragment {
         super.onStart();
         Bundle args = getArguments();
 
-        listview = (ListView) current_view.findViewById(R.id.my_step_list);
+        listview = (ListView) current_view.findViewById(R.id.my_note_list);
         loading_view = (LoadingView) current_view.findViewById(R.id.loading_view);
 
         get_datas();
@@ -71,7 +70,7 @@ public class MyStepListFragment extends KnowledgeBaseFragment {
 
             @Override
             public Void call() throws Exception {
-                step_list = DataProvider.get_my_step_list();
+                note_list = DataProvider.get_my_note_list();
                 return null;
             }
 
@@ -85,11 +84,11 @@ public class MyStepListFragment extends KnowledgeBaseFragment {
 
 
     private void build_view(){
-        listview = (ListView) current_view.findViewById(R.id.my_step_list);
+        listview = (ListView) current_view.findViewById(R.id.my_note_list);
 
-        MyStepListAdapter adapter =
-                new MyStepListAdapter(activity);
-        adapter.add_items(step_list);
+        MyNoteListAdapter adapter =
+                new MyNoteListAdapter(activity);
+        adapter.add_items(note_list);
         listview.setAdapter(adapter);
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -99,11 +98,11 @@ public class MyStepListFragment extends KnowledgeBaseFragment {
                 Log.i("listview 事件 ", "true");
 
 
-                IStep step =
-                        (IStep) parent.getItemAtPosition(position);
+                INote note =
+                        (INote) parent.getItemAtPosition(position);
 
-                step_id = step.get_id();
-                Log.i("step_id ID ", step_id);
+                note_id = note.get_id();
+                Log.i("note_id ID ", note_id);
 
             }
         });
