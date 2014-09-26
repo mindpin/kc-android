@@ -32,6 +32,7 @@ public interface IStep extends Serializable {
     public void set_hard();
     public void unset_hard();
     public ITutorial get_tutorial();
+    public String get_tutorial_id();
 
     enum ContinueType{
         STEP,SELECT,END
