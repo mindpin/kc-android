@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.mindpin.kc_android.R;
+import com.mindpin.kc_android.activity.fragment.MyStepListFragment;
 import com.mindpin.kc_android.activity.fragment.MyTopicListFragment;
 import com.mindpin.kc_android.activity.fragment.TopicListFragment;
 import com.mindpin.kc_android.models.User;
@@ -25,6 +26,15 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class KnowledgeBaseIncludeDrawerActivity extends KnowledgeBaseActivity{
     private DrawerLayout drawer_layout;
     private LinearLayout left_drawer;
+
+    // 所有课程
+    SelectableLinearLayout btn_menu_topic;
+
+    // 我的课程
+    SelectableLinearLayout btn_menu_mytopic;
+
+    // 我的难点
+    SelectableLinearLayout btn_menu_mystep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,37 +63,43 @@ public class KnowledgeBaseIncludeDrawerActivity extends KnowledgeBaseActivity{
             }
         });
 
-        // 默认选中所有课程
-        ((SelectableLinearLayout)findViewById(R.id.sll_all_classes)).select();
-
-
         // 点击所有课程
-        SelectableLinearLayout btn_menu_topic = (SelectableLinearLayout) findViewById(R.id.sll_all_classes);
+        btn_menu_topic = (SelectableLinearLayout) findViewById(R.id.sll_all_classes);
+
+        // 默认选中所有课程
+        btn_menu_topic.select();
         btn_menu_topic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 change_fragment(new TopicListFragment());
-//                drawer_layout.closeDrawer(left_drawer);
 
-                SelectableLinearLayout selected_drawer =
-                        (SelectableLinearLayout)findViewById(R.id.sll_all_classes);
-                highlight_current_menu(left_drawer, selected_drawer);
+                highlight_current_menu(left_drawer, btn_menu_topic);
             }
         });
 
         // 点击我的课程
-        SelectableLinearLayout btn_menu_mytopic = (SelectableLinearLayout) findViewById(R.id.sll_my_classes);
+        btn_menu_mytopic = (SelectableLinearLayout) findViewById(R.id.sll_my_classes);
         btn_menu_mytopic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 change_fragment(new MyTopicListFragment());
 
-                SelectableLinearLayout selected_drawer =
-                        (SelectableLinearLayout)findViewById(R.id.sll_my_classes);
-                highlight_current_menu(left_drawer, selected_drawer);
+                highlight_current_menu(left_drawer, btn_menu_mytopic);
             }
         });
-//
+
+
+        // 点击我的难点
+        btn_menu_mystep = (SelectableLinearLayout) findViewById(R.id.sll_my_difficulties);
+        btn_menu_mystep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                change_fragment(new MyStepListFragment());
+
+                highlight_current_menu(left_drawer, btn_menu_mystep);
+            }
+        });
+
 
         User user = User.current();
         if(user != null){
