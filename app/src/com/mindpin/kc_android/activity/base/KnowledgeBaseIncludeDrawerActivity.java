@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.mindpin.kc_android.R;
+import com.mindpin.kc_android.activity.fragment.MyTopicListFragment;
 import com.mindpin.kc_android.activity.fragment.TopicListFragment;
 import com.mindpin.kc_android.models.User;
 import com.mindpin.kc_android.widget.SelectableLinearLayout;
@@ -52,12 +53,22 @@ public class KnowledgeBaseIncludeDrawerActivity extends KnowledgeBaseActivity{
         });
 
 
-        // 打开测试 topic fragment 页面
+        // 点击所有课程
         SelectableLinearLayout btn_menu_topic = (SelectableLinearLayout) findViewById(R.id.sll_all_classes);
         btn_menu_topic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 change_fragment(new TopicListFragment());
+                drawer_layout.closeDrawer(left_drawer);
+            }
+        });
+
+        // 点击我的课程
+        SelectableLinearLayout btn_menu_mytopic = (SelectableLinearLayout) findViewById(R.id.sll_my_classes);
+        btn_menu_mytopic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                change_fragment(new MyTopicListFragment());
                 drawer_layout.closeDrawer(left_drawer);
             }
         });
