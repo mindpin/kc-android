@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.mindpin.kc_android.R;
+import com.mindpin.kc_android.activity.fragment.MyQuestionListFragment;
 import com.mindpin.kc_android.activity.fragment.MyStepListFragment;
 import com.mindpin.kc_android.activity.fragment.MyTopicListFragment;
 import com.mindpin.kc_android.activity.fragment.TopicListFragment;
@@ -35,6 +36,12 @@ public class KnowledgeBaseIncludeDrawerActivity extends KnowledgeBaseActivity{
 
     // 我的难点
     SelectableLinearLayout btn_menu_mystep;
+
+    // 我的问题
+    SelectableLinearLayout btn_menu_myquestion;
+
+    // 我的笔记
+    SelectableLinearLayout btn_menu_mynote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +95,6 @@ public class KnowledgeBaseIncludeDrawerActivity extends KnowledgeBaseActivity{
             }
         });
 
-
         // 点击我的难点
         btn_menu_mystep = (SelectableLinearLayout) findViewById(R.id.sll_my_difficulties);
         btn_menu_mystep.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +103,18 @@ public class KnowledgeBaseIncludeDrawerActivity extends KnowledgeBaseActivity{
                 change_fragment(new MyStepListFragment());
 
                 highlight_current_menu(left_drawer, btn_menu_mystep);
+            }
+        });
+
+
+        // 点击我的问题
+        btn_menu_myquestion = (SelectableLinearLayout) findViewById(R.id.sll_my_questions);
+        btn_menu_myquestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                change_fragment(new MyQuestionListFragment());
+
+                highlight_current_menu(left_drawer, btn_menu_myquestion);
             }
         });
 
