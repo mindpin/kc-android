@@ -1,7 +1,6 @@
 package com.mindpin.kc_android.activity.fragment;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,7 +13,6 @@ import com.mindpin.android.loadingview.LoadingView;
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.fragment.base.KnowledgeBaseFragment;
 import com.mindpin.kc_android.adapter.MyQuestionListAdapter;
-import com.mindpin.kc_android.adapter.StepListAdapter;
 import com.mindpin.kc_android.models.interfaces.IQuestion;
 import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.network.DataProvider;
@@ -55,7 +53,7 @@ public class MyQuestionListFragment extends KnowledgeBaseFragment {
         super.onStart();
         Bundle args = getArguments();
 
-        listview = (ListView) current_view.findViewById(R.id.my_step_list);
+        listview = (ListView) current_view.findViewById(R.id.my_question_list);
         loading_view = (LoadingView) current_view.findViewById(R.id.loading_view);
 
         get_datas();

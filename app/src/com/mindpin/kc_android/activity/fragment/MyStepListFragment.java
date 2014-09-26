@@ -1,26 +1,19 @@
 package com.mindpin.kc_android.activity.fragment;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 
 import com.mindpin.android.loadingview.LoadingView;
 import com.mindpin.kc_android.R;
-import com.mindpin.kc_android.activity.TopicTutorialListActivity;
 import com.mindpin.kc_android.activity.fragment.base.KnowledgeBaseFragment;
-import com.mindpin.kc_android.adapter.StepListAdapter;
-import com.mindpin.kc_android.adapter.TopicListAdapter;
+import com.mindpin.kc_android.adapter.MyStepListAdapter;
 import com.mindpin.kc_android.models.interfaces.IStep;
-import com.mindpin.kc_android.models.interfaces.ITopic;
 import com.mindpin.kc_android.network.DataProvider;
 import com.mindpin.kc_android.utils.KCAsyncTask;
 
@@ -94,8 +87,8 @@ public class MyStepListFragment extends KnowledgeBaseFragment {
     private void build_view(){
         listview = (ListView) current_view.findViewById(R.id.my_step_list);
 
-        StepListAdapter adapter =
-                new StepListAdapter(activity);
+        MyStepListAdapter adapter =
+                new MyStepListAdapter(activity);
         adapter.add_items(step_list);
         listview.setAdapter(adapter);
 
