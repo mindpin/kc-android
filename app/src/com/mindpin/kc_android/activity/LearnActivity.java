@@ -15,6 +15,7 @@ import com.github.destinyd.kcvideoview.widget.KCVideoView;
 import com.mindpin.android.loadingview.LoadingView;
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.base.KnowledgeBaseActivity;
+import com.mindpin.kc_android.models.http.Step;
 import com.mindpin.kc_android.models.http.Tutorial;
 import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.network.DataProvider;
@@ -243,14 +244,21 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
+        Intent intent;
         switch (v.getId()){
             case R.id.fatv_back:
                 finish();
                 break;
             //todo click step action
             case R.id.fabtn_note:
+                intent = new Intent(this, NotesActivity.class);
+                intent.putExtra("step", (Step)v.getTag());
+                startActivity(intent);
                 break;
             case R.id.fabtn_question:
+                intent = new Intent(this, QuestionActivity.class);
+                intent.putExtra("step", (Step)v.getTag());
+                startActivity(intent);
                 break;
             case R.id.fabtn_hard_point:
                 break;

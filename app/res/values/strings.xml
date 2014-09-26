@@ -21,6 +21,11 @@
     <string name="my_difficulties">我的难点</string>
     <string name="my_questions">我的问题</string>
     <string name="my_notes">我的笔记</string>
+    <string name="save">保存</string>
+    <string name="cancel">取消</string>
+    <string name="notes_edit_text_hint">填写要记录的内容</string>
+    <string name="create_notes">创建笔记</string>
+
     <string name="ic_home">&#xf015;</string>
     <string name="ic_book">&#xf02d;</string>
     <string name="ic_info">&#xf05a;</string>
@@ -37,4 +42,9 @@
     <string name="fontawesome_smile">&#xf118;</string>
     <string name="fontawesome_note_square">&#xf14b;</string>
     <string name="fontawesome_hard_point">&#xf02e;</string>
+    <string name="edit_notes">编辑笔记</string>
+    <string name="delete_notes">删除笔记</string>
+    <string name="create_question">创建问题</string>
+    <string name="delete_question">删除问题</string>
+    <string name="question_edit_text_hint">在这里提出问题</string>
 </resources>

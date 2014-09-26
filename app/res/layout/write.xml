@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="50dp"
+                    android:background="@drawable/white_with_eee_bottom_border"
+                    android:gravity="center_vertical"
+                    android:id="@+id/actionbar"
+            >
+        <com.mindpin.kc_android.widget.FontAwesomeTextView
+                android:layout_width="20dp" android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/fatv_write_actionbar_icon"
+                android:layout_alignParentLeft="true"
+                android:textSize="16dp"
+                android:gravity="center"
+                />
+        <Button android:layout_width="wrap_content" android:layout_height="30dp"
+                android:id="@+id/btn_write_actionbar"
+                android:layout_alignParentRight="true"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:background="#EB6855"
+                android:textColor="@android:color/white"
+                android:textSize="14dp"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                />
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="match_parent"
+                android:id="@+id/tv_write_actionbar_title"
+                android:layout_toRightOf="@id/fatv_write_actionbar_icon"
+                android:layout_toLeftOf="@id/btn_write_actionbar"
+                android:textSize="16dp"
+                android:gravity="center_vertical"
+                />
+    </RelativeLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="50dp"
+                    android:background="@drawable/white_with_eee_top_border"
+                    android:weightSum="2"
+                    android:id="@+id/ll_bottom"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center_vertical"
+            >
+        <Button android:layout_width="wrap_content" android:layout_height="40dp"
+                android:background="#4CC85E"
+                android:textColor="#fff"
+                android:layout_weight="1"
+                android:text="@string/save"
+                android:id="@+id/btn_save"
+                android:layout_margin="5dp"
+                />
+
+        <Button android:layout_width="wrap_content" android:layout_height="40dp"
+                android:background="#DDDDDD"
+                android:textColor="#666"
+                android:layout_weight="1"
+                android:text="@string/cancel"
+                android:id="@+id/btn_cancel"
+                android:layout_margin="5dp"
+                />
+    </LinearLayout>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/et_write"
+            android:layout_below="@id/actionbar"
+            android:layout_above="@id/ll_bottom"
+            android:gravity="top|left"
+            />
+
+</RelativeLayout>
