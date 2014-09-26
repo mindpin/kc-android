@@ -1,7 +1,6 @@
 package com.mindpin.kc_android.activity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +25,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -57,6 +57,9 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     private Animation mHiddenAction;
     private Animation mShowAction;
     private Button last_btn_next_step;
+    private int learned_step_count;
+    private int index = 1;
+    private List<IStep> steps = new ArrayList<IStep>();
 
 
     @Override
@@ -107,8 +110,9 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
         mShowAction = AnimationUtils.loadAnimation(this, R.anim.push_up_in);
     }
 
-    private void step_to_views() {
-        add_step(step_now);
+    private void steps_to_views() {
+        for(int i=0; i < learned_step_count; i++)
+            add_step(steps.get(i));
     }
 
     private void add_step(final IStep istep) {
@@ -166,7 +170,6 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
                 ll_step.startAnimation(mShowAction);
             }
             ll_steps.requestLayout();
-
         }
     }
 
@@ -176,6 +179,7 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
             @Override
             public IStep call() throws Exception {
                 IStep step = DataProvider.get_step(id_next_step);
+                step.do_learn();
                 return step;
             }
 
@@ -208,12 +212,21 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
             @Override
             public Void call() throws Exception {
                 step_now = tutorial.get_first_step();
+                step_now.do_learn();
+                steps.add(step_now);
+                for(int i = index; i<learned_step_count; i++) {
+                    learned_step_count = tutorial.get_learned_step_count();
+                    if(!step_now.is_end()) {
+                        step_now = DataProvider.get_step(step_now.get_next_id());
+                        steps.add(step_now);
+                    }
+                }
                 return null;
             }
 
             @Override
             protected void onSuccess(Void aVoid) throws Exception {
-                step_to_views();
+                steps_to_views();
                 loading_view.hide();
             }
         }.execute();
