@@ -63,7 +63,6 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     private Animation mShowAction;
     private Button last_btn_next_step;
     private int learned_step_count;
-    private int index = 1;
     private List<IStep> steps = new ArrayList<IStep>();
 
 
@@ -204,7 +203,6 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     }
 
     private void refresh_step_actions(IStep istep, LinearLayout actions) {
-        System.out.println("refresh_step_actions");
         if (istep.has_note()){
             ((FontAwesomeButton) actions.findViewById(R.id.fabtn_note))
                     .setTextColor(getResources().getColor(R.color.learn_step_action_actioned_color));
@@ -271,7 +269,7 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
                 step_now.do_learn();
                 steps.add(step_now);
                 learned_step_count = tutorial.get_learned_step_count();
-                for(int i = index; i<learned_step_count; i++) {
+                for(int i = 0; i<learned_step_count; i++) {
                     if(!step_now.is_end()) {
                         step_now = DataProvider.get_step(step_now.get_next_id());
                         steps.add(step_now);
@@ -310,16 +308,11 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
                 startActivityForResult(intent, CODE_STEP_ACTIONS);
                 break;
             case R.id.fabtn_hard_point:
-                System.out.println("hard point");
                 Step s = (Step) v.getTag();
                 if(s.is_hard()) {
-                    System.out.println("unset_hard");
                     s.unset_hard();
-                    System.out.println(s.is_hard() ? "is hard" : "not hard");
                 } else {
-                    System.out.println("set_hard");
                     s.set_hard();
-                    System.out.println(s.is_hard() ? "is hard" : "not hard");
                 }
                 v.setTag(s);
                 refresh_step_actions(s, (LinearLayout) v.getParent());
