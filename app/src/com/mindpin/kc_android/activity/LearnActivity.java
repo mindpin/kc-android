@@ -28,6 +28,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -61,6 +62,9 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     private Animation mHiddenAction;
     private Animation mShowAction;
     private Button last_btn_next_step;
+    private int learned_step_count;
+    private int index = 1;
+    private List<IStep> steps = new ArrayList<IStep>();
 
 
     @Override
@@ -98,7 +102,7 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        ((ViewGroup)last_btn_next_step.getParent()).removeView(last_btn_next_step);
+                        ((ViewGroup) last_btn_next_step.getParent()).removeView(last_btn_next_step);
 //                        last_btn_next_step.setVisibility(View.GONE);
                     }
 
@@ -111,8 +115,21 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
         mShowAction = AnimationUtils.loadAnimation(this, R.anim.push_up_in);
     }
 
-    private void step_to_views() {
-        add_step(step_now);
+    private void steps_to_views() {
+        for(int i=0; i < learned_step_count; i++)
+            add_step(steps.get(i));
+    }
+
+    private void scroll_to_last_step() {
+        // todo it does work. cas it has not height now
+        if(learned_step_count > 1) {
+            int height = 0;
+            for (int j = 0; j < ll_steps.getChildCount() - 1; j++) {
+                height += ll_steps.getChildAt(j).getHeight();
+            }
+            System.out.println(height);
+            sv_steps.smoothScrollTo(0, height);
+        }
     }
 
     private void add_step(final IStep istep) {
@@ -152,7 +169,6 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
 
             LinearLayout actions = (LinearLayout) getLayoutInflater().inflate(R.layout.learn_step_list_item_actions, null);
             ll_step_blocks.addView(actions, margin_bottom_10dp);
-            //todo for action actioned
             actions.findViewById(R.id.fabtn_note).setTag(istep);
             actions.findViewById(R.id.fabtn_question).setTag(istep);
             actions.findViewById(R.id.fabtn_hard_point).setTag(istep);
@@ -162,28 +178,28 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
             actions.findViewById(R.id.fabtn_question).setOnClickListener(this);
             actions.findViewById(R.id.fabtn_hard_point).setOnClickListener(this);
 
-            if (istep.get_continue_type() == IStep.ContinueType.STEP){
-                LinearLayout linearLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.learn_step_list_item_next, null);
-                btn_next_step = (Button) linearLayout.findViewById(R.id.btn_next_step);
-                btn_next_step.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        btn_next_step.setEnabled(false);
-                        get_next_step(istep.get_next_id());
-                    }
-                });
-                ll_step_blocks.addView(linearLayout);
+            if (!istep.is_end()){
+                if(ll_steps.getChildCount() == learned_step_count - 1) {
+                    LinearLayout linearLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.learn_step_list_item_next, null);
+                    btn_next_step = (Button) linearLayout.findViewById(R.id.btn_next_step);
+                    btn_next_step.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            btn_next_step.setEnabled(false);
+                            get_next_step(istep.get_next_id());
+                        }
+                    });
+                    ll_step_blocks.addView(linearLayout);
+                }
                 ll_steps.addView(ll_step, margin_bottom_10dp);
-            } else if (istep.get_continue_type() == IStep.ContinueType.END) {
+            } else {
                 LinearLayout linearLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.learn_step_list_item_end, null);
                 ll_step_blocks.addView(linearLayout);
                 ll_steps.addView(ll_step);
             }
-            if(ll_steps.getChildCount() > 1) { // cas already add
+            if(ll_steps.getChildCount() > learned_step_count) { // cas already add
                 ll_step.startAnimation(mShowAction);
             }
-            ll_steps.requestLayout();
-
         }
     }
 
@@ -218,6 +234,8 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
             @Override
             public IStep call() throws Exception {
                 IStep step = DataProvider.get_step(id_next_step);
+                step.do_learn();
+                steps.add(step);
                 return step;
             }
 
@@ -250,13 +268,23 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
             @Override
             public Void call() throws Exception {
                 step_now = tutorial.get_first_step();
+                step_now.do_learn();
+                steps.add(step_now);
+                learned_step_count = tutorial.get_learned_step_count();
+                for(int i = index; i<learned_step_count; i++) {
+                    if(!step_now.is_end()) {
+                        step_now = DataProvider.get_step(step_now.get_next_id());
+                        steps.add(step_now);
+                    }
+                }
                 return null;
             }
 
             @Override
             protected void onSuccess(Void aVoid) throws Exception {
-                step_to_views();
+                steps_to_views();
                 loading_view.hide();
+                scroll_to_last_step();
             }
         }.execute();
     }
