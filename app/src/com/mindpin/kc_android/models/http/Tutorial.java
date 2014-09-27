@@ -9,6 +9,7 @@ import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
 import com.mindpin.kc_android.network.HttpApi;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -106,18 +107,34 @@ public class Tutorial implements ITutorial{
     }
 
     @Override
-    @Deprecated
     public List<IStep> get_step_list() {
         if(this.step_list != null){
             return this.step_list;
         }
         try {
-            this.step_list = HttpApi.get_step_list(get_id());
+            this.step_list = _sort_step_list(HttpApi.get_step_list(get_id()));
         } catch (Exception e) {
             e.printStackTrace();
             Log.d("debug", "获取教程的步骤列表失败");
         }
         return this.step_list;
+    }
+
+    @Override
+    public List<IStep> get_learned_step_list() {
+        int first_unlearned_step_index = 0;
+        List<IStep> list = get_step_list();
+        for(IStep step : list){
+            if(!step.is_learned()){
+                first_unlearned_step_index = list.indexOf(step);
+                break;
+            }
+        }
+        if(first_unlearned_step_index == 0){
+            return list.subList(0,1);
+        }else{
+            return list.subList(0, first_unlearned_step_index);
+        }
     }
 
     @Override
@@ -153,5 +170,30 @@ public class Tutorial implements ITutorial{
     @Override
     public String get_topic_id() {
         return this.topic_id;
+    }
+
+    private List<IStep> _sort_step_list(List<IStep> input_step_list) {
+        List<IStep> sorted_step_list = new ArrayList<IStep>();
+        IStep cursor_step = input_step_list.get(0);
+
+        sorted_step_list.add(cursor_step);
+
+        while (!cursor_step.is_end()){
+            boolean find_next = false;
+            for(IStep step : input_step_list){
+                if(step.get_id() != null && step.get_id().equals("") && step.get_id().equals(cursor_step.get_next_id())){
+                    cursor_step = step;
+                    find_next = true;
+                    break;
+                }
+            }
+            if(find_next){
+                sorted_step_list.add(cursor_step);
+            }else{
+                break;
+            }
+        }
+
+        return sorted_step_list;
     }
 }

@@ -20,8 +20,8 @@ public interface ITutorial extends Serializable {
     public List<ITutorial> get_children();
     public List<ITutorial> get_parents();
     
-    @Deprecated
     public List<IStep> get_step_list();
+    public List<IStep> get_learned_step_list();
 
     public IStep get_first_step();
 
