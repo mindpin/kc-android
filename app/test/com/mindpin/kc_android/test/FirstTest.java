@@ -320,7 +320,8 @@ public class FirstTest  {
 //        System.out.println("tutorial_id " + step.get_tutorial().get_id());
 //
 //        System.out.println("~~~~~~~~~~~~~ my question ~~~~~~~~~~~~~");
-//        HttpApi.create_question(step.get_id(),"问题");
+//        question = HttpApi.create_question(step.get_id(),"问题");
+//        question2 = HttpApi.create_question(sstep_list.get(1).get_id(),"问题2");
 //
 //        List<IQuestion> question_list = HttpApi.get_my_question_list();
 //        System.out.println("count " + question_list.size());
@@ -328,14 +329,20 @@ public class FirstTest  {
 //        System.out.println(question_list.get(0).get_content());
 //        System.out.println("tutorial_id " + question_list.get(0).get_tutorial().get_id());
 //
+//        HttpApi.destroy_question(question.get_id());
+//        HttpApi.destroy_question(question2.get_id());
 //        System.out.println("~~~~~~~~~~~~~ my note ~~~~~~~~~~~~~");
-//        HttpApi.create_note(step.get_id(), "笔记");
+//        note = HttpApi.create_note(step.get_id(), "笔记");
+//        note2 = HttpApi.create_note(sstep_list.get(1).get_id(), "笔记2");
 //
 //        List<INote> note_list = HttpApi.get_my_note_list();
 //
 //        System.out.println("count " + note_list.size());
 //        System.out.println(note_list.get(0).get_content());
 //        System.out.println("tutorial_id " + note_list.get(0).get_tutorial().get_id());
+//
+//        HttpApi.destroy_note(note.get_id());
+//        HttpApi.destroy_note(note2.get_id());
         ////
     }
 
