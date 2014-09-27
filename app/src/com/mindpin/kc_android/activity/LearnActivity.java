@@ -101,8 +101,8 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        ((ViewGroup) last_btn_next_step.getParent()).removeView(last_btn_next_step);
-//                        last_btn_next_step.setVisibility(View.GONE);
+                        ((ViewGroup) last_btn_next_step.getParent().getParent())
+                                .removeView((View) last_btn_next_step.getParent());
                     }
 
                     @Override
@@ -167,7 +167,7 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
             }
 
             LinearLayout actions = (LinearLayout) getLayoutInflater().inflate(R.layout.learn_step_list_item_actions, null);
-            ll_step_blocks.addView(actions, margin_bottom_10dp);
+            ll_step_blocks.addView(actions);
             actions.findViewById(R.id.fabtn_note).setTag(istep);
             actions.findViewById(R.id.fabtn_question).setTag(istep);
             actions.findViewById(R.id.fabtn_hard_point).setTag(istep);
@@ -190,7 +190,7 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
                     });
                     ll_step_blocks.addView(linearLayout);
                 }
-                ll_steps.addView(ll_step, margin_bottom_10dp);
+                ll_steps.addView(ll_step, margin_bottom_10dp);// every step bottom margin unless end
             } else {
                 LinearLayout linearLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.learn_step_list_item_end, null);
                 ll_step_blocks.addView(linearLayout);
