@@ -188,12 +188,21 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     }
 
     private void refresh_step_actions(IStep istep, LinearLayout actions) {
-        if(istep.has_note())
-            ((FontAwesomeButton)actions.findViewById(R.id.fabtn_note))
+        System.out.println("refresh_step_actions");
+        if (istep.has_note()){
+            ((FontAwesomeButton) actions.findViewById(R.id.fabtn_note))
                     .setTextColor(getResources().getColor(R.color.learn_step_action_actioned_color));
-        if(istep.has_question())
+        } else {
+            ((FontAwesomeButton) actions.findViewById(R.id.fabtn_note))
+                    .setTextColor(getResources().getColor(R.color.learn_step_action_no_actioned_color));
+        }
+        if(istep.has_question()){
             ((FontAwesomeButton)actions.findViewById(R.id.fabtn_question))
                     .setTextColor(getResources().getColor(R.color.learn_step_action_actioned_color));
+        } else {
+            ((FontAwesomeButton) actions.findViewById(R.id.fabtn_question))
+                    .setTextColor(getResources().getColor(R.color.learn_step_action_no_actioned_color));
+        }
         if(istep.is_hard()) {
             ((FontAwesomeButton) actions.findViewById(R.id.fabtn_hard_point))
                     .setTextColor(getResources().getColor(R.color.learn_step_action_is_hard_point_color));
@@ -312,7 +321,6 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
         return super.onKeyDown(keyCode, event);
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IStep istep = (IStep) data.getSerializableExtra("step");
@@ -320,12 +328,19 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
         switch (requestCode){
             case CODE_STEP_ACTIONS:
                 if(changed) {
-                    view_action.setTag(istep);
-                    refresh_step_actions(istep, (LinearLayout) view_action.getParent());
+                    LinearLayout parent = (LinearLayout) view_action.getParent();
+                    reset_children_tag(istep, parent);
+                    refresh_step_actions(istep, parent);
                 }
                 break;
             default:
                 super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    private void reset_children_tag(IStep istep, LinearLayout parent) {
+        for(int i=0; i < parent.getChildCount(); i++) {
+            parent.getChildAt(i).setTag(istep);
         }
     }
 }

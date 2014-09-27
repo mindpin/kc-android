@@ -16,6 +16,7 @@ import roboguice.inject.InjectView;
  * Created by fushang318 on 2014/8/14.
  */
 public abstract class KnowledgeBaseWriteActivity extends KnowledgeBaseActivity{
+    private static final int CODE_STEP_ACTIONS = 0;
     @InjectExtra("step")
     protected Step step;
     @InjectView(R.id.et_write)
@@ -31,11 +32,15 @@ public abstract class KnowledgeBaseWriteActivity extends KnowledgeBaseActivity{
     @InjectView(R.id.btn_cancel)
     Button btn_cancel;
 
+    protected Intent mIntent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.write);
         build_view();
+        mIntent = new Intent();
+        mIntent.putExtra("step", step);
     }
 
     private void build_view() {
@@ -64,10 +69,16 @@ public abstract class KnowledgeBaseWriteActivity extends KnowledgeBaseActivity{
 
     }
 
-    protected void finishWithResult() {
-        Intent mIntent = new Intent();
+    protected void finish_with_result() {
         mIntent.putExtra("step", step);
         mIntent.putExtra("changed", true);
+        finish();
+    }
+
+    @Override
+    public void finish() {
+        this.setResult(CODE_STEP_ACTIONS, mIntent);
+        super.finish();
     }
 
     protected abstract String get_default_write_text();

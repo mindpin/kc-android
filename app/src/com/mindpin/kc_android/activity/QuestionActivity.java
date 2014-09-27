@@ -2,7 +2,6 @@ package com.mindpin.kc_android.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import com.mindpin.kc_android.R;
@@ -86,19 +85,18 @@ public class QuestionActivity extends KnowledgeBaseWriteActivity implements View
                             }).create().show();
                     return;
                 }
-
                 if (step.has_question()) {
                     step.edit_question(et_write.getText().toString());
                 } else {
                     step.create_question(et_write.getText().toString());
                 }
-                finishWithResult();
+                finish_with_result();
                 break;
             case R.id.btn_delete:
                 if (step.has_question()) {
                     step.destroy_question();
                 }
-                finishWithResult();
+                finish_with_result();
                 System.out.println("btn_write_actionbar");
                 break;
         }
