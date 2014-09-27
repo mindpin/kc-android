@@ -34,6 +34,8 @@ import java.util.List;
  * Created by dd on 14-9-2.
  */
 public class LearnActivity extends KnowledgeBaseActivity implements View.OnClickListener {
+    private static final int CODE_STEP_ACTIONS = 0;
+
     @InjectExtra("tutorial")
     Tutorial tutorial;
 
@@ -250,6 +252,7 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
         }.execute();
     }
 
+    View view_action;
     @Override
     public void onClick(View v) {
         Intent intent;
@@ -258,14 +261,16 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
                 finish();
                 break;
             case R.id.fabtn_note:
+                view_action = v;
                 intent = new Intent(this, NotesActivity.class);
                 intent.putExtra("step", (Step)v.getTag());
-                startActivity(intent);
+                startActivityForResult(intent, CODE_STEP_ACTIONS);
                 break;
             case R.id.fabtn_question:
+                view_action = v;
                 intent = new Intent(this, QuestionActivity.class);
                 intent.putExtra("step", (Step)v.getTag());
-                startActivity(intent);
+                startActivityForResult(intent, CODE_STEP_ACTIONS);
                 break;
             case R.id.fabtn_hard_point:
                 System.out.println("hard point");
@@ -305,5 +310,22 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
             }
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IStep istep = (IStep) data.getSerializableExtra("step");
+        boolean changed = data.getBooleanExtra("changed", false);
+        switch (requestCode){
+            case CODE_STEP_ACTIONS:
+                if(changed) {
+                    view_action.setTag(istep);
+                    refresh_step_actions(istep, (LinearLayout) view_action.getParent());
+                }
+                break;
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.mindpin.kc_android.activity.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,19 +18,18 @@ import roboguice.inject.InjectView;
 public abstract class KnowledgeBaseWriteActivity extends KnowledgeBaseActivity{
     @InjectExtra("step")
     protected Step step;
+    @InjectView(R.id.et_write)
+    protected EditText et_write;
     @InjectView(R.id.fatv_write_actionbar_icon)
     FontAwesomeTextView fatv_write_actionbar_icon;
     @InjectView(R.id.tv_write_actionbar_title)
     TextView tv_write_actionbar_title;
     @InjectView(R.id.btn_delete)
     Button btn_write_actionbar;
-
     @InjectView(R.id.btn_save)
     Button btn_save;
     @InjectView(R.id.btn_cancel)
     Button btn_cancel;
-    @InjectView(R.id.et_write)
-    protected EditText et_write;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +62,12 @@ public abstract class KnowledgeBaseWriteActivity extends KnowledgeBaseActivity{
         if(!is_actionbar_button_show())
             btn_write_actionbar.setVisibility(View.INVISIBLE);
 
+    }
+
+    protected void finishWithResult() {
+        Intent mIntent = new Intent();
+        mIntent.putExtra("step", step);
+        mIntent.putExtra("changed", true);
     }
 
     protected abstract String get_default_write_text();

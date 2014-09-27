@@ -90,13 +90,13 @@ public class NotesActivity extends KnowledgeBaseWriteActivity implements View.On
                 } else {
                     step.create_note(et_write.getText().toString());
                 }
-                finish();
+                finishWithResult();
                 break;
             case R.id.btn_delete:
                 if (step.has_note()) {
                     step.destroy_note();
                 }
-                finish();
+                finishWithResult();
                 System.out.println("btn_write_actionbar");
                 break;
         }
