@@ -269,6 +269,8 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
                 step_now.do_learn();
                 steps.add(step_now);
                 learned_step_count = tutorial.get_learned_step_count();
+                if(learned_step_count == 0)
+                    learned_step_count = 1;
                 for(int i = 0; i<learned_step_count; i++) {
                     if(!step_now.is_end()) {
                         step_now = DataProvider.get_step(step_now.get_next_id());
