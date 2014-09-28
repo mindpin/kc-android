@@ -1,6 +1,7 @@
 package com.mindpin.kc_android.activity.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.ListView;
 
 import com.mindpin.android.loadingview.LoadingView;
 import com.mindpin.kc_android.R;
+import com.mindpin.kc_android.activity.LearnActivity;
 import com.mindpin.kc_android.activity.fragment.base.KnowledgeBaseFragment;
 import com.mindpin.kc_android.adapter.MyStepListAdapter;
 import com.mindpin.kc_android.models.interfaces.IStep;
@@ -104,6 +106,11 @@ public class MyStepListFragment extends KnowledgeBaseFragment {
 
                 step_id = step.get_id();
                 Log.i("step_id ID ", step_id);
+
+                Intent intent = new Intent(activity, LearnActivity.class);
+                intent.putExtra("step_id", step.get_id());
+                intent.putExtra("tutorial_id", step.get_tutorial_id());
+                activity.startActivity(intent);
 
             }
         });

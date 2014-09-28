@@ -19,6 +19,7 @@ import com.mindpin.kc_android.activity.base.KnowledgeBaseActivity;
 import com.mindpin.kc_android.models.http.Step;
 import com.mindpin.kc_android.models.http.Tutorial;
 import com.mindpin.kc_android.models.interfaces.IStep;
+import com.mindpin.kc_android.models.interfaces.ITutorial;
 import com.mindpin.kc_android.network.DataProvider;
 import com.mindpin.kc_android.utils.BaseUtils;
 import com.mindpin.kc_android.utils.KCAsyncTask;
@@ -38,8 +39,8 @@ import java.util.List;
 public class LearnActivity extends KnowledgeBaseActivity implements View.OnClickListener {
     private static final int CODE_STEP_ACTIONS = 0;
 
-    @InjectExtra("tutorial")
-    Tutorial tutorial;
+    @InjectExtra("tutorial_id")
+    String tutorial_id;
 
     @InjectView(R.id.ll_steps)
     LinearLayout ll_steps;
@@ -54,7 +55,6 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     @InjectView(R.id.sv_steps)
     ObservableScrollView sv_steps;
 
-    private IStep step_now;
     private String id_next_step;
     private Button btn_next_step = null;
     private LinearLayout.LayoutParams margin_bottom_10dp;
@@ -64,8 +64,9 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     private Animation mShowAction;
     private Button last_btn_next_step;
     private int learned_step_count;
-    private List<IStep> steps = new ArrayList<IStep>();
     private boolean is_init = false;
+    private List<IStep> steps;// = new ArrayList<IStep>();
+    ITutorial tutorial;
 
 
     @Override
@@ -77,14 +78,17 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     }
 
     private void init() {
-        init_views();
+        bind_all();
         init_params();
         get_datas();
     }
 
     int index = 1;
-    private void init_views() {
+    private void bind_all() {
         fatv_back.setOnClickListener(this);
+    }
+
+    private void init_views() {
         tv_title.setText(tutorial.get_title());
 
         ViewTreeObserver observer = ll_steps.getViewTreeObserver();
@@ -130,8 +134,14 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     }
 
     private void steps_to_views() {
-        for(int i=0; i < learned_step_count; i++)
-            add_step(steps.get(i));
+        int steps_size = steps.size();
+        if(steps_size > 0) {
+            IStep step_last = steps.get(steps_size - 1);
+            for (int i = 0; i < steps.size(); i++) {
+                IStep step = steps.get(i);
+                add_step(step, step == step_last);
+            }
+        }
     }
 
     private void scroll_to_last_step() {
@@ -147,7 +157,11 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
         }
     }
 
-    private void add_step(final IStep istep) {
+    private void add_step(final IStep istep){
+        add_step(istep, true);
+    }
+
+    private void add_step(final IStep istep, boolean is_show_next_button) {
         if (istep != null) {
             LinearLayout ll_step = (LinearLayout) getLayoutInflater().inflate(R.layout.learn_step_list_item, null);
             TextView tv_step_title = (TextView) ll_step.findViewById(R.id.tv_step_title);
@@ -194,7 +208,7 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
             actions.findViewById(R.id.fabtn_hard_point).setOnClickListener(this);
 
             if (!istep.is_end()){
-                if(ll_steps.getChildCount() == learned_step_count - 1) {
+                if(is_show_next_button) {
                     LinearLayout linearLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.learn_step_list_item_next, null);
                     btn_next_step = (Button) linearLayout.findViewById(R.id.btn_next_step);
                     btn_next_step.setOnClickListener(new View.OnClickListener() {
@@ -262,7 +276,6 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
                     btn_next_step = null;
                 }
                 add_step(step);
-                step_now = step;
             }
 
             @Override
@@ -282,23 +295,29 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
 
             @Override
             public Void call() throws Exception {
-                step_now = tutorial.get_first_step();
-                step_now.do_learn();
-                steps.add(step_now);
+                tutorial = DataProvider.get_tutorial(tutorial_id);
+                System.out.println("tutorial title:" + tutorial.get_title());
+                steps = tutorial.get_learned_step_list();
+                System.out.println("steps.size()");
+                System.out.println(steps.size());
+                if(steps.size() == 1)
+                    steps.get(0).do_learn();
+//                step_now = tutorial.get_first_step();
+//                step_now.do_learn();
+//                steps.add(step_now);
                 learned_step_count = tutorial.get_learned_step_count();
+                System.out.println("learned_step_count");
+                System.out.println(learned_step_count);
                 if(learned_step_count == 0)
                     learned_step_count = 1;
-                for(int i = 0; i<learned_step_count; i++) {
-                    if(!step_now.is_end()) {
-                        step_now = DataProvider.get_step(step_now.get_next_id());
-                        steps.add(step_now);
-                    }
-                }
+                System.out.println("learned_step_count");
+                System.out.println(learned_step_count);
                 return null;
             }
 
             @Override
             protected void onSuccess(Void aVoid) throws Exception {
+                init_views();
                 steps_to_views();
                 loading_view.hide();
             }

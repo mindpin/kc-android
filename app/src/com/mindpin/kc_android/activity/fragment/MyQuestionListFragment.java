@@ -1,6 +1,7 @@
 package com.mindpin.kc_android.activity.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.ListView;
 
 import com.mindpin.android.loadingview.LoadingView;
 import com.mindpin.kc_android.R;
+import com.mindpin.kc_android.activity.LearnActivity;
 import com.mindpin.kc_android.activity.fragment.base.KnowledgeBaseFragment;
 import com.mindpin.kc_android.adapter.MyQuestionListAdapter;
 import com.mindpin.kc_android.models.interfaces.IQuestion;
@@ -102,6 +104,11 @@ public class MyQuestionListFragment extends KnowledgeBaseFragment {
 
                 question_id = question.get_id();
                 Log.i("question_id ID ", question_id);
+
+                Intent intent = new Intent(activity, LearnActivity.class);
+                intent.putExtra("step_id", question.get_step_id());
+                intent.putExtra("tutorial_id", question.get_tutorial_id());
+                activity.startActivity(intent);
 
             }
         });
