@@ -27,6 +27,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by fushang318 on 2014/8/26.
  */
 public class KnowledgeBaseIncludeDrawerActivity extends KnowledgeBaseActivity{
+    private boolean is_init = false;
     private DrawerLayout drawer_layout;
     private LinearLayout left_drawer;
 
@@ -56,7 +57,10 @@ public class KnowledgeBaseIncludeDrawerActivity extends KnowledgeBaseActivity{
     @Override
     protected void onStart() {
         super.onStart();
-        _init_drawer_layout();
+        if(!is_init){
+            _init_drawer_layout();
+            is_init = true;
+        }
     }
 
     private void _init_drawer_layout() {
