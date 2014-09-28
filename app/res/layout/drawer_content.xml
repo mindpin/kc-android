@@ -28,7 +28,9 @@
             android:background="@drawable/menu_background"
             >
         <com.mindpin.kc_android.widget.SelectableLinearLayout
-                style="@style/MenuLine">
+                style="@style/MenuLine"
+                android:id="@+id/sll_user_info"
+            >
 
             <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/iv_user_avatar"

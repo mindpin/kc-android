@@ -16,6 +16,7 @@ import com.mindpin.kc_android.activity.fragment.MyQuestionListFragment;
 import com.mindpin.kc_android.activity.fragment.MyStepListFragment;
 import com.mindpin.kc_android.activity.fragment.MyTopicListFragment;
 import com.mindpin.kc_android.activity.fragment.TopicListFragment;
+import com.mindpin.kc_android.activity.fragment.UserInfoFragment;
 import com.mindpin.kc_android.models.User;
 import com.mindpin.kc_android.widget.SelectableLinearLayout;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -43,6 +44,9 @@ public class KnowledgeBaseIncludeDrawerActivity extends KnowledgeBaseActivity{
 
     // 我的笔记
     SelectableLinearLayout btn_menu_mynote;
+
+    // 用户头像
+    SelectableLinearLayout btn_menu_user_info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,6 +132,17 @@ public class KnowledgeBaseIncludeDrawerActivity extends KnowledgeBaseActivity{
                 change_fragment(new MyNoteListFragment());
 
                 highlight_current_menu(left_drawer, btn_menu_mynote);
+            }
+        });
+
+        // 点击用户头像
+        btn_menu_user_info = (SelectableLinearLayout) findViewById(R.id.sll_user_info);
+        btn_menu_user_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                change_fragment(new UserInfoFragment());
+
+                highlight_current_menu(left_drawer, btn_menu_user_info);
             }
         });
 
