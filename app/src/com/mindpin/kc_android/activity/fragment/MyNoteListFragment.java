@@ -1,6 +1,7 @@
 package com.mindpin.kc_android.activity.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.ListView;
 
 import com.mindpin.android.loadingview.LoadingView;
 import com.mindpin.kc_android.R;
+import com.mindpin.kc_android.activity.LearnActivity;
 import com.mindpin.kc_android.activity.fragment.base.KnowledgeBaseFragment;
 import com.mindpin.kc_android.adapter.MyNoteListAdapter;
 import com.mindpin.kc_android.models.interfaces.INote;
@@ -103,6 +105,11 @@ public class MyNoteListFragment extends KnowledgeBaseFragment {
 
                 note_id = note.get_id();
                 Log.i("note_id ID ", note_id);
+
+                Intent intent = new Intent(activity, LearnActivity.class);
+                intent.putExtra("step_id", note.get_step_id());
+                intent.putExtra("tutorial_id", note.get_tutorial_id());
+                activity.startActivity(intent);
 
             }
         });
