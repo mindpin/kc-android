@@ -54,7 +54,6 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     @InjectView(R.id.sv_steps)
     ObservableScrollView sv_steps;
 
-    private IStep step_now;
     private String id_next_step;
     private Button btn_next_step = null;
     private LinearLayout.LayoutParams margin_bottom_10dp;
@@ -64,7 +63,7 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     private Animation mShowAction;
     private Button last_btn_next_step;
     private int learned_step_count;
-    private List<IStep> steps = new ArrayList<IStep>();
+    private List<IStep> steps;// = new ArrayList<IStep>();
     ITutorial tutorial;
 
 
@@ -120,8 +119,14 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     }
 
     private void steps_to_views() {
-        for(int i=0; i < learned_step_count; i++)
-            add_step(steps.get(i));
+        int steps_size = steps.size();
+        if(steps_size > 0) {
+            IStep step_last = steps.get(steps_size - 1);
+            for (int i = 0; i < steps.size(); i++) {
+                IStep step = steps.get(i);
+                add_step(step, step == step_last);
+            }
+        }
     }
 
     private void scroll_to_last_step() {
@@ -136,7 +141,11 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
         }
     }
 
-    private void add_step(final IStep istep) {
+    private void add_step(final IStep istep){
+        add_step(istep, true);
+    }
+
+    private void add_step(final IStep istep, boolean is_show_next_button) {
         if (istep != null) {
             LinearLayout ll_step = (LinearLayout) getLayoutInflater().inflate(R.layout.learn_step_list_item, null);
             TextView tv_step_title = (TextView) ll_step.findViewById(R.id.tv_step_title);
@@ -183,7 +192,7 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
             actions.findViewById(R.id.fabtn_hard_point).setOnClickListener(this);
 
             if (!istep.is_end()){
-                if(ll_steps.getChildCount() == learned_step_count - 1) {
+                if(is_show_next_button) {
                     LinearLayout linearLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.learn_step_list_item_next, null);
                     btn_next_step = (Button) linearLayout.findViewById(R.id.btn_next_step);
                     btn_next_step.setOnClickListener(new View.OnClickListener() {
@@ -239,6 +248,11 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
                 IStep step = DataProvider.get_step(id_next_step);
                 step.do_learn();
                 steps.add(step);
+                learned_step_count++;
+                System.out.println("steps.size()");
+                System.out.println(steps.size());
+                System.out.println("learned_step_count");
+                System.out.println(learned_step_count);
                 return step;
             }
 
@@ -250,7 +264,6 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
                     btn_next_step = null;
                 }
                 add_step(step);
-                step_now = step;
             }
 
             @Override
@@ -271,18 +284,22 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
             @Override
             public Void call() throws Exception {
                 tutorial = DataProvider.get_tutorial(tutorial_id);
-                step_now = tutorial.get_first_step();
-                step_now.do_learn();
-                steps.add(step_now);
+                System.out.println("tutorial title:" + tutorial.get_title());
+                steps = tutorial.get_learned_step_list();
+                System.out.println("steps.size()");
+                System.out.println(steps.size());
+                if(steps.size() == 1)
+                    steps.get(0).do_learn();
+//                step_now = tutorial.get_first_step();
+//                step_now.do_learn();
+//                steps.add(step_now);
                 learned_step_count = tutorial.get_learned_step_count();
+                System.out.println("learned_step_count");
+                System.out.println(learned_step_count);
                 if(learned_step_count == 0)
                     learned_step_count = 1;
-                for(int i = 0; i<learned_step_count; i++) {
-                    if(!step_now.is_end()) {
-                        step_now = DataProvider.get_step(step_now.get_next_id());
-                        steps.add(step_now);
-                    }
-                }
+                System.out.println("learned_step_count");
+                System.out.println(learned_step_count);
                 return null;
             }
 
