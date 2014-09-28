@@ -18,6 +18,7 @@ import com.mindpin.kc_android.activity.base.KnowledgeBaseActivity;
 import com.mindpin.kc_android.models.http.Step;
 import com.mindpin.kc_android.models.http.Tutorial;
 import com.mindpin.kc_android.models.interfaces.IStep;
+import com.mindpin.kc_android.models.interfaces.ITutorial;
 import com.mindpin.kc_android.network.DataProvider;
 import com.mindpin.kc_android.utils.BaseUtils;
 import com.mindpin.kc_android.utils.KCAsyncTask;
@@ -37,8 +38,8 @@ import java.util.List;
 public class LearnActivity extends KnowledgeBaseActivity implements View.OnClickListener {
     private static final int CODE_STEP_ACTIONS = 0;
 
-    @InjectExtra("tutorial")
-    Tutorial tutorial;
+    @InjectExtra("tutorial_id")
+    String tutorial_id;
 
     @InjectView(R.id.ll_steps)
     LinearLayout ll_steps;
@@ -63,6 +64,7 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     private Button last_btn_next_step;
     private int learned_step_count;
     private List<IStep> steps;// = new ArrayList<IStep>();
+    ITutorial tutorial;
 
 
     @Override
@@ -74,13 +76,16 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     }
 
     private void init() {
-        init_views();
+        bind_all();
         init_params();
         get_datas();
     }
 
-    private void init_views() {
+    private void bind_all() {
         fatv_back.setOnClickListener(this);
+    }
+
+    private void init_views() {
         tv_title.setText(tutorial.get_title());
     }
 
@@ -278,6 +283,7 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
 
             @Override
             public Void call() throws Exception {
+                tutorial = DataProvider.get_tutorial(tutorial_id);
                 steps = tutorial.get_learned_step_list();
                 System.out.println("steps.size()");
                 System.out.println(steps.size());
@@ -298,6 +304,7 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
 
             @Override
             protected void onSuccess(Void aVoid) throws Exception {
+                init_views();
                 steps_to_views();
                 loading_view.hide();
                 scroll_to_last_step();

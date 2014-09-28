@@ -360,7 +360,7 @@ public class TutorialActivity extends KnowledgeBaseActivity implements AdapterVi
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TutorialActivity.this, LearnActivity.class);
-                intent.putExtra("tutorial", tutorial);
+                intent.putExtra("tutorial_id", tutorial.get_id());
                 startActivity(intent);
             }
         });

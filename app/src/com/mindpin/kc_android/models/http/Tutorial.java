@@ -181,7 +181,7 @@ public class Tutorial implements ITutorial{
         while (!cursor_step.is_end()){
             boolean find_next = false;
             for(IStep step : input_step_list){
-                if(step.get_id() != null && step.get_id().equals("") && step.get_id().equals(cursor_step.get_next_id())){
+                if(step.get_id() != null && !step.get_id().equals("") && step.get_id().equals(cursor_step.get_next_id())){
                     cursor_step = step;
                     find_next = true;
                     break;
