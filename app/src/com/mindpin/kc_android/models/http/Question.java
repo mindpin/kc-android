@@ -3,6 +3,7 @@ package com.mindpin.kc_android.models.http;
 import android.util.Log;
 
 import com.mindpin.kc_android.models.interfaces.IQuestion;
+import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
 import com.mindpin.kc_android.network.DataProvider;
 
@@ -11,7 +12,7 @@ import com.mindpin.kc_android.network.DataProvider;
  */
 public class Question implements IQuestion{
     private String id;
-    private String step_id;
+    private Step step;
     private String content;
     private String tutorial_id;
 
@@ -21,8 +22,13 @@ public class Question implements IQuestion{
     }
 
     @Override
+    public IStep get_step() {
+        return this.step;
+    }
+
+    @Override
     public String get_step_id() {
-        return this.step_id;
+        return this.step.get_id();
     }
 
     @Override
@@ -31,13 +37,7 @@ public class Question implements IQuestion{
     }
 
     @Override
-    public ITutorial get_tutorial() {
-        try {
-            return DataProvider.get_tutorial(this.tutorial_id);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.d("debug", "获取 question.get_tutorial 失败");
-        }
-        return null;
+    public String get_tutorial_id() {
+        return this.tutorial_id;
     }
 }

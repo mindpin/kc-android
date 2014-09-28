@@ -7,7 +7,8 @@ import java.io.Serializable;
  */
 public interface INote extends Serializable {
     public String get_id();
+    public IStep get_step();
     public String get_step_id();
     public String get_content();
-    public ITutorial get_tutorial();
+    public String get_tutorial_id();
 }
