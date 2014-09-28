@@ -124,7 +124,7 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
             IStep step_last = steps.get(steps_size - 1);
             for (int i = 0; i < steps.size(); i++) {
                 IStep step = steps.get(i);
-                add_step(steps.get(i), steps.get(i) == step);
+                add_step(step, step == step_last);
             }
         }
     }
@@ -284,6 +284,7 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
             @Override
             public Void call() throws Exception {
                 tutorial = DataProvider.get_tutorial(tutorial_id);
+                System.out.println("tutorial title:" + tutorial.get_title());
                 steps = tutorial.get_learned_step_list();
                 System.out.println("steps.size()");
                 System.out.println(steps.size());
