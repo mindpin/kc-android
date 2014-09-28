@@ -122,7 +122,7 @@ public class Tutorial implements ITutorial{
 
     @Override
     public List<IStep> get_learned_step_list() {
-        int first_unlearned_step_index = 0;
+        int first_unlearned_step_index = -1;
         List<IStep> list = get_step_list();
         for(IStep step : list){
             if(!step.is_learned()){
@@ -130,7 +130,9 @@ public class Tutorial implements ITutorial{
                 break;
             }
         }
-        if(first_unlearned_step_index == 0){
+        if(first_unlearned_step_index == -1){
+            return list;
+        }else if(first_unlearned_step_index == 0){
             return list.subList(0,1);
         }else{
             return list.subList(0, first_unlearned_step_index);
