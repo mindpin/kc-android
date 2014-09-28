@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -64,6 +65,7 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     private Button last_btn_next_step;
     private int learned_step_count;
     private List<IStep> steps = new ArrayList<IStep>();
+    private boolean is_init = false;
 
 
     @Override
@@ -80,9 +82,22 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
         get_datas();
     }
 
+    int index = 1;
     private void init_views() {
         fatv_back.setOnClickListener(this);
         tv_title.setText(tutorial.get_title());
+
+        ViewTreeObserver observer = ll_steps.getViewTreeObserver();
+        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                if(!is_init && index == learned_step_count) {
+                    scroll_to_last_step();
+                    is_init = !is_init;
+                }
+                index++;
+            }
+        });
     }
 
     private void init_params() {
@@ -120,11 +135,12 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     }
 
     private void scroll_to_last_step() {
-        // todo it does work. cas it has not height now
+        // todo to step
         if(learned_step_count > 1) {
             int height = 0;
             for (int j = 0; j < ll_steps.getChildCount() - 1; j++) {
                 height += ll_steps.getChildAt(j).getHeight();
+                //todo add margin
             }
             System.out.println(height);
             sv_steps.smoothScrollTo(0, height);
@@ -234,6 +250,7 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
                 IStep step = DataProvider.get_step(id_next_step);
                 step.do_learn();
                 steps.add(step);
+                learned_step_count++;
                 return step;
             }
 
@@ -284,7 +301,6 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
             protected void onSuccess(Void aVoid) throws Exception {
                 steps_to_views();
                 loading_view.hide();
-                scroll_to_last_step();
             }
         }.execute();
     }
