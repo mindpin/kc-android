@@ -4,21 +4,51 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.base.KnowledgeBaseWriteActivity;
+import com.mindpin.kc_android.models.interfaces.INote;
+import com.mindpin.kc_android.utils.KCAsyncTask;
 
 /**
  * Created by dd on 14-9-25.
  */
-public class NotesActivity extends KnowledgeBaseWriteActivity implements View.OnClickListener {
+public class NotesActivity extends KnowledgeBaseWriteActivity<INote> implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
     @Override
+    protected void get_data() {
+        new KCAsyncTask<Void>(this) {
+
+            @Override
+            protected void onPreExecute() throws Exception {
+                loading_view.show();
+            }
+
+            @Override
+            public Void call() throws Exception {
+                clazz = step.get_note();
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Void aVoid) throws Exception {
+                build_view();
+                loading_view.hide();
+            }
+        }.execute();
+    }
+
+    @Override
     protected String get_default_write_text() {
-        return step.has_note() ? step.get_note().get_content() : "";
+        try {
+            return clazz == null ?  "" : clazz.get_content();
+        } catch (Exception ex) {
+            return "";
+        }
     }
 
     @Override
@@ -85,20 +115,67 @@ public class NotesActivity extends KnowledgeBaseWriteActivity implements View.On
                             }).create().show();
                     return;
                 }
+                save(v);
+                break;
+            case R.id.btn_delete:
+                delete(v);
+                break;
+        }
+    }
+
+    private void delete(final View v) {
+        new KCAsyncTask<Void>(this) {
+            @Override
+            protected void onPreExecute() throws Exception {
+                v.setEnabled(false);
+            }
+
+            @Override
+            public Void call() throws Exception {
+                step.destroy_note();
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Void aVoid) throws Exception {
+                finish_with_result();
+            }
+
+            @Override
+            protected void onException(Exception e) throws RuntimeException {
+                super.onException(e);
+                v.setEnabled(true);
+            }
+        }.execute();
+    }
+
+    private void save(final View v) {
+        new KCAsyncTask<Void>(this) {
+            @Override
+            protected void onPreExecute() throws Exception {
+                v.setEnabled(false);
+            }
+
+            @Override
+            public Void call() throws Exception {
                 if (step.has_note()) {
                     step.edit_note(et_write.getText().toString());
                 } else {
                     step.create_note(et_write.getText().toString());
                 }
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Void aVoid) throws Exception {
                 finish_with_result();
-                break;
-            case R.id.btn_delete:
-                if (step.has_note()) {
-                    step.destroy_note();
-                }
-                finish_with_result();
-                System.out.println("btn_write_actionbar");
-                break;
-        }
+            }
+
+            @Override
+            protected void onException(Exception e) throws RuntimeException {
+                super.onException(e);
+                v.setEnabled(true);
+            }
+        }.execute();
     }
 }

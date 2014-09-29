@@ -340,16 +340,43 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
                 startActivityForResult(intent, CODE_STEP_ACTIONS);
                 break;
             case R.id.fabtn_hard_point:
-                Step s = (Step) v.getTag();
+                toggle_hard(v);
+                break;
+        }
+    }
+
+    private void toggle_hard(final View v) {
+        final Step s = (Step) v.getTag();
+        new KCAsyncTask<Void>(this) {
+
+            @Override
+            protected void onPreExecute() throws Exception {
+                v.setEnabled(false);
+            }
+
+            @Override
+            public Void call() throws Exception {
                 if(s.is_hard()) {
                     s.unset_hard();
                 } else {
                     s.set_hard();
                 }
                 v.setTag(s);
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Void aVoid) throws Exception {
                 refresh_step_actions(s, (LinearLayout) v.getParent());
-                break;
-        }
+                v.setEnabled(true);
+            }
+
+            @Override
+            protected void onException(Exception e) throws RuntimeException {
+                super.onException(e);
+                v.setEnabled(true);
+            }
+        }.execute();
     }
 
     @Override

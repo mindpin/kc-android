@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import com.mindpin.android.loadingview.LoadingView;
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.models.http.Step;
 import com.mindpin.kc_android.widget.FontAwesomeTextView;
@@ -15,7 +16,7 @@ import roboguice.inject.InjectView;
 /**
  * Created by fushang318 on 2014/8/14.
  */
-public abstract class KnowledgeBaseWriteActivity extends KnowledgeBaseActivity{
+public abstract class KnowledgeBaseWriteActivity<Clazz> extends KnowledgeBaseActivity{
     private static final int CODE_STEP_ACTIONS = 0;
     @InjectExtra("step")
     protected Step step;
@@ -32,18 +33,24 @@ public abstract class KnowledgeBaseWriteActivity extends KnowledgeBaseActivity{
     @InjectView(R.id.btn_cancel)
     Button btn_cancel;
 
+    @InjectView(R.id.loading_view)
+    protected LoadingView loading_view;
+
     protected Intent mIntent;
+    protected Clazz clazz = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.write);
-        build_view();
+        get_data();
         mIntent = new Intent();
         mIntent.putExtra("step", step);
     }
 
-    private void build_view() {
+    protected abstract void get_data();
+
+    protected void build_view() {
         build_actionbar();
         build_bottom();
         build_edit_text_write();

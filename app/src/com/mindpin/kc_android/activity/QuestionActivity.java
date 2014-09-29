@@ -6,19 +6,49 @@ import android.os.Bundle;
 import android.view.View;
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.base.KnowledgeBaseWriteActivity;
+import com.mindpin.kc_android.models.interfaces.IQuestion;
+import com.mindpin.kc_android.network.DataProvider;
+import com.mindpin.kc_android.utils.KCAsyncTask;
 
 /**
  * Created by dd on 14-9-25.
  */
-public class QuestionActivity extends KnowledgeBaseWriteActivity implements View.OnClickListener {
+public class QuestionActivity extends KnowledgeBaseWriteActivity<IQuestion> implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
     @Override
+    protected void get_data() {
+        new KCAsyncTask<Void>(this) {
+
+            @Override
+            protected void onPreExecute() throws Exception {
+                loading_view.show();
+            }
+
+            @Override
+            public Void call() throws Exception {
+                clazz = step.get_question();
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Void aVoid) throws Exception {
+                build_view();
+                loading_view.hide();
+            }
+        }.execute();
+    }
+
+    @Override
     protected String get_default_write_text() {
-        return step.has_question() ? step.get_question().get_content() : "";
+        try {
+            return clazz == null ?  "" : clazz.get_content();
+        } catch (Exception ex) {
+            return "";
+        }
     }
 
     @Override
@@ -73,7 +103,7 @@ public class QuestionActivity extends KnowledgeBaseWriteActivity implements View
                 break;
             case R.id.btn_save:
                 System.out.println("btn_save");
-                if("".equals(et_write.getText().toString())){
+                if ("".equals(et_write.getText().toString())) {
                     new AlertDialog.Builder(this).setTitle("提示")
                             .setMessage("未输入任何内容")
                             .setNegativeButton("取消提交", null)
@@ -85,20 +115,67 @@ public class QuestionActivity extends KnowledgeBaseWriteActivity implements View
                             }).create().show();
                     return;
                 }
+                save(v);
+                break;
+            case R.id.btn_delete:
+                delete(v);
+                break;
+        }
+    }
+
+    private void delete(final View v) {
+        new KCAsyncTask<Void>(this) {
+            @Override
+            protected void onPreExecute() throws Exception {
+                v.setEnabled(false);
+            }
+
+            @Override
+            public Void call() throws Exception {
+                step.destroy_question();
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Void aVoid) throws Exception {
+                finish_with_result();
+            }
+
+            @Override
+            protected void onException(Exception e) throws RuntimeException {
+                super.onException(e);
+                v.setEnabled(true);
+            }
+        }.execute();
+    }
+
+    private void save(final View v) {
+        new KCAsyncTask<Void>(this) {
+            @Override
+            protected void onPreExecute() throws Exception {
+                v.setEnabled(false);
+            }
+
+            @Override
+            public Void call() throws Exception {
                 if (step.has_question()) {
                     step.edit_question(et_write.getText().toString());
                 } else {
                     step.create_question(et_write.getText().toString());
                 }
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Void aVoid) throws Exception {
                 finish_with_result();
-                break;
-            case R.id.btn_delete:
-                if (step.has_question()) {
-                    step.destroy_question();
-                }
-                finish_with_result();
-                System.out.println("btn_write_actionbar");
-                break;
-        }
+            }
+
+            @Override
+            protected void onException(Exception e) throws RuntimeException {
+                super.onException(e);
+                v.setEnabled(true);
+            }
+        }.execute();
     }
 }
