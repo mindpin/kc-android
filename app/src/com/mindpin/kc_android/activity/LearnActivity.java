@@ -38,6 +38,7 @@ import java.util.List;
  */
 public class LearnActivity extends KnowledgeBaseActivity implements View.OnClickListener {
     private static final int CODE_STEP_ACTIONS = 0;
+    private static final int DP10 = 10;
 
     @InjectExtra("tutorial_id")
     String tutorial_id;
@@ -119,8 +120,7 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
             IStep step = steps.get(j);
             if(step.get_id().equals(to_step_id))
                 break;
-            height += ll_steps.getChildAt(j).getHeight();
-            //todo add margin
+            height += ll_steps.getChildAt(j).getHeight() + DP10;//10 = 10dp?
         }
         sv_steps.smoothScrollTo(0, height);
     }
@@ -169,8 +169,7 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
         if(learned_step_count > 1) {
             int height = 0;
             for (int j = 0; j < ll_steps.getChildCount() - 1; j++) {
-                height += ll_steps.getChildAt(j).getHeight();
-                //todo add margin
+                height += ll_steps.getChildAt(j).getHeight() + DP10;//10 = 10dp?
             }
             sv_steps.smoothScrollTo(0, height);
         }
@@ -370,16 +369,16 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode==KeyEvent.KEYCODE_BACK && event.getRepeatCount()==0){   //確定按下退出鍵and防止重複按下退出鍵
             if(sv_steps.getScrollY() > ll_steps.getPaddingTop()){
-                View view = null;
-                int height = ll_steps.getPaddingTop();
+                View view;
+                int height = 0;
                 for(int i=0; i< ll_steps.getChildCount(); i++) {
                     view = ll_steps.getChildAt(i);
-                    if(height + view.getHeight()   >= sv_steps.getScrollY()) {
+                    if(height + view.getHeight() + DP10 >= sv_steps.getScrollY()) {
                         sv_steps.smoothScrollTo(0, height);
                         return true;
                     }
                     else
-                        height += view.getHeight();
+                        height += view.getHeight() + DP10;
                 }
                 sv_steps.smoothScrollTo(0, ll_steps.getPaddingTop());
                 return true;
