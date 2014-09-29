@@ -67,6 +67,7 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     private boolean is_init = false;
     private List<IStep> steps;// = new ArrayList<IStep>();
     ITutorial tutorial;
+    String to_step_id = null;
 
 
     @Override
@@ -78,12 +79,18 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     }
 
     private void init() {
+        get_to_step_id();
         bind_all();
         init_params();
         get_datas();
     }
 
-    int index = 1;
+    private void get_to_step_id() {
+        if(getIntent().hasExtra("step_id")) {
+            to_step_id = getIntent().getStringExtra("step_id");
+        }
+    }
+
     private void bind_all() {
         fatv_back.setOnClickListener(this);
     }
@@ -91,17 +98,31 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     private void init_views() {
         tv_title.setText(tutorial.get_title());
 
-        ViewTreeObserver observer = ll_steps.getViewTreeObserver();
+        ViewTreeObserver observer = sv_steps.getViewTreeObserver();
         observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                if(!is_init && index == learned_step_count) {
-                    scroll_to_last_step();
+                if(!is_init){
+                    if(to_step_id == null)
+                        scroll_to_last_step();
+                    else
+                        scroll_to_step(to_step_id);
                     is_init = !is_init;
                 }
-                index++;
             }
         });
+    }
+
+    private void scroll_to_step(String to_step_id) {
+        int height = 0;
+        for (int j = 0; j < ll_steps.getChildCount() - 1; j++) {
+            IStep step = steps.get(j);
+            if(step.get_id().equals(to_step_id))
+                break;
+            height += ll_steps.getChildAt(j).getHeight();
+            //todo add margin
+        }
+        sv_steps.smoothScrollTo(0, height);
     }
 
     private void init_params() {
@@ -145,7 +166,6 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     }
 
     private void scroll_to_last_step() {
-        // todo to step
         if(learned_step_count > 1) {
             int height = 0;
             for (int j = 0; j < ll_steps.getChildCount() - 1; j++) {
