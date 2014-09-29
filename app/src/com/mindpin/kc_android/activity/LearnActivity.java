@@ -172,7 +172,6 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
                 height += ll_steps.getChildAt(j).getHeight();
                 //todo add margin
             }
-            System.out.println(height);
             sv_steps.smoothScrollTo(0, height);
         }
     }
@@ -316,22 +315,12 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
             @Override
             public Void call() throws Exception {
                 tutorial = DataProvider.get_tutorial(tutorial_id);
-                System.out.println("tutorial title:" + tutorial.get_title());
                 steps = tutorial.get_learned_step_list();
-                System.out.println("steps.size()");
-                System.out.println(steps.size());
                 if(steps.size() == 1)
                     steps.get(0).do_learn();
-//                step_now = tutorial.get_first_step();
-//                step_now.do_learn();
-//                steps.add(step_now);
                 learned_step_count = tutorial.get_learned_step_count();
-                System.out.println("learned_step_count");
-                System.out.println(learned_step_count);
                 if(learned_step_count == 0)
                     learned_step_count = 1;
-                System.out.println("learned_step_count");
-                System.out.println(learned_step_count);
                 return null;
             }
 
