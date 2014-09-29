@@ -17,7 +17,6 @@ import com.mindpin.android.loadingview.LoadingView;
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.base.KnowledgeBaseActivity;
 import com.mindpin.kc_android.models.http.Step;
-import com.mindpin.kc_android.models.http.Tutorial;
 import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
 import com.mindpin.kc_android.network.DataProvider;
@@ -30,7 +29,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -55,7 +53,9 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     FontAwesomeTextView fatv_back;
     @InjectView(R.id.sv_steps)
     ObservableScrollView sv_steps;
-
+    ITutorial tutorial;
+    String to_step_id = null;
+    View view_action;
     private String id_next_step;
     private Button btn_next_step = null;
     private LinearLayout.LayoutParams margin_bottom_10dp;
@@ -67,9 +67,6 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     private int learned_step_count;
     private boolean is_init = false;
     private List<IStep> steps;// = new ArrayList<IStep>();
-    ITutorial tutorial;
-    String to_step_id = null;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -103,8 +100,8 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
         observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                if(!is_init){
-                    if(to_step_id == null)
+                if (!is_init) {
+                    if (to_step_id == null)
                         scroll_to_last_step();
                     else
                         scroll_to_step(to_step_id);
@@ -112,17 +109,6 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
                 }
             }
         });
-    }
-
-    private void scroll_to_step(String to_step_id) {
-        int height = 0;
-        for (int j = 0; j < ll_steps.getChildCount() - 1; j++) {
-            IStep step = steps.get(j);
-            if(step.get_id().equals(to_step_id))
-                break;
-            height += ll_steps.getChildAt(j).getHeight() + DP10;//10 = 10dp?
-        }
-        sv_steps.smoothScrollTo(0, height);
     }
 
     private void init_params() {
@@ -173,6 +159,17 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
             }
             sv_steps.smoothScrollTo(0, height);
         }
+    }
+
+    private void scroll_to_step(String to_step_id) {
+        int height = 0;
+        for (int j = 0; j < ll_steps.getChildCount() - 1; j++) {
+            IStep step = steps.get(j);
+            if(step.get_id().equals(to_step_id))
+                break;
+            height += ll_steps.getChildAt(j).getHeight() + DP10;//10 = 10dp?
+        }
+        sv_steps.smoothScrollTo(0, height);
     }
 
     private void add_step(final IStep istep){
@@ -251,27 +248,18 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
     }
 
     private void refresh_step_actions(IStep istep, LinearLayout actions) {
-        if (istep.has_note()){
-            ((FontAwesomeButton) actions.findViewById(R.id.fabtn_note))
-                    .setTextColor(getResources().getColor(R.color.learn_step_action_actioned_color));
-        } else {
-            ((FontAwesomeButton) actions.findViewById(R.id.fabtn_note))
-                    .setTextColor(getResources().getColor(R.color.learn_step_action_no_actioned_color));
-        }
-        if(istep.has_question()){
-            ((FontAwesomeButton)actions.findViewById(R.id.fabtn_question))
-                    .setTextColor(getResources().getColor(R.color.learn_step_action_actioned_color));
-        } else {
-            ((FontAwesomeButton) actions.findViewById(R.id.fabtn_question))
-                    .setTextColor(getResources().getColor(R.color.learn_step_action_no_actioned_color));
-        }
-        if(istep.is_hard()) {
-            ((FontAwesomeButton) actions.findViewById(R.id.fabtn_hard_point))
-                    .setTextColor(getResources().getColor(R.color.learn_step_action_is_hard_point_color));
-        } else {
-            ((FontAwesomeButton) actions.findViewById(R.id.fabtn_hard_point))
-                    .setTextColor(getResources().getColor(R.color.learn_step_action_no_actioned_color));
-        }
+        change_view_text_color_with_status(actions, R.id.fabtn_note, istep.has_note(),
+                R.color.learn_step_action_actioned_color, R.color.learn_step_action_no_actioned_color);
+        change_view_text_color_with_status(actions, R.id.fabtn_question, istep.has_question(),
+                R.color.learn_step_action_actioned_color, R.color.learn_step_action_no_actioned_color);
+        change_view_text_color_with_status(actions, R.id.fabtn_hard_point, istep.is_hard(),
+                R.color.learn_step_action_is_hard_point_color, R.color.learn_step_action_no_actioned_color);
+    }
+
+    private void change_view_text_color_with_status(ViewGroup parent, int view_res_id, boolean status,
+                                                    int true_color_res_id, int false_color_res_id){
+        ((FontAwesomeButton) parent.findViewById(view_res_id))
+                .setTextColor(getResources().getColor(status ? true_color_res_id : false_color_res_id));
     }
 
     private void get_next_step(String id) {
@@ -332,7 +320,6 @@ public class LearnActivity extends KnowledgeBaseActivity implements View.OnClick
         }.execute();
     }
 
-    View view_action;
     @Override
     public void onClick(View v) {
         Intent intent;
