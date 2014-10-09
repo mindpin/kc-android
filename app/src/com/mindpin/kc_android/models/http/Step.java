@@ -30,6 +30,8 @@ public class Step implements IStep{
     private boolean is_hard;
     private String question_id;
     private String note_id;
+    private String created_at;
+    private String updated_at;
 
     @Override
     public String get_id() {
@@ -39,6 +41,16 @@ public class Step implements IStep{
     @Override
     public String get_title() {
         return this.title;
+    }
+
+    @Override
+    public String get_created_at() {
+        return this.created_at;
+    }
+
+    @Override
+    public String get_updated_at() {
+        return this.updated_at;
     }
 
     @Override
