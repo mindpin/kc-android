@@ -13,6 +13,7 @@ import com.mindpin.kc_android.network.DataProvider;
 import com.mindpin.kc_android.network.HttpApi;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -45,7 +46,20 @@ public class Step implements IStep{
 
     @Override
     public String get_created_at() {
-        return this.created_at;
+        String d = "";
+
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        try {
+            Date time = f.parse(this.created_at);
+            SimpleDateFormat ff = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            d = ff.format(time);
+        } catch (Exception e) {
+            Log.i("字符串时间转为日期 error : ", e.getMessage() + this.created_at);
+        }
+
+
+
+        return d;
     }
 
     @Override
