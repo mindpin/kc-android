@@ -11,6 +11,7 @@ import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
 import com.mindpin.kc_android.network.DataProvider;
 import com.mindpin.kc_android.network.HttpApi;
+import com.mindpin.kc_android.utils.BaseUtils;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -47,20 +48,7 @@ public class Step implements IStep{
 
     @Override
     public String get_created_at() {
-        String d = "";
-
-        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        try {
-            Date time = f.parse(this.created_at);
-            SimpleDateFormat ff = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            d = ff.format(time);
-        } catch (Exception e) {
-            Log.i("字符串时间转为日期 error : ", e.getMessage() + this.created_at);
-        }
-
-
-
-        return d;
+        return BaseUtils.get_time_from_isoformat(this.created_at);
     }
 
     @Override

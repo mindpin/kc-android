@@ -7,6 +7,10 @@ import com.mindpin.kc_android.models.interfaces.IStep;
 import com.mindpin.kc_android.models.interfaces.ITutorial;
 import com.mindpin.kc_android.network.DataProvider;
 import com.mindpin.kc_android.network.HttpApi;
+import com.mindpin.kc_android.utils.BaseUtils;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by fushang318 on 2014/9/25.
@@ -52,7 +56,7 @@ public class Question implements IQuestion{
 
     @Override
     public String get_created_at() {
-        return this.created_at;
+        return BaseUtils.get_time_from_isoformat(this.created_at);
     }
 
     @Override
