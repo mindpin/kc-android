@@ -44,7 +44,7 @@
     <string name="fontawesome_smile">&#xf118;</string>
     <string name="fontawesome_note_square">&#xf14b;</string>
     <string name="fontawesome_hard_point">&#xf02e;</string>
-    <string name="fontawesome_sign_out">&#xf08b;用户登出</string>
+    <string name="fontawesome_sign_out">&#xf08b; 用户登出</string>
     <string name="edit_notes">编辑笔记</string>
     <string name="delete_notes">删除笔记</string>
     <string name="create_question">创建问题</string>

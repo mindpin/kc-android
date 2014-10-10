@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:background="#f1f1f1"
+    <com.mindpin.kc_android.widget.BorderRadiusLinearLayout
         android:layout_margin="5dp"
         android:layout_height="165dp"
+        border_radius="3"
+        border_radius_background_color="#f1f1f1"
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:gravity="center_horizontal"
@@ -29,17 +30,27 @@
             android:textSize="18dp"
             android:text="用户名"
             />
-        </LinearLayout>
+        </com.mindpin.kc_android.widget.BorderRadiusLinearLayout>
 
-    <Button
+    <com.mindpin.kc_android.widget.BorderRadiusLinearLayout
+        android:id="@+id/logout"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:id="@+id/logout"
-        android:background="#e54028"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:textColor="#fff"
-        android:textSize="18dp"
-        android:text="@string/fontawesome_sign_out"
-        ></Button>
+        android:orientation="horizontal"
+        android:gravity="center"
+        border_radius_background_color="#e54028"
+        border_radius="3"
+        >
+        <TextView
+            android:id="@+id/logout_text_tv"
+            android:textColor="#fff"
+            android:textSize="18dp"
+            android:text="@string/fontawesome_sign_out"
+            android:background="@color/translate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        </com.mindpin.kc_android.widget.BorderRadiusLinearLayout>
+
 </LinearLayout>

@@ -7,12 +7,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.SignInActivity;
 import com.mindpin.kc_android.activity.fragment.base.KnowledgeBaseFragment;
 import com.mindpin.kc_android.controllers.AuthenticatorsController;
 import com.mindpin.kc_android.models.User;
+import com.mindpin.kc_android.utils.UiFont;
+import com.mindpin.kc_android.widget.BorderRadiusLinearLayout;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Administrator on 2014/9/28.
@@ -35,7 +41,20 @@ public class UserInfoFragment extends KnowledgeBaseFragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        Button logout_btn = (Button)current_view.findViewById(R.id.logout);
+
+        User user = User.current();
+        if(user != null){
+            ((TextView)current_view.findViewById(R.id.tv_user_name)).setText(user.name);
+            ImageLoader.getInstance().displayImage(
+                    user.get_avatar_url(),
+                    ((CircleImageView) current_view.findViewById(R.id.iv_user_avatar))
+            );
+        }
+
+        TextView logout_text_tv = (TextView)current_view.findViewById(R.id.logout_text_tv);
+        logout_text_tv.setTypeface(UiFont.FONTAWESOME_FONT);
+
+        BorderRadiusLinearLayout logout_btn = (BorderRadiusLinearLayout)current_view.findViewById(R.id.logout);
         logout_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
