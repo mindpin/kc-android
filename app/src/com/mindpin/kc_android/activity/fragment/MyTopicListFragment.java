@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import com.mindpin.android.loadingview.LoadingView;
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.TopicTutorialListActivity;
+import com.mindpin.kc_android.activity.base.KnowledgeBaseIncludeDrawerActivity;
 import com.mindpin.kc_android.activity.fragment.base.KnowledgeBaseFragment;
 import com.mindpin.kc_android.adapter.TopicListAdapter;
 import com.mindpin.kc_android.models.interfaces.ITopic;
@@ -43,6 +44,7 @@ public class MyTopicListFragment extends KnowledgeBaseFragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         this.activity = activity;
+        ((KnowledgeBaseIncludeDrawerActivity)activity).set_drawer_title(R.string.my_classes);
     }
 
     @Override

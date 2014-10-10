@@ -13,6 +13,7 @@ import android.widget.ListView;
 import com.mindpin.android.loadingview.LoadingView;
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.LearnActivity;
+import com.mindpin.kc_android.activity.base.KnowledgeBaseIncludeDrawerActivity;
 import com.mindpin.kc_android.activity.fragment.base.KnowledgeBaseFragment;
 import com.mindpin.kc_android.adapter.MyStepListAdapter;
 import com.mindpin.kc_android.models.interfaces.IStep;
@@ -42,6 +43,7 @@ public class MyStepListFragment extends KnowledgeBaseFragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         this.activity = activity;
+        ((KnowledgeBaseIncludeDrawerActivity)activity).set_drawer_title(R.string.my_difficulties);
     }
 
     @Override

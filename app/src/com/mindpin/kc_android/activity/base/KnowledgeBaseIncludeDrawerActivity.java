@@ -30,6 +30,7 @@ public class KnowledgeBaseIncludeDrawerActivity extends KnowledgeBaseActivity{
     private boolean is_init = false;
     private DrawerLayout drawer_layout;
     private LinearLayout left_drawer;
+    private TextView tv_actionbar_title;
 
     // 所有课程
     SelectableLinearLayout btn_menu_topic;
@@ -64,6 +65,8 @@ public class KnowledgeBaseIncludeDrawerActivity extends KnowledgeBaseActivity{
     }
 
     private void _init_drawer_layout() {
+        tv_actionbar_title = (TextView)findViewById(R.id.tv_actionbar_title);
+
         drawer_layout = (DrawerLayout)findViewById(R.id.drawer_layout);
         left_drawer = (LinearLayout)findViewById(R.id.left_drawer);
 
@@ -203,5 +206,9 @@ public class KnowledgeBaseIncludeDrawerActivity extends KnowledgeBaseActivity{
         selected_drawer.select();
 
         drawer_layout.closeDrawer(left_drawer);
+    }
+
+    public void set_drawer_title(int resid){
+        tv_actionbar_title.setText(resid);
     }
 }

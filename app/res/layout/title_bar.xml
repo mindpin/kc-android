@@ -13,11 +13,17 @@
             android:id="@+id/btn_menu"
             android:layout_alignParentLeft="true"
             style="@style/ActionBarButton"/>
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:id="@+id/tv_actionbar_title"
-              android:layout_alignParentTop="true" android:layout_toLeftOf="@+id/btn_search"
-              android:layout_alignParentBottom="true" android:layout_toRightOf="@+id/btn_menu"
-              android:gravity="center"
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_actionbar_title"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/btn_search"
+            android:layout_toRightOf="@+id/btn_menu"
+            android:gravity="center"
+            android:textColor="#4D4D4D"
+            android:textSize="20dp"
             />
     <com.mindpin.kc_android.widget.FontAwesomeButton
             style="@style/ActionBarButton"

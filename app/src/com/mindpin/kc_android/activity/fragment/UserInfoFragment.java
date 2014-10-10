@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.mindpin.kc_android.R;
 import com.mindpin.kc_android.activity.SignInActivity;
+import com.mindpin.kc_android.activity.base.KnowledgeBaseIncludeDrawerActivity;
 import com.mindpin.kc_android.activity.fragment.base.KnowledgeBaseFragment;
 import com.mindpin.kc_android.controllers.AuthenticatorsController;
 import com.mindpin.kc_android.models.User;
@@ -31,6 +32,7 @@ public class UserInfoFragment extends KnowledgeBaseFragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         this.activity = activity;
+        ((KnowledgeBaseIncludeDrawerActivity)activity).set_drawer_title(R.string.user_info);
     }
 
     @Override

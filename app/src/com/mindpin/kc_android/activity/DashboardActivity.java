@@ -10,12 +10,20 @@ import com.mindpin.kc_android.activity.fragment.TopicListFragment;
 
 public class DashboardActivity extends KnowledgeBaseIncludeDrawerActivity {
     private FragmentManager fragment_manager;
+    private boolean is_init = false;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_content);
+    }
 
-        show_topic_list_fragment();
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(!is_init){
+            show_topic_list_fragment();
+            is_init = true;
+        }
     }
 
     private void show_topic_list_fragment(){
