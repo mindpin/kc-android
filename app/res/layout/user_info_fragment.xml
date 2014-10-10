@@ -1,12 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:background="#f1f1f1"
+        android:layout_margin="5dp"
+        android:layout_height="165dp"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/iv_user_avatar"
+            android:src="@drawable/avatar_default"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            />
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_height="25dp"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:textSize="18dp"
+            android:text="用户名"
+            />
+        </LinearLayout>
 
     <Button
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:id="@+id/logout"
+        android:background="#e54028"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="登出"
+        android:textColor="#fff"
+        android:textSize="18dp"
+        android:text="@string/fontawesome_sign_out"
         ></Button>
-</RelativeLayout>
+</LinearLayout>
