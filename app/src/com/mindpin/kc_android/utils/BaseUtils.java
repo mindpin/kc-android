@@ -109,6 +109,24 @@ public class BaseUtils {
         return sdf.parse(iso_time_string).getTime();
     }
 
+    public static String get_time_from_isoformat(String created_at) {
+        String d = "";
+
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        try {
+            Date time = f.parse(created_at);
+            SimpleDateFormat ff = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            d = ff.format(time);
+        } catch (Exception e) {
+            Log.i("字符串时间转为日期 error : ", e.getMessage() + created_at);
+        }
+
+
+
+        return d;
+
+    }
+
     public static boolean net_is_active(Context context){
         ConnectivityManager mgrConn = (ConnectivityManager) context
                 .getSystemService(Context.CONNECTIVITY_SERVICE);

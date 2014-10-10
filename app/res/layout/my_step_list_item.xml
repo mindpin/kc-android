@@ -11,6 +11,7 @@
     <LinearLayout android:id="@+id/thumbnail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="top"
         android:layout_alignParentLeft="true"
         android:layout_marginRight="10dp">
 
@@ -21,7 +22,7 @@
             android:background="#fffbe3"
             android:textSize="20dp"
             android:layout_marginRight="5dp"
-            android:gravity="center"
+            android:gravity="top"
             android:text="@string/ic_bookmark"
             />
 
@@ -29,6 +30,8 @@
             android:id="@+id/tutorial_cover"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_gravity="top"
+            android:scaleType="centerCrop"
             />
 
     </LinearLayout>
