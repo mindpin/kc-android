@@ -46,7 +46,7 @@ public class MyStepListAdapter extends KnowledgeBaseAdapter<IStep> {
         ViewHolder view_holder = (ViewHolder) holder;
         view_holder.step_title_view.setText(item.get_title());
         view_holder.time_view.setText(item.get_created_at());
-        ImageLoader.getInstance().displayImage("https://ruby-china.org/avatar/73e65374053ec8ac648e38eab0fb0916.png", view_holder.tutorial_cover);
+        ImageLoader.getInstance().displayImage(item.get_tutorial_icon_url(), view_holder.tutorial_cover);
     }
 
 
