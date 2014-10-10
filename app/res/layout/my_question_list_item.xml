@@ -37,7 +37,7 @@
             android:layout_height="40dp"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/pic"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             />
 
 
