@@ -1,14 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="5dp"
-    >
-    <TextView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#F1F1F1"
+    android:orientation="horizontal"
+    android:padding="5dp">
+
+    <LinearLayout android:id="@+id/thumbnail"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/step_title_view"
-        android:layout_marginBottom="5dp"
-        />
-</LinearLayout>
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="10dp">
+
+        <com.mindpin.kc_android.widget.FontAwesomeTextView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:textColor="#ffcc3f"
+            android:background="#fffbe3"
+            android:textSize="20dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:text="@string/ic_bookmark"
+            />
+
+        <ImageView
+            android:id="@+id/tutorial_cover"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            />
+
+    </LinearLayout>
+
+
+
+
+
+    <RelativeLayout android:id="@+id/text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/thumbnail"
+        android:layout_toRightOf="@+id/thumbnail">
+
+
+        <TextView
+            android:id="@+id/step_title_view"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:textColor="#333"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textSize="14dp" />
+
+        <com.mindpin.kc_android.widget.FontAwesomeTextView
+            android:id="@+id/clock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_below="@+id/step_title_view"
+            android:layout_marginRight="5dp"
+            android:text="@string/ic_clock"
+            />
+
+
+        <TextView
+            android:id="@+id/time_view"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/clock"
+            android:layout_below="@id/step_title_view"
+            android:textColor="#999"
+            android:textSize="12dp" />
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+</RelativeLayout>

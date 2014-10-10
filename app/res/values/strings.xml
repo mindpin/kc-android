@@ -28,6 +28,8 @@
 
     <string name="ic_home">&#xf015;</string>
     <string name="ic_book">&#xf02d;</string>
+    <string name="ic_bookmark">&#xf02e;</string>
+    <string name="ic_clock">&#xf017;</string>
     <string name="ic_info">&#xf05a;</string>
     <string name="ic_question">&#xf059;</string>
     <string name="ic_note">&#xf044;</string>
