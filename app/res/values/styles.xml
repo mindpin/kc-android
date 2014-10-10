@@ -13,8 +13,11 @@
 	</style>
 
 	<!-- Application theme. -->
+    <drawable name="kc_window_background">#ffffff</drawable>
 	<style name="KcTheme" parent="android:Theme.Light">
         <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/kc_window_background</item>
+        <item name="android:colorBackground">@drawable/kc_window_background</item>
 		<!-- All customizations that are NOT specific to a particular API-level can go here. -->
 	</style>
 
