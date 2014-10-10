@@ -23,6 +23,7 @@ import java.util.*;
 public class Step implements IStep{
     private String id;
     private String tutorial_id;
+    private String tutorial_image;
     private String title;
     @SerializedName("continue")
     private Continue _continue;
@@ -320,6 +321,11 @@ public class Step implements IStep{
     @Override
     public String get_tutorial_id() {
         return this.tutorial_id;
+    }
+
+    @Override
+    public String get_tutorial_icon_url() {
+        return HttpApi.SITE + this.tutorial_image;
     }
 
     private String _get_type(){
