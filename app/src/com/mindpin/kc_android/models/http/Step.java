@@ -53,7 +53,7 @@ public class Step implements IStep{
 
     @Override
     public String get_updated_at() {
-        return this.updated_at;
+        return BaseUtils.get_time_from_isoformat(this.updated_at);
     }
 
     @Override

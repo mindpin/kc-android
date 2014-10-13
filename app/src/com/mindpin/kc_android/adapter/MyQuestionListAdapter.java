@@ -45,7 +45,7 @@ public class MyQuestionListAdapter extends KnowledgeBaseAdapter<IQuestion> {
         ViewHolder view_holder = (ViewHolder) holder;
         view_holder.step_title_view.setText(item.get_step().get_title());
         view_holder.question_content_view.setText(item.get_content());
-        view_holder.time_view.setText(item.get_created_at());
+        view_holder.time_view.setText(item.get_updated_at());
         ImageLoader.getInstance().displayImage(item.get_tutorial_icon_uri(), view_holder.tutorial_cover);
     }
 
