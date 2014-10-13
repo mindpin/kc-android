@@ -27,7 +27,7 @@ import java.util.List;
  */
 
 
-@RunWith(RobolectricTestRunner.class)
+//@RunWith(RobolectricTestRunner.class)
 public class FirstTest  {
     @Before
     public void setUp() throws Exception {
