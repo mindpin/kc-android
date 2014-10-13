@@ -50,4 +50,5 @@ app/env-release.properties
 app/app.keystore
 app/res/values/http_site.xml
 
-publish/
+.classpath
+.project
