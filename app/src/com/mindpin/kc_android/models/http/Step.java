@@ -35,6 +35,7 @@ public class Step implements IStep{
     private String note_id;
     private String created_at;
     private String updated_at;
+    private String hard_mark_at;
 
     @Override
     public String get_id() {
@@ -54,6 +55,11 @@ public class Step implements IStep{
     @Override
     public String get_updated_at() {
         return BaseUtils.get_time_from_isoformat(this.updated_at);
+    }
+
+    @Override
+    public String get_hard_mark_at() {
+        return BaseUtils.get_time_from_isoformat(this.hard_mark_at);
     }
 
     @Override

@@ -11,6 +11,7 @@ public interface IStep extends Serializable {
     public String get_title();
     public String get_created_at();
     public String get_updated_at();
+    public String get_hard_mark_at();
     public ContinueType get_continue_type();
     public String get_next_id();
     public boolean is_end();

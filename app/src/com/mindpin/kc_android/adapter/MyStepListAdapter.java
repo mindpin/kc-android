@@ -45,7 +45,7 @@ public class MyStepListAdapter extends KnowledgeBaseAdapter<IStep> {
     public void fill_with_data(BaseViewHolder holder, IStep item, int position) {
         ViewHolder view_holder = (ViewHolder) holder;
         view_holder.step_title_view.setText(item.get_title());
-        view_holder.time_view.setText(item.get_updated_at());
+        view_holder.time_view.setText(item.get_hard_mark_at());
         ImageLoader.getInstance().displayImage(item.get_tutorial_icon_url(), view_holder.tutorial_cover);
     }
 
