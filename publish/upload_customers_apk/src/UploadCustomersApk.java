@@ -28,6 +28,7 @@ import com.google.gson.reflect.TypeToken;
 
 
 public class UploadCustomersApk {
+	public static final String SITE = "http://192.168.1.38:3000";
 
 	/**
 	 * @param args
@@ -59,7 +60,6 @@ public class UploadCustomersApk {
 	private static void process_customer(Customer c, boolean is_milestone) {
 		System.out.println("¥¶¿Ì customer " + c.name);
 		
-//		File apk_file = new File(get_project_file(),"app/target/app.apk");
 		// newest_version
 		String current_version = Util.get_current_version();
 		if(Util.first_verion_more_than_second(c.newest_version, current_version)){
@@ -73,8 +73,36 @@ public class UploadCustomersApk {
 		download_keystore_file(c.keystore_file_url);
 		// env-release.properties
 		change_env_properties_file(c);
+		// mvn install
+		build_apk();
+		// upload apk
+		upload_customer_apk(c, is_milestone, current_version);
 	}
 	
+	
+	
+	private static void upload_customer_apk(Customer c, boolean is_milestone, String current_version) {
+		HttpRequest request = HttpRequest.post(SITE + "/upload");
+		File file = new File(Util.get_project_file(), "app/target/app.apk");
+		
+		request.part("customer_name", c.name);
+		request.part("version", current_version);
+		request.part("is_milestone", is_milestone+"");
+		request.part("package", "app.apk", file);
+		if(!request.ok()){
+			System.exit(1);
+		}
+	}
+
+	private static void build_apk() {
+		int result_code = Util.run_cmd("mvn clean install -Prelease");
+		if(result_code != 0){
+			Util.run_cmd("git checkout .");
+			System.out.println("create apk failed, git checkout .");
+			System.exit(1);
+		}
+	}
+
 	private static void change_env_properties_file(Customer c) {
 		File file = new File(Util.get_project_file(), "app/env-release.properties");
 		write_properties_file_attr(file, "keystore.storepass", c.storepass);
@@ -87,12 +115,13 @@ public class UploadCustomersApk {
         OutputStream fos = null;  
         try {  
             fis = new FileInputStream(properties_file);  
-            prop.load(fis);  
-            fis.close();
+            prop.load(fis);
             
             fos = new FileOutputStream(properties_file);  
             prop.setProperty(name, value);
-            fos.close(); 
+            prop.store(fos, null);
+            fis.close();
+            fos.close();
         } catch (Exception e) {
         	e.printStackTrace();
         }  
@@ -107,18 +136,16 @@ public class UploadCustomersApk {
 	}
 
 	private static void download_keystore_file(String keystore_file_url) {
-		HttpRequest request = HttpRequest.get(keystore_file_url);
-		File file = new File(Util.get_project_file(), "app/app.keystore");
-		file.deleteOnExit();
-		file = new File(Util.get_project_file(), "app/app.keystore");
-		request.receive(file);
+		HttpRequest request = HttpRequest.get(SITE + keystore_file_url);
+		File new_file = new File(Util.get_project_file(), "app/app.keystore");
+		request.receive(new_file);
 	}
 
 	private static void change_http_site_xml_file(String http_site){
 		try{
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();
-			Document document = db.parse(Util.get_version_xml_file());
+			Document document = db.parse(get_http_site_file());
 			
 			XPathFactory f = XPathFactory.newInstance();
 			XPath path = f.newXPath();
@@ -128,12 +155,23 @@ public class UploadCustomersApk {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(document);
-			StreamResult streamResult =  new StreamResult(Util.get_version_xml_file());
+			StreamResult streamResult =  new StreamResult(get_http_site_file());
 			transformer.transform(source, streamResult);
 		}catch(Exception ex){
 			ex.printStackTrace();
 			System.exit(1);
 		}
+	}
+	
+	public static File get_http_site_file(){
+//		version_xml_file_path "app/res/values/http_site.xml"
+		File project_file = Util.get_project_file();
+		String path = project_file.getAbsoluteFile() + File.separator + 
+					  "app" + File.separator +
+					  "res" + File.separator +
+					  "values" + File.separator +
+					  "http_site.xml";
+		return new File(path);
 	}
 
 	private static String get_customers_json_str(){

@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Created-By: fushang318
+Main-Class: UploadCustomersApk
+Class-Path: ../lib/gson-2.3.jar
+
