@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLDecoder;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -45,11 +47,20 @@ public class Util {
 		}
 	}
 	
-	
-	public static File get_project_file(){
-		File f = new File(Util.class.getResource("/").getPath());
-		File project_file = f.getParentFile().getParentFile().getParentFile();
-		return project_file;
+	public static File get_project_file() {
+		URL url = Util.class.getProtectionDomain().getCodeSource().getLocation();
+		String file_path = null;
+	 
+		try {
+			file_path = URLDecoder.decode(url.getPath(), "utf-8");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (file_path.endsWith(".jar")){
+			file_path = file_path.substring(0, file_path.lastIndexOf("/") + 1);
+		}
+	 
+		return new File(file_path).getParentFile().getParentFile().getParentFile();
 	}
 
 	public static String get_current_version(){
