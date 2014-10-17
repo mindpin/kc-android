@@ -48,7 +48,7 @@ public class ReleaseNewVersion {
 		
 		update_version(new_version);
 		
-		int result_code = Util.run_cmd("mvn clean install -Prelease");
+		int result_code = Util.run_cmd("mvn clean install");
 		if(result_code != 0){
 			Util.run_cmd("git checkout .");
 			System.out.println("create apk failed, git checkout .");
