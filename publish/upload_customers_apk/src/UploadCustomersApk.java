@@ -136,7 +136,7 @@ public class UploadCustomersApk {
 	}
 
 	private static void download_keystore_file(String keystore_file_url) {
-		HttpRequest request = HttpRequest.get(SITE + keystore_file_url);
+		HttpRequest request = HttpRequest.get(keystore_file_url);
 		File new_file = new File(Util.get_project_file(), "app/app.keystore");
 		request.receive(new_file);
 	}
