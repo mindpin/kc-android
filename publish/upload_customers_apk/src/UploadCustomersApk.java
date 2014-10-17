@@ -175,7 +175,7 @@ public class UploadCustomersApk {
 	}
 
 	private static String get_customers_json_str(){
-		HttpRequest request = HttpRequest.get("http://192.168.1.38:3000/customers");
+		HttpRequest request = HttpRequest.get(SITE + "/customers");
 		if(request.ok()){
 			return request.body();
 		}else{
