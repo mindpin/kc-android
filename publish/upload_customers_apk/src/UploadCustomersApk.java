@@ -28,7 +28,7 @@ import com.google.gson.reflect.TypeToken;
 
 
 public class UploadCustomersApk {
-	public static final String SITE = "http://192.168.1.38:3000";
+	public static final String SITE = "http://kc-android-publish-service.4ye.me";
 
 	/**
 	 * @param args
