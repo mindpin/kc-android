@@ -86,8 +86,8 @@ git checkout develop
 </resources>
 ```
 
-### 创建 env-release.properties 和 env-debug.properties 
-创建 app/env-release.properties 文件 和 env-debug.properties 文件，两个文件内容如下
+### 创建 env-release.properties
+创建 app/env-release.properties，文件内容如下
 ```
 # 四个属性的值，如何设置（联系 fushang318 获取）
 keystore.filename=

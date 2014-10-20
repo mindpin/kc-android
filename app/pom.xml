@@ -231,11 +231,6 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <build>
-                <filters>
-                    <filter>env-debug.properties</filter>
-                </filters>
-            </build>
             <properties>
                 <project.build.debug>true</project.build.debug>
                 <project.build.runDebug>false</project.build.runDebug>
