@@ -37,12 +37,18 @@ public class UploadCustomersApk {
 		
 		String is_milestone_str = "";
 		boolean is_milestone = false;
+		String password = "";
 		
 		while(is_milestone_format_is_error(is_milestone_str)){
 			System.out.print("input is_milestone(Y/N):");
 			is_milestone_str = new Scanner(System.in).next();
 		}
 		is_milestone = get_is_milestone(is_milestone_str);
+		
+		while(password.equals("")){
+			System.out.print("input upload password:");
+			password = new Scanner(System.in).next();
+		}
 		
 		get_customers_json_str();
 		
@@ -51,13 +57,13 @@ public class UploadCustomersApk {
         List<Customer> customer_list = gson.fromJson(get_customers_json_str(), collectionType);
 		
         for(Customer c : customer_list){
-        	process_customer(c, is_milestone);
+        	process_customer(c, is_milestone, password);
         }
         
         System.out.println("upload customers apk success!");
 	}
 	
-	private static void process_customer(Customer c, boolean is_milestone) {
+	private static void process_customer(Customer c, boolean is_milestone, String password) {
 		System.out.println("¥¶¿Ì customer " + c.name);
 		
 		// newest_version
@@ -76,20 +82,24 @@ public class UploadCustomersApk {
 		// mvn install
 		build_apk();
 		// upload apk
-		upload_customer_apk(c, is_milestone, current_version);
+		upload_customer_apk(c, is_milestone, current_version, password);
 	}
 	
 	
 	
-	private static void upload_customer_apk(Customer c, boolean is_milestone, String current_version) {
+	private static void upload_customer_apk(Customer c, boolean is_milestone, String current_version, String password) {
 		HttpRequest request = HttpRequest.post(SITE + "/upload");
 		File file = new File(Util.get_project_file(), "app/target/app.apk");
 		
+		request.part("password", password);
 		request.part("customer_name", c.name);
 		request.part("version", current_version);
 		request.part("is_milestone", is_milestone+"");
 		request.part("package", "app.apk", file);
 		if(!request.ok()){
+			if(request.code() == 401){
+				System.out.println("upload password is wrong");
+			}
 			System.exit(1);
 		}
 	}
